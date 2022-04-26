@@ -1,11 +1,19 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+@Suppress(
+    "DSL_SCOPE_VIOLATION"
+)
 plugins {
-    id("org.springframework.boot") version "2.6.7"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    alias(libs.plugins.springBoot)
+    alias(libs.plugins.springDepManagement)
+    alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.kotlinPluginSpring)
+    alias(libs.plugins.kotlinPluginJpa)
+//    id("org.springframework.boot") version "2.6.7"
+//    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+//    kotlin("jvm") version "1.6.21"
+//    kotlin("plugin.spring") version "1.6.21"
+//    kotlin("plugin.jpa") version "1.6.21"
 }
 
 group = "gr.fnik"
