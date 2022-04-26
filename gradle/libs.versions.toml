@@ -10,6 +10,7 @@ oktaSpring = "2.1.5"
 hibernateTypes = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernateTypes" }
 
 jmoleculesDdd = { module = "org.jmolecules:jmolecules-ddd", version.ref = "jmolecules" }
+jmoleculesEvents = { module = "org.jmolecules:jmolecules-events", version.ref = "jmolecules" }
 jmoleculesSpring = { module = "org.jmolecules.integrations:jmolecules-spring", version.ref = "jmoleculesIntegrations" }
 jmoleculesJackson = { module = "org.jmolecules.integrations:jmolecules-jackson", version.ref = "jmoleculesIntegrations" }
 
@@ -17,4 +18,4 @@ oktaSpring = { module = "com.okta.spring:okta-spring-boot-starter", version.ref 
 
 [bundles]
 
-jmolecules = ["jmoleculesDdd", "jmoleculesSpring", "jmoleculesJackson"]
+jmolecules = ["jmoleculesDdd", "jmoleculesEvents", "jmoleculesSpring", "jmoleculesJackson"]

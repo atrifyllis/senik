@@ -1,9 +1,6 @@
 package gr.fnik.common.domain.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonSubTypes
-import com.fasterxml.jackson.annotation.JsonTypeInfo
-import gr.fnik.product.domain.model.ProductCreated
 import org.jmolecules.event.types.DomainEvent
 import java.time.LocalDateTime
 import java.util.*
