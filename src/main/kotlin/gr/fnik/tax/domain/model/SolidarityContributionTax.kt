@@ -2,7 +2,7 @@ package gr.fnik.tax.domain.model
 
 import gr.fnik.common.domain.model.Money
 
-class IncomeTax(
+class SolidarityContributionTax(
     taxableIncome: Money,
-    taxLevels: List<IncomeTaxLevel>,
+    taxLevels: List<SolidarityContributionTaxLevel>,
 ) : BaseTax(taxableIncome, taxLevels)
