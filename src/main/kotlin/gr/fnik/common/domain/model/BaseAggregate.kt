@@ -20,7 +20,7 @@ import javax.persistence.Version
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class BaseAggregate<T : AggregateRoot<T, ID>, ID : Identifier> : AggregateRoot<T, ID> {
+abstract class BaseAggregate<T : AggregateRoot<T, ID>, ID : Identifier> : AggregateRoot<T, ID>, Enableable {
 
     /**
      * Initialized to null so that Hibernate can tell if an entity is new (when the id is user provided).
@@ -45,8 +45,18 @@ abstract class BaseAggregate<T : AggregateRoot<T, ID>, ID : Identifier> : Aggreg
     @Column(name = "last_modified")
     private var lastModifiedDate: LocalDateTime? = null
 
+    override var enabled: Boolean = true
+
+    override fun enable() {
+        this.enabled = true
+    }
+
+    override fun disable() {
+        this.enabled = false
+    }
+
     override fun toString(): String {
-        return "BaseEntity(version=$version, created=$createdDate)"
+        return "BaseAggregate(version=$version, createdBy=$createdBy, createdDate=$createdDate, lastModifiedBy=$lastModifiedBy, lastModifiedDate=$lastModifiedDate, enabled=$enabled)"
     }
 
 }
