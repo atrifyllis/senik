@@ -12,11 +12,11 @@ private const val EUR = "EUR"
 @ValueObject
 class Money(
     var amount: BigDecimal,
-    var currencyCode: String
+    var currencyCode: String,
 ) {
     companion object {
-        val DEFAULT_CURRENCY = Currency.getInstance(EUR)
-        val DEFAULT_ROUNDING_MODE = RoundingMode.HALF_EVEN
+        val DEFAULT_CURRENCY: Currency = Currency.getInstance(EUR)
+        val DEFAULT_ROUNDING_MODE: RoundingMode = RoundingMode.HALF_EVEN
     }
 
     init {
@@ -38,6 +38,11 @@ class Money(
     operator fun times(money: Money): Money {
         return Money(amount * money.amount)
     }
+
+    operator fun times(factor: Double): Money {
+        return Money(amount * BigDecimal(factor))
+    }
+
 
     operator fun div(money: Money): Money {
         return Money(amount / money.amount)
@@ -63,5 +68,9 @@ class Money(
 
     override fun toString(): String {
         return "Money(amount=$amount, currencyCode='$currencyCode')"
+    }
+
+    operator fun compareTo(amount: Money): Int {
+        return this.amount.compareTo(amount.amount)
     }
 }
