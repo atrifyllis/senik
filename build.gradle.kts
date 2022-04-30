@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.kotlinPluginSpring)
     alias(libs.plugins.kotlinPluginJpa)
+    id("com.adarshr.test-logger") version "3.2.0"
+
 //    id("org.springframework.boot") version "2.6.7"
 //    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 //    kotlin("jvm") version "1.6.21"
