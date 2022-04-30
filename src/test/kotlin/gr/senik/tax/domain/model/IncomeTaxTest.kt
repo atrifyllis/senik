@@ -10,13 +10,7 @@ internal class IncomeTaxTest {
 
     @BeforeEach
     fun setUp() {
-        taxLevels = listOf(
-            IncomeTaxLevel(TaxLevelType.FIRST_10K, Money(10_000), 0.09),
-            IncomeTaxLevel(TaxLevelType.SECOND_10K, Money(10_000), 0.22),
-            IncomeTaxLevel(TaxLevelType.THIRD_10K, Money(10_000), 0.28),
-            IncomeTaxLevel(TaxLevelType.FOURTH_10K, Money(10_000), 0.36),
-            IncomeTaxLevel(TaxLevelType.EXCESS, Money(Integer.MAX_VALUE), 0.44),
-        )
+        taxLevels = TaxLevelHelper.incomeTaxLevels()
     }
 
     @Test
