@@ -1,4 +1,4 @@
-rootProject.name = "fnik"
+rootProject.name = "senik"
 
 enableFeaturePreview("VERSION_CATALOGS")
 

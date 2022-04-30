@@ -16,7 +16,7 @@ plugins {
 //    kotlin("plugin.jpa") version "1.6.21"
 }
 
-group = "gr.fnik"
+group = "gr.senik"
 version = "0.0.1-SNAPSHOT"
 
 java.sourceCompatibility = JavaVersion.VERSION_17
