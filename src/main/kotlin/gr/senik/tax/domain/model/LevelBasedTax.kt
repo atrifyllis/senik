@@ -2,7 +2,10 @@ package gr.senik.tax.domain.model
 
 import gr.senik.common.domain.model.Money
 
-abstract class BaseTax(
+/**
+ * Represents a tax that is based on tax levels.
+ */
+abstract class LevelBasedTax(
     taxableIncome: Money,
     private val taxLevels: List<TaxLevel>,
 ) {
