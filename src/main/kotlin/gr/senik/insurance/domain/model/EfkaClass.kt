@@ -11,7 +11,10 @@ class EfkaClassId(value: UUID?) : DomainEntityId(value)
 
 class EfkaClass(
 
-    private val type: EfkaClassType,
+    @EmbeddedId
+    private val id: EfkaClassId = EfkaClassId(UUID.randomUUID()),
+
+    val type: EfkaClassType,
 
     private val mainPensionAmount: Money,
 
@@ -19,17 +22,15 @@ class EfkaClass(
 
     private val healthCareKindAmount: Money,
 
-    ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
+    private val unemploymentAmount: Money
 
-    @EmbeddedId
-    private val id: EfkaClassId = EfkaClassId(UUID.randomUUID())
+) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
 
     override fun getId(): EfkaClassId = id
 
+    fun calculateTotalContributionAmount(): Money = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount + unemploymentAmount
     override fun toString(): String {
-        return "EfkaClass(type=$type, mainPensionAmount=$mainPensionAmount, healthCareMoneyAmount=$healthCareMoneyAmount, healthCareKindAmount=$healthCareKindAmount, id=$id) ${super.toString()}"
+        return "EfkaClass(id=$id, type=$type, mainPensionAmount=$mainPensionAmount, healthCareMoneyAmount=$healthCareMoneyAmount, healthCareKindAmount=$healthCareKindAmount, unemploymentAmount=$unemploymentAmount) ${super.toString()}"
     }
-
-    fun calculateTotalContributionAmount(): Money = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount
 
 }
