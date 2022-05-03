@@ -11,7 +11,7 @@ class InsuranceCostCalculator(
     private val efkaClasses: List<EfkaClass>,
     private val eteaepClasses: List<EteaepClass>
 ) {
-    fun calculateInsuranceCost(): Money {
+    fun calculateYearlyInsuranceCost(): Money {
         val efkaClass: EfkaClass = efkaClasses.single { it.id == insuredPerson.efkaClassId }
         val eteaepClass: EteaepClass = eteaepClasses.single { it.id == insuredPerson.eteaepClassId }
         val eteaepCost: Money = when (insuredPerson.type) {
@@ -19,6 +19,6 @@ class InsuranceCostCalculator(
             InsuranceType.TSMEDE, InsuranceType.OAEE,
             InsuranceType.OGA, InsuranceType.TSAY -> eteaepClass.calculateTotalContributionAmount()
         }
-        return efkaClass.calculateTotalContributionAmount() + eteaepCost
+        return (efkaClass.calculateTotalContributionAmount() + eteaepCost) * 12
     }
 }
