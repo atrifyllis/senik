@@ -4,6 +4,7 @@ jmolecules = "1.4.0"
 jmoleculesIntegrations = "0.9.0"
 oktaSpring = "2.1.5"
 kotlin = "1.6.21"
+kotlinLogging="2.1.21"
 
 [libraries]
 hibernateTypes = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernateTypes" }
@@ -14,6 +15,8 @@ jmoleculesSpring = { module = "org.jmolecules.integrations:jmolecules-spring", v
 jmoleculesJackson = { module = "org.jmolecules.integrations:jmolecules-jackson", version.ref = "jmoleculesIntegrations" }
 
 oktaSpring = { module = "com.okta.spring:okta-spring-boot-starter", version.ref = "oktaSpring" }
+
+kotlinLogging = {module = "io.github.microutils:kotlin-logging", version.ref = "kotlinLogging"}
 
 [bundles]
 jmolecules = ["jmoleculesDdd", "jmoleculesEvents", "jmoleculesSpring", "jmoleculesJackson"]

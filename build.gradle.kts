@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.oktaSpring)
     implementation(libs.hibernateTypes)
     implementation(libs.bundles.jmolecules)
+    implementation(libs.kotlinLogging)
 
 
     compileOnly("org.projectlombok:lombok")
