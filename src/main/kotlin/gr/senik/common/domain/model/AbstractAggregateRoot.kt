@@ -32,7 +32,7 @@ abstract class AbstractAggregateRoot<T : AggregateRoot<T, ID>, ID : Identifier> 
      *
      * @param event the event to register.
      */
-    protected final fun registerEvent(event: DomainEvent) {
+    protected fun registerEvent(event: DomainEvent) {
         Objects.requireNonNull(event, "event must not be null")
         domainEvents.add(event)
     }

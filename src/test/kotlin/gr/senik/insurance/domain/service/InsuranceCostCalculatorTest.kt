@@ -22,7 +22,7 @@ internal class InsuranceCostCalculatorTest {
             grossDailyIncomes = emptyList(),
             annualExpensesAmount = Money(2_000)
         )
-        val efkaClasses = listOf<EfkaClass>(
+        val efkaClasses = listOf(
             EfkaClass(
                 id = EFKA_CLASS_ID_1,
                 type = EfkaClassType.FIRST,
@@ -32,7 +32,7 @@ internal class InsuranceCostCalculatorTest {
                 unemploymentAmount = Money(10),
             )
         )
-        val eteaepClasses = listOf<EteaepClass>(
+        val eteaepClasses = listOf(
             EteaepClass(
                 id = ETEAEP_CLASS_ID_1,
                 type = EteaepClassType.FIRST,

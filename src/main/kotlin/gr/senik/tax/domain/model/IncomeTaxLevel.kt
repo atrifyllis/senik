@@ -6,5 +6,4 @@ class IncomeTaxLevel(
     private val type: TaxLevelType,
     levelLimit: Money,
     levelFactor: Double,
-) : TaxLevel(levelLimit, levelFactor) {
-}
+) : TaxLevel(levelLimit, levelFactor)

@@ -16,7 +16,7 @@ class HibernateTypesObjectMapperSupplier : ObjectMapperSupplier {
 }
 
 /**
- * hibernate-types initialises ObjectMapperSupplier with a no args constructor so we cannot inject the ObjectMapper
+ * hibernate-types initialises ObjectMapperSupplier with a no args constructor, so we cannot inject the ObjectMapper
  * directly into the supplier.
  */
 @Component
