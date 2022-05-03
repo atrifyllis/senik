@@ -19,7 +19,7 @@ internal class InsuranceCostCalculatorTest {
             efkaClassId = EFKA_CLASS_ID_1,
             eteaepClassId = ETEAEP_CLASS_ID_1,
             grossAnnualIncome = Money(80_000),
-            grossDailyIncome = null,
+            grossDailyIncomes = emptyList(),
             annualExpensesAmount = Money(2_000)
         )
         val efkaClasses = listOf<EfkaClass>(
@@ -40,8 +40,8 @@ internal class InsuranceCostCalculatorTest {
                 lumpSumAmount = Money(26),
             )
         )
-        val totalInsuranceCost = InsuranceCostCalculator(insuredPerson, efkaClasses, eteaepClasses).calculateInsuranceCost()
+        val totalInsuranceCost = InsuranceCostCalculator(insuredPerson, efkaClasses, eteaepClasses).calculateYearlyInsuranceCost()
 
-        assertThat(totalInsuranceCost).isEqualTo(Money(288))
+        assertThat(totalInsuranceCost).isEqualTo(Money(288 * 12))
     }
 }

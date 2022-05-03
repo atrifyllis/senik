@@ -1,6 +1,9 @@
 package gr.senik.tax.domain.model
 
 import gr.senik.common.domain.model.Money
+import mu.KotlinLogging
+
+private val log = KotlinLogging.logger {}
 
 /**
  * Represents a tax that is based on tax levels.
@@ -11,6 +14,7 @@ abstract class LevelBasedTax(
 ) {
     // TODO this is ugly
     init {
+        log.info { "taxableIncome: $taxableIncome" }
         var remainingIncome: Money = taxableIncome
         taxLevels.forEach {
             it.calculateLevelAmount(remainingIncome)

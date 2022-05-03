@@ -1,9 +1,11 @@
-package gr.senik.tax.domain.model
+package gr.senik.tax.domain.service
 
 import gr.senik.common.domain.model.Money
+import gr.senik.tax.domain.model.IncomeTax
+import gr.senik.tax.domain.model.SolidarityContributionTax
 import gr.senik.tax.domain.model.selfemployedcontribution.SelfEmployedContributionTax
 
-class TotalTax(
+class TotalTaxCalculator(
     private val incomeTax: IncomeTax,
     private val solidarityContributionTax: SolidarityContributionTax,
     private val selfEmployedContributionTax: SelfEmployedContributionTax,

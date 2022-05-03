@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class SenikApplication
 
 fun main(args: Array<String>) {
-	runApplication<SenikApplication>(*args)
+    runApplication<SenikApplication>(*args)
 }

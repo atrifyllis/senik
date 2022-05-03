@@ -43,6 +43,10 @@ class Money(
         return Money(amount * BigDecimal(factor))
     }
 
+    operator fun times(number: Int): Money {
+        return Money(amount * BigDecimal(number))
+    }
+
 
     operator fun div(money: Money): Money {
         return Money(amount / money.amount)
@@ -60,6 +64,11 @@ class Money(
         return true
     }
 
+
+    operator fun compareTo(amount: Money): Int {
+        return this.amount.compareTo(amount.amount)
+    }
+
     override fun hashCode(): Int {
         var result = amount.hashCode()
         result = 31 * result + currencyCode.hashCode()
@@ -68,9 +77,5 @@ class Money(
 
     override fun toString(): String {
         return "Money(amount=$amount, currencyCode='$currencyCode')"
-    }
-
-    operator fun compareTo(amount: Money): Int {
-        return this.amount.compareTo(amount.amount)
     }
 }
