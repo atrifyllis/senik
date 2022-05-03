@@ -12,8 +12,8 @@ internal class TotalTaxCalculatorTest {
     @Test
     fun `should calculate total tax`() {
         val taxableIncome = Money(80_000)
-        val incomeTaxLevels = TaxLevelHelper.incomeTaxLevels()
-        val solidarityContributionTaxLevels = TaxLevelHelper.solidarityContributionTaxLevels()
+        val incomeTaxLevels = TaxTestHelper.incomeTaxLevels()
+        val solidarityContributionTaxLevels = TaxTestHelper.solidarityContributionTaxLevels()
 
         val incomeTax = IncomeTax(taxableIncome, incomeTaxLevels)
         val solidarityContributionTax = SolidarityContributionTax(taxableIncome, solidarityContributionTaxLevels)

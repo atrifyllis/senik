@@ -10,7 +10,7 @@ internal class IncomeTaxTest {
 
     @BeforeEach
     fun setUp() {
-        taxLevels = TaxLevelHelper.incomeTaxLevels()
+        taxLevels = TaxTestHelper.incomeTaxLevels()
     }
 
     @Test

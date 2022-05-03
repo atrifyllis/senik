@@ -10,7 +10,7 @@ internal class SolidarityContributionTaxTest {
 
     @BeforeEach
     fun setUp() {
-        taxLevels = TaxLevelHelper.solidarityContributionTaxLevels()
+        taxLevels = TaxTestHelper.solidarityContributionTaxLevels()
     }
 
     @Test

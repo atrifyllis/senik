@@ -2,7 +2,7 @@ package gr.senik.tax.domain.model
 
 import gr.senik.common.domain.model.Money
 
-class TaxLevelHelper {
+class TaxTestHelper {
     companion object {
         fun incomeTaxLevels() = listOf(
             IncomeTaxLevel(TaxLevelType.FIRST_10K, Money(10_000), 0.09),
