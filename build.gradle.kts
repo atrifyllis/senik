@@ -10,6 +10,10 @@ plugins {
     alias(libs.plugins.kotlinPluginSpring)
     alias(libs.plugins.kotlinPluginJpa)
     id("com.adarshr.test-logger") version "3.2.0"
+    id("org.sonarqube") version "3.3"
+
+    jacoco
+
 
 //    id("org.springframework.boot") version "2.6.7"
 //    id("io.spring.dependency-management") version "1.0.11.RELEASE"
@@ -78,4 +82,18 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true) // enable xml reports required by sonarqube
+    }
+}
+
+tasks.sonarqube {
+    dependsOn(tasks.test)
 }
