@@ -1,6 +1,8 @@
 package gr.senik.insurance.domain
 
 import gr.senik.common.domain.model.Money
+import gr.senik.income.domain.model.DailyIncome
+import gr.senik.income.domain.model.Individual
 import gr.senik.insurance.domain.model.*
 import java.util.*
 
@@ -28,7 +30,7 @@ class InsuranceTestHelper {
             )
         )
 
-        val insurancePersonWithAnnualIncome = InsuredPerson(
+        val insurancePersonWithAnnualIncome = Individual(
             type = InsuranceType.TSMEDE,
             efkaClassId = EFKA_CLASS_ID_1,
             eteaepClassId = ETEAEP_CLASS_ID_1,
@@ -37,7 +39,7 @@ class InsuranceTestHelper {
             annualExpensesAmount = Money.ZERO
         )
 
-        val insuredPersonWithDailyIncomes = InsuredPerson(
+        val individualWithDailyIncomes = Individual(
             type = InsuranceType.TSMEDE,
             efkaClassId = InsuranceTestHelper.EFKA_CLASS_ID_1,
             eteaepClassId = InsuranceTestHelper.ETEAEP_CLASS_ID_1,

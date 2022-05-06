@@ -1,9 +1,12 @@
-package gr.senik.insurance.domain.model
+package gr.senik.income.domain.model
 
 import gr.senik.common.domain.model.Money
+import gr.senik.insurance.domain.model.EfkaClassId
+import gr.senik.insurance.domain.model.EteaepClassId
+import gr.senik.insurance.domain.model.InsuranceType
 
 
-class InsuredPerson(
+class Individual(
     val type: InsuranceType,
     val efkaClassId: EfkaClassId,
     val eteaepClassId: EteaepClassId,

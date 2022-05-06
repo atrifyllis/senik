@@ -1,10 +1,10 @@
 package gr.senik.income
 
 import gr.senik.common.domain.model.Money
+import gr.senik.income.domain.model.Individual
 import gr.senik.income.domain.service.NetIncomeCalculator
 import gr.senik.insurance.domain.InsuranceTestHelper
 import gr.senik.insurance.domain.model.InsuranceType
-import gr.senik.insurance.domain.model.InsuredPerson
 import gr.senik.insurance.domain.service.InsuranceCostCalculator
 import gr.senik.tax.domain.model.IncomeTax
 import gr.senik.tax.domain.model.SolidarityContributionTax
@@ -20,7 +20,7 @@ internal class NetIncomeCalculatorTest {
     @Test
     fun `should calculate net income`() {
 
-        val insuredPerson = InsuredPerson(
+        val individual = Individual(
             type = InsuranceType.TSMEDE,
             efkaClassId = InsuranceTestHelper.EFKA_CLASS_ID_1,
             eteaepClassId = InsuranceTestHelper.ETEAEP_CLASS_ID_1,
@@ -29,9 +29,9 @@ internal class NetIncomeCalculatorTest {
             annualExpensesAmount = Money.ZERO
         )
 
-        val insuranceCostCalculator = InsuranceCostCalculator(insuredPerson, InsuranceTestHelper.efkaClasses, InsuranceTestHelper.eteaepClasses)
+        val insuranceCostCalculator = InsuranceCostCalculator(individual, InsuranceTestHelper.efkaClasses, InsuranceTestHelper.eteaepClasses)
         val insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost()
-        val taxableIncome = insuredPerson.grossIncome() - insuranceCost - insuredPerson.annualExpensesAmount
+        val taxableIncome = individual.grossIncome() - insuranceCost - individual.annualExpensesAmount
 
         val incomeTax = IncomeTax(taxableIncome, TaxTestHelper.incomeTaxLevels())
         val solidarityContributionTax = SolidarityContributionTax(taxableIncome, TaxTestHelper.solidarityContributionTaxLevels())
@@ -46,7 +46,7 @@ internal class NetIncomeCalculatorTest {
         val netIncomeCalculator = NetIncomeCalculator(
             insuranceCostCalculator = insuranceCostCalculator,
             totalTaxCalculator = totalTaxCalculator,
-            insuredPerson = insuredPerson
+            individual = individual
         )
 
         val netIncome = netIncomeCalculator.calculateNetIncome()
