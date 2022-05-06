@@ -11,10 +11,16 @@ class InsuredPerson(
     val grossDailyIncomes: List<DailyIncome>,
     val annualExpensesAmount: Money,
 ) {
-    // TODO not great
+
     fun grossIncome(): Money {
-        return grossAnnualIncome ?: (grossDailyIncomes.map { it.income * it.days }.reduce { acc, m -> m + acc })
+        return grossAnnualIncome ?: sumGrossDailyAmounts()
     }
+
+    private fun sumGrossDailyAmounts() = Money(
+        grossDailyIncomes
+            .map { it.dailyIncome * it.days }
+            .sumOf { it.amount }
+    )
 }
 
-data class DailyIncome(val days: Int, val income: Money)
+data class DailyIncome(val days: Int, val dailyIncome: Money)
