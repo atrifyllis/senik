@@ -1,4 +1,4 @@
-package gr.senik.income
+package gr.senik.income.domain.service
 
 import gr.senik.common.domain.model.Money
 import gr.senik.insurance.domain.model.InsuredPerson
