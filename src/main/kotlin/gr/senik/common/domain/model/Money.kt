@@ -17,6 +17,7 @@ class Money(
     companion object {
         val DEFAULT_CURRENCY: Currency = Currency.getInstance(EUR)
         val DEFAULT_ROUNDING_MODE: RoundingMode = RoundingMode.HALF_EVEN
+        val ZERO = Money(0)
     }
 
     init {

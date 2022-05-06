@@ -34,7 +34,7 @@ class InsuranceTestHelper {
             eteaepClassId = ETEAEP_CLASS_ID_1,
             grossAnnualIncome = Money(85_000),
             grossDailyIncomes = emptyList(),
-            annualExpensesAmount = Money(0)
+            annualExpensesAmount = Money.ZERO
         )
 
         val insuredPersonWithDailyIncomes = InsuredPerson(
@@ -46,7 +46,7 @@ class InsuranceTestHelper {
                 DailyIncome(120, Money(240)),
                 DailyIncome(100, Money(370))
             ),
-            annualExpensesAmount = Money(0)
+            annualExpensesAmount = Money.ZERO
         )
     }
 }

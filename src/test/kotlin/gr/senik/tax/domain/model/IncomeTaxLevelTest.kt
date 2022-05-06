@@ -38,7 +38,7 @@ internal class IncomeTaxLevelTest {
 
     @Test
     fun `should calculate tax for zero amount`() {
-        val taxAmount = incomeTaxLevel.calculateLevelAmount(Money(0))
+        val taxAmount = incomeTaxLevel.calculateLevelAmount(Money.ZERO)
 
         assertThat(taxAmount).isEqualTo(Money(0.00))
     }

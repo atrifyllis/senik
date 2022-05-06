@@ -1,6 +1,7 @@
 package gr.senik.income
 
 import gr.senik.common.domain.model.Money
+import gr.senik.income.domain.service.NetIncomeCalculator
 import gr.senik.insurance.domain.InsuranceTestHelper
 import gr.senik.insurance.domain.model.InsuranceType
 import gr.senik.insurance.domain.model.InsuredPerson
@@ -25,7 +26,7 @@ internal class NetIncomeCalculatorTest {
             eteaepClassId = InsuranceTestHelper.ETEAEP_CLASS_ID_1,
             grossAnnualIncome = Money(85_000),
             grossDailyIncomes = emptyList(),
-            annualExpensesAmount = Money(0)
+            annualExpensesAmount = Money.ZERO
         )
 
         val insuranceCostCalculator = InsuranceCostCalculator(insuredPerson, InsuranceTestHelper.efkaClasses, InsuranceTestHelper.eteaepClasses)
