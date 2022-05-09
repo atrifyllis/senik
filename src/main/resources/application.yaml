@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    open-in-view: false
+    # two lines bellow needed for not logging query twice
+    show-sql: false
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+        ddl-auto: validate
+        use-new-id-generator-mappings: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  datasource:
+    url: jdbc:postgresql://localhost:65432/senik
+    username: senik
+    password: senik
+  flyway:
+    enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
