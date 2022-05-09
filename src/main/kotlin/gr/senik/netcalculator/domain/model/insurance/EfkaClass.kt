@@ -4,24 +4,38 @@ import gr.senik.common.domain.model.AbstractAggregateRoot
 import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
 import java.util.*
-import javax.persistence.EmbeddedId
+import javax.persistence.*
 
-class EfkaClassId(value: UUID?) : DomainEntityId(value)
+@Embeddable
+class EfkaClassId(var id: UUID?) : DomainEntityId(id)
 
-
+@Entity
 class EfkaClass(
 
     @EmbeddedId
     private val id: EfkaClassId = EfkaClassId(UUID.randomUUID()),
 
+    @Enumerated(EnumType.STRING)
     val type: EfkaClassType,
 
+    @Embedded
+    @AttributeOverride(name = "amount", column = Column(name = "main_pension_amount"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency"))
     private val mainPensionAmount: Money,
 
+    @Embedded
+    @AttributeOverride(name = "amount", column = Column(name = "health_care_money_amount"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
     private val healthCareMoneyAmount: Money,
 
+    @Embedded
+    @AttributeOverride(name = "amount", column = Column(name = "health_care_kind_amount"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
     private val healthCareKindAmount: Money,
 
+    @Embedded
+    @AttributeOverride(name = "amount", column = Column(name = "unemployment_amount"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
     private val unemploymentAmount: Money
 
 ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
