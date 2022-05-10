@@ -5,6 +5,8 @@ jmoleculesIntegrations = "0.9.0"
 oktaSpring = "2.1.5"
 kotlin = "1.6.21"
 kotlinLogging="2.1.21"
+mapStruct="1.4.2.Final"
+
 
 [libraries]
 hibernateTypes = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernateTypes" }
@@ -18,6 +20,9 @@ oktaSpring = { module = "com.okta.spring:okta-spring-boot-starter", version.ref 
 
 kotlinLogging = {module = "io.github.microutils:kotlin-logging", version.ref = "kotlinLogging"}
 
+mapStruct = {module = "org.mapstruct:mapstruct", version.ref = "mapStruct"}
+mapStructProcessor={module = "org.mapstruct:mapstruct-processor", version.ref = "mapStruct"}
+
 [bundles]
 jmolecules = ["jmoleculesDdd", "jmoleculesEvents", "jmoleculesSpring", "jmoleculesJackson"]
 
@@ -25,6 +30,7 @@ jmolecules = ["jmoleculesDdd", "jmoleculesEvents", "jmoleculesSpring", "jmolecul
 springBoot = { id = "org.springframework.boot", version = "2.6.7" }
 springDepManagement = { id = "io.spring.dependency-management", version = "1.0.11.RELEASE" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinPluginSpring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 kotlinPluginJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
 
