@@ -15,9 +15,9 @@ abstract class TaxLevel(
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "level_limit_amount"))
-    internal val levelLimit: Money,
+    val levelLimit: Money,
 
-    private val levelFactor: Double,
+    val levelFactor: Double,
 
     ) : AbstractAggregateRoot<TaxLevel, TaxLevelId>() {
 

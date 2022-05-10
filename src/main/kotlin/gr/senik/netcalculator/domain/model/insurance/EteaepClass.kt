@@ -17,17 +17,17 @@ class EteaepClass(
     private val id: EteaepClassId = EteaepClassId(UUID.randomUUID()),
 
     @Enumerated(EnumType.STRING)
-    private val type: EteaepClassType,
+    val type: EteaepClassType,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "auxiliary_pension_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency"))
-    private val auxiliaryPensionAmount: Money,
+    val auxiliaryPensionAmount: Money,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "lump_sum_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
-    private val lumpSumAmount: Money,
+    val lumpSumAmount: Money,
 
     ) : AbstractAggregateRoot<EteaepClass, EteaepClassId>() {
 

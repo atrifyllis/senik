@@ -8,7 +8,7 @@ import javax.persistence.Enumerated
 @Entity
 class SolidarityContributionTaxLevel(
     @Enumerated(EnumType.STRING)
-    private val type: SolidarityContributionLevelType,
+    val type: SolidarityContributionLevelType,
     levelLimit: Money,
     levelFactor: Double,
 ) : TaxLevel(levelLimit, levelFactor)
