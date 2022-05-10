@@ -21,12 +21,12 @@ class EteaepClass(
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "auxiliary_pension_amount"))
-    @AttributeOverride(name = "currencyCode", column = Column(name = "currency"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_aux"))
     val auxiliaryPensionAmount: Money,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "lump_sum_amount"))
-    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_lump"))
     val lumpSumAmount: Money,
 
     ) : AbstractAggregateRoot<EteaepClass, EteaepClassId>() {

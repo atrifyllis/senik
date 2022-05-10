@@ -107,3 +107,10 @@ tasks.jacocoTestReport {
 tasks.sonarqube {
     dependsOn(tasks.test)
 }
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
+}
+
