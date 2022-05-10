@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.kotlinPluginJpa)
     id("com.adarshr.test-logger") version "3.2.0"
     id("org.sonarqube") version "3.3"
+    alias(libs.plugins.kotlinKapt)
 
     jacoco
 
@@ -58,6 +59,7 @@ dependencies {
     implementation(libs.hibernateTypes)
     implementation(libs.bundles.jmolecules)
     implementation(libs.kotlinLogging)
+    implementation(libs.mapStruct)
 
 
     runtimeOnly("org.postgresql:postgresql")
@@ -66,6 +68,7 @@ dependencies {
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
+    kapt(libs.mapStructProcessor)
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
