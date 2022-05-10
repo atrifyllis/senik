@@ -15,6 +15,7 @@ abstract class TaxLevel(
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "level_limit_amount"))
+    @AttributeOverride(name = "currencyCode", column = Column(name = "currency_level_limit"))
     val levelLimit: Money,
 
     val levelFactor: Double,
