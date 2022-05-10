@@ -21,22 +21,22 @@ class EfkaClass(
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "main_pension_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency"))
-    private val mainPensionAmount: Money,
+    val mainPensionAmount: Money,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "health_care_money_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
-    private val healthCareMoneyAmount: Money,
+    val healthCareMoneyAmount: Money,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "health_care_kind_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
-    private val healthCareKindAmount: Money,
+    val healthCareKindAmount: Money,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "unemployment_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_transient", insertable = false, updatable = false))
-    private val unemploymentAmount: Money
+    val unemploymentAmount: Money
 
 ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
 
