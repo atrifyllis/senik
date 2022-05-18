@@ -30,11 +30,9 @@ abstract class TaxLevel(
 
     // TODO this is ugly
     fun calculateLevelAmount(remainingAmount: Money): Money {
-        var taxAmount: Money = Money.ZERO
-        if (remainingAmount < Money.ZERO) return taxAmount
+        if (remainingAmount < Money.ZERO) return Money.ZERO
         val taxableAmount: Money = calculateTaxableAmount(remainingAmount)
-        taxAmount = taxableAmount * levelFactor
-        return taxAmount
+        return taxableAmount * levelFactor
     }
 
     private fun calculateTaxableAmount(remainingAmount: Money) = if (remainingAmount <= levelLimit) remainingAmount else levelLimit

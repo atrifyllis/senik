@@ -19,13 +19,14 @@ abstract class LevelBasedTax(
      */
     fun totalTaxAmount(): Money {
         log.info { "taxableIncome: $taxableIncome" }
-        return taxLevels.fold(Accumulator(taxableIncome, Money.ZERO)) { acc, level ->
-            Accumulator(
-                acc.remainingIncome - level.levelLimit,
-                acc.totalAmount + level.calculateLevelAmount(acc.remainingIncome)
+        val initial = AmountAccumulator(taxableIncome, Money.ZERO)
+        return taxLevels.fold(initial) { (remainingIncome, totalAmount), level ->
+            AmountAccumulator(
+                remainingIncome - level.levelLimit,
+                totalAmount + level.calculateLevelAmount(remainingIncome)
             )
         }.totalAmount
     }
 }
 
-data class Accumulator(val remainingIncome: Money, val totalAmount: Money)
+data class AmountAccumulator(val remainingIncome: Money, val totalAmount: Money)
