@@ -10,16 +10,16 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
-internal class ReferenceDataServiceIntegrationTest : IntegrationTestBase() {
+internal class CalculatorDataServiceIntegrationTest : IntegrationTestBase() {
 
     @Autowired
-    lateinit var referenceDataService: ReferenceDataService
+    lateinit var calculatorDataService: CalculatorDataService
 
     @Test
     fun `should return reference data`() {
 
         val (eteaepClasses, efkaClasses, incomeTaxLevels, solidarityContributionTaxLevels) =
-            referenceDataService.getReferenceData()
+            calculatorDataService.getReferenceData()
 
         assertThat(eteaepClasses[0].type).isEqualTo(EteaepClassType.FIRST)
         assertThat(eteaepClasses[0].lumpSumAmount).isEqualTo(Money(26))
