@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "9dd55795-8bd1-4fe1-a11f-7f1b25e0512b",
+		"name": "senik",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2686508"
+	},
+	"item": [
+		{
+			"name": "reference data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/reference-data",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"reference-data"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "clientSecret",
+				"value": "OdRy6Akv2_tE7qD9H6eiIsQZMRIgDBTMWqQFkyKm",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "0oa54gy6kbqpXlYeu5d7",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "{{BASE_URL}}/login/oauth2/code/okta",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "state",
+				"value": "a123",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "openid profile",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "authorization_code",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://dev-12550077.okta.com/oauth2/default/v1/authorize",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://dev-12550077.okta.com/oauth2/default/v1/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

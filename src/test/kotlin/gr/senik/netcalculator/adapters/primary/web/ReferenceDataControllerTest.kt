@@ -14,6 +14,7 @@ import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 
+
 @SpringBootTest
 @AutoConfigureMockMvc
 internal class ReferenceDataControllerTest : IntegrationTestBase() {
@@ -49,5 +50,16 @@ internal class ReferenceDataControllerTest : IntegrationTestBase() {
         assertThat(referenceDataDto.eteaepClasses).hasSize(3)
         assertThat(referenceDataDto.incomeTaxLevels).hasSize(5)
         assertThat(referenceDataDto.solidarityContributionTaxLevels).hasSize(7)
+    }
+
+    @Test
+    fun `should throw unauthorised error when no user is logged in`() {
+        mockMvc.get("/reference-data") {
+            contentType = MediaType.APPLICATION_JSON
+        }
+            .andExpect {
+                status { isUnauthorized() }
+            }
+            .andDo { print() }
     }
 }
