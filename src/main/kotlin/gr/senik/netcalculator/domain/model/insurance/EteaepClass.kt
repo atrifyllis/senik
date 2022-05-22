@@ -7,7 +7,7 @@ import java.util.*
 import javax.persistence.*
 
 @Embeddable
-class EteaepClassId(var id: UUID?) : DomainEntityId(id)
+class EteaepClassId(id: UUID?) : DomainEntityId(id)
 
 @Entity
 

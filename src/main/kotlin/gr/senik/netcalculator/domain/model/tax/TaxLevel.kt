@@ -7,7 +7,7 @@ import java.util.*
 import javax.persistence.*
 
 @Embeddable
-class TaxLevelId(var id: UUID?) : DomainEntityId(id)
+class TaxLevelId(id: UUID?) : DomainEntityId(id)
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

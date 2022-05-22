@@ -1,5 +1,7 @@
 package gr.senik.common.domain.model
 
 import java.util.*
+import javax.persistence.Embeddable
 
-class EventId(var id: UUID) : DomainEntityId(id)
+@Embeddable
+class EventId(id: UUID?) : DomainEntityId(id)

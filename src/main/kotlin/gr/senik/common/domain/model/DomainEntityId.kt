@@ -4,21 +4,23 @@ import org.jmolecules.ddd.types.Identifier
 import java.io.Serializable
 import java.util.*
 import javax.persistence.Embeddable
+import javax.persistence.MappedSuperclass
 
 /**
  * Base class for all Aggregate Root Ids.
  */
 @Embeddable
+@MappedSuperclass
 abstract class DomainEntityId(value: UUID?) : Identifier, Serializable {
-    private var value: UUID? = null
+
+    var id: UUID? = value
 
     init {
         requireNotNull(value) { "Cannot make an ID from a null value." }
-        this.value = value
     }
 
     override fun toString(): String {
-        return if (value != null) value.toString() else "<Undefined from db yet. Repo save should be called first>"
+        return if (id != null) id.toString() else "<Undefined from db yet. Repo save should be called first>"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -26,14 +28,14 @@ abstract class DomainEntityId(value: UUID?) : Identifier, Serializable {
             true
         } else if (other != null && this.javaClass == other.javaClass) {
             val entityID = other as DomainEntityId
-            value == entityID.value
+            id == entityID.id
         } else {
             false
         }
     }
 
     override fun hashCode(): Int {
-        return Objects.hash(value)
+        return Objects.hash(id)
     }
 
     companion object {
