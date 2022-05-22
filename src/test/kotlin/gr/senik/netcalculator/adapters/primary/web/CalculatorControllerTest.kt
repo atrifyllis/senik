@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.get
 
 @SpringBootTest
 @AutoConfigureMockMvc
-internal class ReferenceDataControllerTest : IntegrationTestBase() {
+internal class CalculatorControllerTest : IntegrationTestBase() {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
