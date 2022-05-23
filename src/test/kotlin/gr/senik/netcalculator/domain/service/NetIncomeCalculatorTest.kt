@@ -28,7 +28,7 @@ internal class NetIncomeCalculatorTest {
 
         val insuranceCostCalculator = InsuranceCostCalculator(individual, InsuranceTestHelper.efkaClasses, InsuranceTestHelper.eteaepClasses)
         val insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost()
-        val taxableIncome = individual.grossIncome() - insuranceCost - individual.annualExpensesAmount
+        val taxableIncome = TaxableIncomeCalculator(individual, insuranceCost).calculateTaxableIncome()
 
         val incomeTax = IncomeTax(taxableIncome, TaxTestHelper.incomeTaxLevels())
         val solidarityContributionTax = SolidarityContributionTax(taxableIncome, TaxTestHelper.solidarityContributionTaxLevels())
