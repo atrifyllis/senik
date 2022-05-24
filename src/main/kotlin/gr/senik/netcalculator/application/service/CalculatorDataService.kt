@@ -66,19 +66,20 @@ class CalculatorDataService(
         val selfEmployedContributionTax = SelfEmployedContributionTax(
             type = SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500))
         )
-
         val totalTaxCalculator = TotalTaxCalculator(
             incomeTax = incomeTax,
             solidarityContributionTax = solidarityContributionTax,
             selfEmployedContributionTax = selfEmployedContributionTax,
         )
+        val totalTax = totalTaxCalculator.calculateTotalTax()
 
         val netIncomeCalculator = NetIncomeCalculator(
             individual = individual,
-            insuranceCostCalculator = insuranceCostCalculator,
-            totalTaxCalculator = totalTaxCalculator
+            insuranceCost = insuranceCost,
+            totalTax = totalTax
         )
         val netIncome = netIncomeCalculator.calculateNetIncome()
+
         return CalculationResultDto(netIncome)
     }
 }

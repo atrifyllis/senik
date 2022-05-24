@@ -41,8 +41,8 @@ internal class NetIncomeCalculatorTest {
         )
 
         val netIncomeCalculator = NetIncomeCalculator(
-            insuranceCostCalculator = insuranceCostCalculator,
-            totalTaxCalculator = totalTaxCalculator,
+            insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost(),
+            totalTax = totalTaxCalculator.calculateTotalTax(),
             individual = individual
         )
 
