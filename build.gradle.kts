@@ -9,18 +9,12 @@ plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.kotlinPluginSpring)
     alias(libs.plugins.kotlinPluginJpa)
-    id("com.adarshr.test-logger") version "3.2.0"
-    id("org.sonarqube") version "3.3"
+    alias(libs.plugins.gradlePrettyLogger)
+    alias(libs.plugins.sonarqube)
     alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.openapi)
 
     jacoco
-
-
-//    id("org.springframework.boot") version "2.6.7"
-//    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-//    kotlin("jvm") version "1.6.21"
-//    kotlin("plugin.spring") version "1.6.21"
-//    kotlin("plugin.jpa") version "1.6.21"
 }
 
 group = "gr.senik"
@@ -57,9 +51,11 @@ dependencies {
 
     implementation(libs.oktaSpring)
     implementation(libs.hibernateTypes)
-    implementation(libs.bundles.jmolecules)
     implementation(libs.kotlinLogging)
     implementation(libs.mapStruct)
+
+    implementation(libs.bundles.jmolecules)
+    implementation(libs.bundles.openApi)
 
 
     runtimeOnly("org.postgresql:postgresql")
@@ -114,3 +110,6 @@ allOpen {
     annotation("javax.persistence.Embeddable")
 }
 
+openApi {
+    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
+}
