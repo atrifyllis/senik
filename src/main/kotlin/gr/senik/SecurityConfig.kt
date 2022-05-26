@@ -1,9 +1,14 @@
 package gr.senik
 
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer
+import org.springframework.security.config.web.servlet.invoke
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+
 
 /**
  * The reason we added custom WebSecurityConfigurerAdapter is to allow openapi url to be accessed without authentication.
@@ -11,12 +16,30 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
  */
 @Configuration
 class WebConfig : WebSecurityConfigurerAdapter() {
-    override fun configure(http: HttpSecurity) {
-        http.authorizeRequests()
-            .antMatchers("/v3/api-docs/**").permitAll()
-            .anyRequest().authenticated()
-            .and().oauth2Client()
-            .and().oauth2Login()
-            .and().oauth2ResourceServer { obj: OAuth2ResourceServerConfigurer<HttpSecurity?> -> obj.jwt() }
+    override fun configure(http: HttpSecurity?) {
+
+        http {
+            authorizeRequests {
+                authorize("/v3/api-docs/**", permitAll)
+                authorize(anyRequest, authenticated)
+            }
+            oauth2Client { }
+            oauth2Login { }
+            oauth2ResourceServer {
+                jwt {}
+            }
+            // by default uses a Bean by the name of corsConfigurationSource
+            cors {}
+        }
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource? {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = listOf("http://localhost:4200")
+        configuration.allowedMethods = listOf("*")
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source
     }
 }
