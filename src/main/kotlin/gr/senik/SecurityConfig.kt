@@ -38,6 +38,7 @@ class WebConfig : WebSecurityConfigurerAdapter() {
         val configuration = CorsConfiguration()
         configuration.allowedOrigins = listOf("http://localhost:4200")
         configuration.allowedMethods = listOf("*")
+        configuration.allowedHeaders = listOf("*") // fixes: No 'Access-Control-Allow-Origin' header is present on the requested resource.
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
         return source
