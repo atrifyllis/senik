@@ -22,6 +22,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "calculate income",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"individual\": {\r\n    \"type\": \"TSMEDE\",\r\n    \"efkaClassId\": \"d55ec320-c0fe-4222-808e-3b52d9087061\",\r\n    \"eteaepClassId\": \"14d0b02a-2898-4c7b-8519-3bf163f8f931\",\r\n    \"grossDailyIncomes\": [\r\n      {\r\n        \"days\": 220,\r\n        \"dailyIncome\": {\r\n          \"amount\": 370.00,\r\n          \"currencyCode\": \"EUR\"\r\n        }\r\n      }\r\n    ],\r\n    \"annualExpensesAmount\": {\r\n      \"amount\": 0.00,\r\n      \"currencyCode\": \"EUR\"\r\n    }\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/calculate-income",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"calculate-income"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
