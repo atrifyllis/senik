@@ -17,31 +17,31 @@ values ('d55ec320-c0fe-4222-808e-3b52d9087061',
 
        ('d55ec320-c0fe-4222-808e-3b52d9087063',
         'THIRD',
-        155, 5, 50, 10,
+        236, 6, 60, 10,
         'EUR', 'EUR', 'EUR', 'EUR',
         0, 'system', timezone('utc', now()), 'system', timezone('utc', now()), true),
 
        ('d55ec320-c0fe-4222-808e-3b52d9087064',
         'FOURTH',
-        155, 5, 50, 10,
+        297, 6, 60, 10,
         'EUR', 'EUR', 'EUR', 'EUR',
         0, 'system', timezone('utc', now()), 'system', timezone('utc', now()), true),
 
        ('d55ec320-c0fe-4222-808e-3b52d9087065',
         'FIFTH',
-        155, 5, 50, 10,
+        369, 6, 60, 10,
         'EUR', 'EUR', 'EUR', 'EUR',
         0, 'system', timezone('utc', now()), 'system', timezone('utc', now()), true),
 
        ('d55ec320-c0fe-4222-808e-3b52d9087066',
         'SIXTH',
-        155, 5, 50, 10,
+        500, 6, 60, 10,
         'EUR', 'EUR', 'EUR', 'EUR',
         0, 'system', timezone('utc', now()), 'system', timezone('utc', now()), true),
 
        ('d55ec320-c0fe-4222-808e-3b52d9087067',
         'NEW',
-        155, 5, 50, 10,
+        93, 3, 30, 10,
         'EUR', 'EUR', 'EUR', 'EUR',
         0, 'system', timezone('utc', now()), 'system', timezone('utc', now()), true);
 
