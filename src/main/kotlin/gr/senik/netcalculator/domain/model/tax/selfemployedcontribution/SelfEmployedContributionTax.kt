@@ -9,8 +9,10 @@ import gr.senik.common.domain.model.Money
  */
 class SelfEmployedContributionTax(
     type: SelfEmployedContributionType,
+    isLessThanFiveYears: Boolean,
 ) {
-    val totalTax: Money = type.taxAmount
+    // exempt when insurance person is registered for less than 5 years
+    val totalTax: Money = if (isLessThanFiveYears) Money(0) else type.taxAmount
 
     fun totalTaxAmount(): Money = totalTax
 }

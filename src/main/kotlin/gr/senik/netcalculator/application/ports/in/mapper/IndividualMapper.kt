@@ -11,6 +11,7 @@ abstract class IndividualMapper {
 
     @Mapping(source = "efkaClassId", target = "efkaClassId.id")
     @Mapping(source = "eteaepClassId", target = "eteaepClassId.id")
+    @Mapping(source = "lessThanFiveYears", target = "isLessThanFiveYears")
     abstract fun toIndividual(individualDto: IndividualDto): Individual
 
 }

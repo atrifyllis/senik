@@ -13,6 +13,7 @@ class Individual(
     val grossAnnualIncome: Money?,
     val grossDailyIncomes: List<DailyIncome>,
     val annualExpensesAmount: Money,
+    val isLessThanFiveYears: Boolean,
 ) {
 
     fun grossIncome(): Money {

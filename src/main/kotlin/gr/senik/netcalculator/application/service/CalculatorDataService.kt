@@ -19,7 +19,13 @@ import gr.senik.netcalculator.domain.service.InsuranceCostCalculator
 import gr.senik.netcalculator.domain.service.NetIncomeCalculator
 import gr.senik.netcalculator.domain.service.TaxableIncomeCalculator
 import gr.senik.netcalculator.domain.service.TotalTaxCalculator
+import mu.KotlinLogging
 import org.springframework.stereotype.Service
+
+private val log = KotlinLogging.logger {}
+
+// TODO: this should be in the database
+private const val SELF_EMPLOYED_CONTRIBUTION_TAX = 500
 
 @Service
 class CalculatorDataService(
@@ -62,9 +68,10 @@ class CalculatorDataService(
             taxableIncome = taxableIncome,
             taxLevels = solidarityContributionTaxLevels,
         )
-        // TODO: this should be in the database
+
         val selfEmployedContributionTax = SelfEmployedContributionTax(
-            type = SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500))
+            type = SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(SELF_EMPLOYED_CONTRIBUTION_TAX)),
+            individual.isLessThanFiveYears
         )
         val totalTaxCalculator = TotalTaxCalculator(
             incomeTax = incomeTax,
