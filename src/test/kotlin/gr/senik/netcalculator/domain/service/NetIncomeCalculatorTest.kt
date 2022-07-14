@@ -50,4 +50,42 @@ internal class NetIncomeCalculatorTest {
 
         assertThat(netIncome).isEqualTo(Money(48574.68))
     }
+
+    @Test
+    fun `should calculate net income when insured less than five years`() {
+
+        val individual = Individual(
+            type = InsuranceType.TSMEDE,
+            efkaClassId = InsuranceTestHelper.EFKA_CLASS_ID_1,
+            eteaepClassId = InsuranceTestHelper.ETEAEP_CLASS_ID_1,
+            grossAnnualIncome = Money(85_000),
+            grossDailyIncomes = emptyList(),
+            annualExpensesAmount = Money.ZERO
+        )
+
+        val insuranceCostCalculator = InsuranceCostCalculator(individual, InsuranceTestHelper.efkaClasses, InsuranceTestHelper.eteaepClasses)
+        val insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost()
+        val taxableIncome = TaxableIncomeCalculator(individual, insuranceCost).calculateTaxableIncome()
+
+        val incomeTax = IncomeTax(taxableIncome, TaxTestHelper.incomeTaxLevels())
+        val solidarityContributionTax = SolidarityContributionTax(taxableIncome, TaxTestHelper.solidarityContributionTaxLevels())
+        val selfEmployedContributionTax =
+            SelfEmployedContributionTax(SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500)), isLessThanFiveYears = true)
+
+        val totalTaxCalculator = TotalTaxCalculator(
+            incomeTax = incomeTax,
+            solidarityContributionTax = solidarityContributionTax,
+            selfEmployedContributionTax = selfEmployedContributionTax
+        )
+
+        val netIncomeCalculator = NetIncomeCalculator(
+            insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost(),
+            totalTax = totalTaxCalculator.calculateTotalTax(),
+            individual = individual
+        )
+
+        val netIncome = netIncomeCalculator.calculateNetIncome()
+
+        assertThat(netIncome).isEqualTo(Money(49074.68))
+    }
 }

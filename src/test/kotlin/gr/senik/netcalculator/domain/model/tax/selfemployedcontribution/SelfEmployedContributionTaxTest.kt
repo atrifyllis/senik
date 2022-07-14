@@ -13,4 +13,14 @@ internal class SelfEmployedContributionTaxTest {
 
         assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(500))
     }
+
+    @Test
+    fun `should calculate self-employed contribution tax when insured less than 5 years`() {
+        val selfEmployedContributionTax = SelfEmployedContributionTax(
+            SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500)),
+            isLessThanFiveYears = true
+        )
+
+        assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(0))
+    }
 }
