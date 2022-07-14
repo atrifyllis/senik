@@ -9,7 +9,7 @@ import gr.senik.common.domain.model.Money
  */
 class SelfEmployedContributionTax(
     type: SelfEmployedContributionType,
-    isLessThanFiveYears: Boolean,
+    isLessThanFiveYears: Boolean = false,
 ) {
     // exempt when insurance person is registered for less than 5 years
     val totalTax: Money = if (isLessThanFiveYears) Money(0) else type.taxAmount
