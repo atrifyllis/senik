@@ -1,6 +1,5 @@
 package gr.senik.netcalculator.application.service
 
-import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.application.ports.`in`.mapper.Dummy
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.ReferenceDataMapper
@@ -10,15 +9,7 @@ import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
-import gr.senik.netcalculator.domain.model.tax.IncomeTax
-import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTax
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionTax
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionType
-import gr.senik.netcalculator.domain.service.InsuranceCostCalculator
 import gr.senik.netcalculator.domain.service.NetIncomeCalculator
-import gr.senik.netcalculator.domain.service.TaxableIncomeCalculator
-import gr.senik.netcalculator.domain.service.TotalTaxCalculator
 import mu.KotlinLogging
 import org.springframework.stereotype.Service
 
@@ -49,44 +40,16 @@ class CalculatorDataService(
         val incomeTaxLevels = loadReferenceDataPort.loadIncomeTaxLevels()
         val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
 
-        val insuranceCostCalculator = InsuranceCostCalculator(
+        val netIncomeCalculator = NetIncomeCalculator(
             individual = individual,
             efkaClasses = efkaClasses,
             eteaepClasses = eteaepClasses,
-        )
-        val insuranceCost = insuranceCostCalculator.calculateYearlyInsuranceCost()
-
-        val taxableIncomeCalculator = TaxableIncomeCalculator(individual, insuranceCost)
-        val taxableIncome = taxableIncomeCalculator.calculateTaxableIncome()
-
-        val incomeTax = IncomeTax(
-            taxableIncome = taxableIncome,
-            taxLevels = incomeTaxLevels,
-
-            )
-        val solidarityContributionTax = SolidarityContributionTax(
-            taxableIncome = taxableIncome,
-            taxLevels = solidarityContributionTaxLevels,
-        )
-
-        val selfEmployedContributionTax = SelfEmployedContributionTax(
-            type = SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(SELF_EMPLOYED_CONTRIBUTION_TAX)),
-            individual.isLessThanFiveYears
-        )
-        val totalTaxCalculator = TotalTaxCalculator(
-            incomeTax = incomeTax,
-            solidarityContributionTax = solidarityContributionTax,
-            selfEmployedContributionTax = selfEmployedContributionTax,
-        )
-        val totalTax = totalTaxCalculator.calculateTotalTax()
-
-        val netIncomeCalculator = NetIncomeCalculator(
-            individual = individual,
-            insuranceCost = insuranceCost,
-            totalTax = totalTax
+            incomeTaxLevels = incomeTaxLevels,
+            solidarityContributionTaxLevels = solidarityContributionTaxLevels,
+            selfEmployedContributionTaxAmount = SELF_EMPLOYED_CONTRIBUTION_TAX
         )
         val netIncome = netIncomeCalculator.calculateNetIncome()
 
-        return CalculationResultDto(netIncome)
+        return CalculationResultDto(netIncome.netAnnualIncome)
     }
 }
