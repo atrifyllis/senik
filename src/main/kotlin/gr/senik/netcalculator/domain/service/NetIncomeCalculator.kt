@@ -64,5 +64,9 @@ class NetIncomeCalculator(
         return NetAnnualIncome(insuranceCost, totalTax, netAnnualIncome)
     }
 
-    data class NetAnnualIncome(val insuranceCost: Money, val totalTax: Money, val netAnnualIncome: Money)
+    data class NetAnnualIncome(
+        val insuranceCost: Money,
+        val totalTax: Money,
+        val netAnnualIncome: Money,
+    )
 }

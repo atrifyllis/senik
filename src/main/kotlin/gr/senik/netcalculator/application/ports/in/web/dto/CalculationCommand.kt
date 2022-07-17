@@ -18,4 +18,10 @@ data class IndividualDto(
 )
 
 
-data class CalculationResultDto(val netIncome: Money)
+data class CalculationResultDto(
+    val netIncome: Money,
+    val insuranceCost: Money,
+    val totalTax: Money,
+) {
+    val monthlyIncome: Money = netIncome / 12
+}
