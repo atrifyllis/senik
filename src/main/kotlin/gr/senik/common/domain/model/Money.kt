@@ -79,4 +79,8 @@ class Money(
     override fun toString(): String {
         return "Money(amount=$amount, currencyCode='$currencyCode')"
     }
+
+    operator fun div(i: Int): Money {
+        return Money(this.amount.divide(BigDecimal(i), DEFAULT_ROUNDING_MODE))
+    }
 }

@@ -32,7 +32,7 @@ internal class NetIncomeCalculatorTest {
 
         val netIncome = netIncomeCalculator.calculateNetIncome()
 
-        assertThat(netIncome).isEqualTo(Money(48574.68))
+        assertThat(netIncome.netAnnualIncome).isEqualTo(Money(48574.68))
     }
 
     @Test
@@ -59,6 +59,6 @@ internal class NetIncomeCalculatorTest {
 
         val netIncome = netIncomeCalculator.calculateNetIncome()
 
-        assertThat(netIncome).isEqualTo(Money(49074.68))
+        assertThat(netIncome.netAnnualIncome).isEqualTo(Money(49074.68))
     }
 }

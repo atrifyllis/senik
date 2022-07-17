@@ -1,5 +1,6 @@
 package gr.senik.netcalculator.application.service
 
+import gr.senik.netcalculator.application.ports.`in`.mapper.CalculationResultMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.Dummy
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.ReferenceDataMapper
@@ -23,6 +24,7 @@ class CalculatorDataService(
     private val loadReferenceDataPort: LoadReferenceDataPort,
     private val referenceDataMapper: ReferenceDataMapper,
     private val individualMapper: IndividualMapper,
+    private val calculationResultMapper: CalculationResultMapper,
 ) : LoadCalculatorDataUseCase, CalculateIncomeUseCase {
     override fun getReferenceData(): ReferenceDataDto {
         val eteaepClasses = loadReferenceDataPort.loadEteaepClasses()
@@ -48,8 +50,8 @@ class CalculatorDataService(
             solidarityContributionTaxLevels = solidarityContributionTaxLevels,
             selfEmployedContributionTaxAmount = SELF_EMPLOYED_CONTRIBUTION_TAX
         )
-        val netIncome = netIncomeCalculator.calculateNetIncome()
+        val result = netIncomeCalculator.calculateNetIncome()
 
-        return CalculationResultDto(netIncome.netAnnualIncome)
+        return calculationResultMapper.toCalculationResult(result)
     }
 }
