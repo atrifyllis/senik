@@ -15,7 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
  * Check OktaOAuth2AutoConfig to see what we tried to replicate here.
  */
 @Configuration
-class WebConfig : WebSecurityConfigurerAdapter() {
+class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
 
         http {
