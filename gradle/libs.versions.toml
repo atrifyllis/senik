@@ -1,17 +1,18 @@
 [versions]
-hibernateTypes = "2.16.1"
-jmolecules = "1.4.0"
-jmoleculesIntegrations = "0.9.0"
+hibernateTypes = "2.17.3"
+jmolecules = "1.6.0"
+jmoleculesIntegrations = "1.6.0"
 oktaSpring = "2.1.5"
-kotlin = "1.6.21"
-kotlinLogging = "2.1.21"
-mapStruct = "1.4.2.Final"
-openapi = "1.6.8"
-openapiGradlePlugin = "1.3.4"
+kotlin = "1.7.20-Beta"
+kotlinLogging = "2.1.23"
+mapStruct = "1.5.2.Final"
+openapi = "1.6.9"
+openapiGradlePlugin = "1.4.0"
 gradleLogger = "3.2.0"
-springBoot = "2.6.7"
-springDepManagement = "1.0.11.RELEASE"
-sonarqube = "3.3"
+springBoot = "2.7.2"
+springDepManagement = "1.0.12.RELEASE"
+sonarqube = "3.4.0.2513"
+versionChecker = "0.42.0"
 
 
 [libraries]
@@ -46,5 +47,6 @@ kotlinPluginJpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotli
 openapi = { id = "org.springdoc.openapi-gradle-plugin", version.ref = "openapiGradlePlugin" }
 gradlePrettyLogger = { id = "com.adarshr.test-logger", version.ref = "gradleLogger" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
+versionChecker = { id = "com.github.ben-manes.versions", version.ref = "versionChecker" }
 
 

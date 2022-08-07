@@ -3,8 +3,8 @@ package gr.senik
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.web.servlet.invoke
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
@@ -15,9 +15,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
  * Check OktaOAuth2AutoConfig to see what we tried to replicate here.
  */
 @Configuration
-class SecurityConfig : WebSecurityConfigurerAdapter() {
-    override fun configure(http: HttpSecurity?) {
-
+class SecurityConfig {
+    @Bean
+    fun configure(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeRequests {
                 authorize("/v3/api-docs/**", permitAll)
@@ -31,6 +31,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             // by default uses a Bean by the name of corsConfigurationSource
             cors {}
         }
+        return http.build()
     }
 
     @Bean

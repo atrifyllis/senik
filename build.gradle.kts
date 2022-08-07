@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.openapi)
+    alias(libs.plugins.versionChecker)
 
     jacoco
 }
@@ -32,7 +33,7 @@ repositories {
     mavenCentral()
 }
 
-extra["testcontainersVersion"] = "1.16.2"
+extra["testcontainersVersion"] = "1.17.3"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
