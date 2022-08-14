@@ -3,6 +3,7 @@ package gr.senik.netcalculator.application.ports.`in`.web.dto
 import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.income.DailyIncome
 import gr.senik.netcalculator.domain.model.insurance.InsuranceType
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
 import java.util.*
 
 data class CalculationCommand(val individual: IndividualDto)
@@ -15,6 +16,8 @@ data class IndividualDto(
     val grossDailyIncomes: List<DailyIncome>,
     val annualExpensesAmount: Money,
     val isLessThanFiveYears: Boolean = false,
+    val secType: SECType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+    val branches: Int = 1,
 )
 
 

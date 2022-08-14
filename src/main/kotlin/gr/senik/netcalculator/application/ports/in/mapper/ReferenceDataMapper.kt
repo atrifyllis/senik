@@ -5,6 +5,7 @@ import gr.senik.netcalculator.domain.model.insurance.EfkaClass
 import gr.senik.netcalculator.domain.model.insurance.EteaepClass
 import gr.senik.netcalculator.domain.model.tax.IncomeTaxLevel
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.ReportingPolicy
@@ -16,12 +17,14 @@ abstract class ReferenceDataMapper {
     @Mapping(target = "eteaepClasses", source = "eteaepClasses")
     @Mapping(target = "incomeTaxLevels", source = "incomeTaxLevels")
     @Mapping(target = "solidarityContributionTaxLevels", source = "solidarityContributionTaxLevels")
+    @Mapping(target = "selfEmployedContributions", source = "selfEmployedContributions")
     abstract fun toReferenceDataDto(
         dummy: Dummy,
         efkaClasses: List<EfkaClass>,
         eteaepClasses: List<EteaepClass>,
         incomeTaxLevels: List<IncomeTaxLevel>,
-        solidarityContributionTaxLevels: List<SolidarityContributionTaxLevel>
+        solidarityContributionTaxLevels: List<SolidarityContributionTaxLevel>,
+        selfEmployedContributions: List<SelfEmployedContribution>,
     ): ReferenceDataDto
 }
 

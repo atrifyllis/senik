@@ -18,7 +18,7 @@ internal class NetIncomeCalculatorTest {
             eteaepClassId = InsuranceTestHelper.ETEAEP_CLASS_ID_1,
             grossAnnualIncome = Money(85_000),
             grossDailyIncomes = emptyList(),
-            annualExpensesAmount = Money.ZERO
+            annualExpensesAmount = Money.ZERO,
         )
 
         val netIncomeCalculator = NetIncomeCalculator(
@@ -27,7 +27,7 @@ internal class NetIncomeCalculatorTest {
             eteaepClasses = InsuranceTestHelper.eteaepClasses,
             incomeTaxLevels = TaxTestHelper.incomeTaxLevels(),
             solidarityContributionTaxLevels = TaxTestHelper.solidarityContributionTaxLevels(),
-            selfEmployedContributionTaxAmount = 500
+            selfEmployedContributions = TaxTestHelper.selfEmployedContributions()
         )
 
         val netIncome = netIncomeCalculator.calculateNetIncome()
@@ -54,7 +54,7 @@ internal class NetIncomeCalculatorTest {
             eteaepClasses = InsuranceTestHelper.eteaepClasses,
             incomeTaxLevels = TaxTestHelper.incomeTaxLevels(),
             solidarityContributionTaxLevels = TaxTestHelper.solidarityContributionTaxLevels(),
-            selfEmployedContributionTaxAmount = 500
+            selfEmployedContributions = TaxTestHelper.selfEmployedContributions()
         )
 
         val netIncome = netIncomeCalculator.calculateNetIncome()

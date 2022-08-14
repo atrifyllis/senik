@@ -1,6 +1,8 @@
 package gr.senik.netcalculator.domain.model.tax
 
 import gr.senik.common.domain.model.Money
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
 
 class TaxTestHelper {
     companion object {
@@ -20,6 +22,10 @@ class TaxTestHelper {
             SolidarityContributionTaxLevel(SolidarityContributionLevelType.FIFTH_25K, Money(25_000), 0.075),
             SolidarityContributionTaxLevel(SolidarityContributionLevelType.SIXTH_155K, Money(155_000), 0.09),
             SolidarityContributionTaxLevel(SolidarityContributionLevelType.EXCESS, Money(Integer.MAX_VALUE), 0.1),
+        )
+
+        fun selfEmployedContributions() = listOf(
+            SelfEmployedContribution(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500)),
         )
     }
 }

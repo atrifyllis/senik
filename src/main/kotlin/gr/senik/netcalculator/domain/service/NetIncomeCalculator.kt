@@ -8,9 +8,8 @@ import gr.senik.netcalculator.domain.model.tax.IncomeTax
 import gr.senik.netcalculator.domain.model.tax.IncomeTaxLevel
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTax
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionTax
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionType
 import mu.KotlinLogging
 
 private val log = KotlinLogging.logger {}
@@ -21,7 +20,7 @@ class NetIncomeCalculator(
     eteaepClasses: List<EteaepClass>,
     incomeTaxLevels: List<IncomeTaxLevel>,
     solidarityContributionTaxLevels: List<SolidarityContributionTaxLevel>,
-    selfEmployedContributionTaxAmount: Int,
+    selfEmployedContributions: List<SelfEmployedContribution>,
 ) {
     private val insuranceCostCalculator = InsuranceCostCalculator(
         individual = individual,
@@ -36,8 +35,7 @@ class NetIncomeCalculator(
     private val incomeTax = IncomeTax(
         taxableIncome = taxableIncome,
         taxLevels = incomeTaxLevels,
-
-        )
+    )
 
     private val solidarityContributionTax = SolidarityContributionTax(
         taxableIncome = taxableIncome,
@@ -45,8 +43,10 @@ class NetIncomeCalculator(
     )
 
     private val selfEmployedContributionTax = SelfEmployedContributionTax(
-        type = SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(selfEmployedContributionTaxAmount)),
-        individual.isLessThanFiveYears
+        type = individual.secType,
+        branches = individual.branches,
+        isLessThanFiveYears = individual.isLessThanFiveYears,
+        selfEmployedContributions = selfEmployedContributions,
     )
 
     private val totalTaxCalculator = TotalTaxCalculator(

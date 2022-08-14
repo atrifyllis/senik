@@ -11,13 +11,7 @@ import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDt
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
 import gr.senik.netcalculator.domain.service.NetIncomeCalculator
-import mu.KotlinLogging
 import org.springframework.stereotype.Service
-
-private val log = KotlinLogging.logger {}
-
-// TODO: this should be in the database
-private const val SELF_EMPLOYED_CONTRIBUTION_TAX = 500
 
 @Service
 class CalculatorDataService(
@@ -31,7 +25,15 @@ class CalculatorDataService(
         val efkaClasses = loadReferenceDataPort.loadEfkaClasses()
         val incomeTaxLevels = loadReferenceDataPort.loadIncomeTaxLevels()
         val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
-        return referenceDataMapper.toReferenceDataDto(Dummy(), efkaClasses, eteaepClasses, incomeTaxLevels, solidarityContributionTaxLevels)
+        val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
+        return referenceDataMapper.toReferenceDataDto(
+            Dummy(),
+            efkaClasses,
+            eteaepClasses,
+            incomeTaxLevels,
+            solidarityContributionTaxLevels,
+            selfEmployedContributions
+        )
     }
 
     override fun calculate(command: CalculationCommand): CalculationResultDto {
@@ -41,6 +43,7 @@ class CalculatorDataService(
         val eteaepClasses = loadReferenceDataPort.loadEteaepClasses()
         val incomeTaxLevels = loadReferenceDataPort.loadIncomeTaxLevels()
         val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
+        val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
 
         val netIncomeCalculator = NetIncomeCalculator(
             individual = individual,
@@ -48,7 +51,7 @@ class CalculatorDataService(
             eteaepClasses = eteaepClasses,
             incomeTaxLevels = incomeTaxLevels,
             solidarityContributionTaxLevels = solidarityContributionTaxLevels,
-            selfEmployedContributionTaxAmount = SELF_EMPLOYED_CONTRIBUTION_TAX
+            selfEmployedContributions = selfEmployedContributions
         )
         val result = netIncomeCalculator.calculateNetIncome()
 

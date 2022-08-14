@@ -1,14 +1,25 @@
 package gr.senik.netcalculator.domain.model.tax.selfemployedcontribution
 
 import gr.senik.common.domain.model.Money
+import gr.senik.netcalculator.domain.model.tax.TaxTestHelper
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 internal class SelfEmployedContributionTaxTest {
+
+    private lateinit var selfEmployedContributions: List<SelfEmployedContribution>
+
+    @BeforeEach
+    fun setUp() {
+        selfEmployedContributions = TaxTestHelper.selfEmployedContributions()
+    }
+
     @Test
     fun `should calculate self-employed contribution tax`() {
         val selfEmployedContributionTax = SelfEmployedContributionTax(
-            SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500))
+            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            selfEmployedContributions = selfEmployedContributions
         )
 
         assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(500))
@@ -17,8 +28,9 @@ internal class SelfEmployedContributionTaxTest {
     @Test
     fun `should calculate self-employed contribution tax when insured less than 5 years`() {
         val selfEmployedContributionTax = SelfEmployedContributionTax(
-            SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500)),
-            isLessThanFiveYears = true
+            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            isLessThanFiveYears = true,
+            selfEmployedContributions = selfEmployedContributions
         )
 
         assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(0))

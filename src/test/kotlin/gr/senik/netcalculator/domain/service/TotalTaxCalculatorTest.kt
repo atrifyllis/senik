@@ -6,7 +6,6 @@ import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTax
 import gr.senik.netcalculator.domain.model.tax.TaxTestHelper
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionTax
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -19,7 +18,10 @@ internal class TotalTaxCalculatorTest {
 
         val incomeTax = IncomeTax(taxableIncome, incomeTaxLevels)
         val solidarityContributionTax = SolidarityContributionTax(taxableIncome, solidarityContributionTaxLevels)
-        val selfEmployedContributionTax = SelfEmployedContributionTax(SelfEmployedContributionType(SECType.SINGLE_EMPLOYER_LARGE_AREA, Money(500)))
+        val selfEmployedContributionTax = SelfEmployedContributionTax(
+            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            selfEmployedContributions = TaxTestHelper.selfEmployedContributions()
+        )
         val totalTaxCalculator = TotalTaxCalculator(
             incomeTax = incomeTax,
             solidarityContributionTax = solidarityContributionTax,

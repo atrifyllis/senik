@@ -4,6 +4,7 @@ import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.insurance.EfkaClassId
 import gr.senik.netcalculator.domain.model.insurance.EteaepClassId
 import gr.senik.netcalculator.domain.model.insurance.InsuranceType
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
 
 
 class Individual(
@@ -14,6 +15,8 @@ class Individual(
     val grossDailyIncomes: List<DailyIncome>,
     val annualExpensesAmount: Money,
     val isLessThanFiveYears: Boolean = false,
+    val secType: SECType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+    val branches: Int = 1,
 ) {
 
     fun grossIncome(): Money {

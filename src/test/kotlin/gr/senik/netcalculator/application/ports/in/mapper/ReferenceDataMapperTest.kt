@@ -15,10 +15,19 @@ internal class ReferenceDataMapperTest {
         val eteaepClasses = InsuranceTestHelper.eteaepClasses
         val incomeTaxLevels = TaxTestHelper.incomeTaxLevels()
         val solidarityContributionTaxLevels = TaxTestHelper.solidarityContributionTaxLevels()
-        val referenceData = ReferenceDataMapperImpl().toReferenceDataDto(Dummy(), efkaClasses, eteaepClasses, incomeTaxLevels, solidarityContributionTaxLevels)
+        val selfEmployedContributions = TaxTestHelper.selfEmployedContributions()
+        val referenceData = ReferenceDataMapperImpl().toReferenceDataDto(
+            Dummy(),
+            efkaClasses,
+            eteaepClasses,
+            incomeTaxLevels,
+            solidarityContributionTaxLevels,
+            selfEmployedContributions
+        )
 
         assertThat(referenceData.efkaClasses[0].id).isEqualTo(InsuranceTestHelper.EFKA_CLASS_ID_1)
         assertThat(referenceData.efkaClasses[0].type).isEqualTo(EfkaClassType.FIRST)
         assertThat(referenceData.efkaClasses[0].mainPensionAmount).isEqualTo(Money(155))
+        assertThat(referenceData.selfEmployedContributions[0].amount).isEqualTo(Money(500))
     }
 }
