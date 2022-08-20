@@ -14,9 +14,9 @@ class TotalTaxCalculator(
     private val selfEmployedContributionTax: SelfEmployedContributionTax,
 ) {
     fun calculateTotalTax(): Money {
-        val incomeTaxAmount = incomeTax.totalTaxAmount()
-        val solidarityContributionTaxAmount = solidarityContributionTax.totalTaxAmount()
-        val selfEmployedContributionTaxAmount = selfEmployedContributionTax.totalTaxAmount()
+        val incomeTaxAmount = incomeTax.totalTaxAmount
+        val solidarityContributionTaxAmount = solidarityContributionTax.totalTaxAmount
+        val selfEmployedContributionTaxAmount = selfEmployedContributionTax.totalTaxAmount
         log.info { "income Tax: $incomeTaxAmount" }
         log.info { "solidarity contribution tax: $solidarityContributionTaxAmount" }
         log.info { "self employed contribution Tax: $selfEmployedContributionTaxAmount" }

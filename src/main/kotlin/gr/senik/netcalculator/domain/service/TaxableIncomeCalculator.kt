@@ -7,5 +7,5 @@ class TaxableIncomeCalculator(
     private val individual: Individual,
     private val insuranceCost: Money,
 ) {
-    fun calculateTaxableIncome() = individual.grossIncome() - insuranceCost - individual.annualExpensesAmount
+    fun calculateTaxableIncome() = individual.grossIncome - insuranceCost - individual.annualExpensesAmount
 }

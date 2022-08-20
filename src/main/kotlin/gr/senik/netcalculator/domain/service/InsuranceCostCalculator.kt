@@ -9,7 +9,7 @@ import gr.senik.netcalculator.domain.model.insurance.InsuranceType
 class InsuranceCostCalculator(
     private val individual: Individual,
     private val efkaClasses: List<EfkaClass>,
-    private val eteaepClasses: List<EteaepClass>
+    private val eteaepClasses: List<EteaepClass>,
 ) {
     fun calculateYearlyInsuranceCost(): Money {
         val efkaClass: EfkaClass = efkaClasses.single { it.id == individual.efkaClassId }
@@ -17,8 +17,9 @@ class InsuranceCostCalculator(
         val eteaepCost: Money = when (individual.type) {
             // TODO check if any of the insurance types have no eteaep contributions
             InsuranceType.TSMEDE, InsuranceType.OAEE,
-            InsuranceType.OGA, InsuranceType.TSAY -> eteaepClass.calculateTotalContributionAmount()
+            InsuranceType.OGA, InsuranceType.TSAY,
+            -> eteaepClass.totalContributionAmount
         }
-        return (efkaClass.calculateTotalContributionAmount() + eteaepCost) * 12
+        return (efkaClass.totalContributionAmount + eteaepCost) * 12
     }
 }

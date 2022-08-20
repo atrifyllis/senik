@@ -33,10 +33,10 @@ class EteaepClass(
 
     override fun getId(): EteaepClassId = id
 
+    val totalContributionAmount: Money
+        get() = auxiliaryPensionAmount + lumpSumAmount
+
     override fun toString(): String {
         return "EteaepClass(type=$type, auxiliaryPensionAmount=$auxiliaryPensionAmount, lumpSumAmount=$lumpSumAmount, id=$id) ${super.toString()}"
     }
-
-    fun calculateTotalContributionAmount(): Money = auxiliaryPensionAmount + lumpSumAmount
-
 }

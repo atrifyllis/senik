@@ -17,7 +17,7 @@ internal class SolidarityContributionTaxTest {
     fun `should calculate solidarity contribution tax without excess`() {
         val solidarityContributionTax = SolidarityContributionTax(Money(80_000), taxLevels)
 
-        assertThat(solidarityContributionTax.totalTaxAmount()).isEqualTo(Money(4_551))
+        assertThat(solidarityContributionTax.totalTaxAmount).isEqualTo(Money(4_551))
 
     }
 
@@ -25,7 +25,7 @@ internal class SolidarityContributionTaxTest {
     fun `should calculate solidarity contribution tax with excess`() {
         val solidarityContributionTax = SolidarityContributionTax(Money(240_000), taxLevels)
 
-        assertThat(solidarityContributionTax.totalTaxAmount()).isEqualTo(Money(19_151))
+        assertThat(solidarityContributionTax.totalTaxAmount).isEqualTo(Money(19_151))
 
     }
 }
