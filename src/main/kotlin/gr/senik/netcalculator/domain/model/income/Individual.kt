@@ -19,9 +19,7 @@ class Individual(
     val branches: Int = 1,
 ) {
 
-    fun grossIncome(): Money {
-        return grossAnnualIncome ?: sumGrossDailyAmounts()
-    }
+    val grossIncome: Money = grossAnnualIncome ?: sumGrossDailyAmounts()
 
     private fun sumGrossDailyAmounts() = Money(
         grossDailyIncomes

@@ -60,7 +60,7 @@ class NetIncomeCalculator(
     fun calculateNetIncome(): NetAnnualIncome {
         log.info { "Insurance cost: $insuranceCost" }
         log.info { "Total tax: $totalTax" }
-        val netAnnualIncome = individual.grossIncome() - totalTax - insuranceCost
+        val netAnnualIncome = individual.grossIncome - totalTax - insuranceCost
         return NetAnnualIncome(insuranceCost, totalTax, netAnnualIncome)
     }
 

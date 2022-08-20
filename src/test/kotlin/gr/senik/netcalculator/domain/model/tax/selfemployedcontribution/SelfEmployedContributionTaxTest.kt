@@ -22,7 +22,7 @@ internal class SelfEmployedContributionTaxTest {
             selfEmployedContributions = selfEmployedContributions
         )
 
-        assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(500))
+        assertThat(selfEmployedContributionTax.totalTaxAmount).isEqualTo(Money(500))
     }
 
     @Test
@@ -33,6 +33,6 @@ internal class SelfEmployedContributionTaxTest {
             selfEmployedContributions = selfEmployedContributions
         )
 
-        assertThat(selfEmployedContributionTax.totalTax).isEqualTo(Money(0))
+        assertThat(selfEmployedContributionTax.totalTaxAmount).isEqualTo(Money(0))
     }
 }

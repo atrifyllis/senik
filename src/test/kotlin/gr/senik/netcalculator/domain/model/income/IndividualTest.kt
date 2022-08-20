@@ -10,13 +10,13 @@ internal class IndividualTest {
     fun `should calculate gross income from annual income`() {
         val insuredPerson = InsuranceTestHelper.insurancePersonWithAnnualIncome
 
-        assertThat(insuredPerson.grossIncome()).isEqualTo(Money(85_000))
+        assertThat(insuredPerson.grossIncome).isEqualTo(Money(85_000))
     }
 
     @Test
     fun `should calculate gross income from two daily incomes`() {
         val insuredPerson = InsuranceTestHelper.individualWithDailyIncomes
 
-        assertThat(insuredPerson.grossIncome()).isEqualTo(Money(65800))
+        assertThat(insuredPerson.grossIncome).isEqualTo(Money(65800))
     }
 }

@@ -13,7 +13,7 @@ class SelfEmployedContributionTax(
     private val selfEmployedContributions: List<SelfEmployedContribution>,
 ) {
     // exempt when insurance person is registered for less than 5 years
-    val totalTax: Money = if (isLessThanFiveYears) Money.ZERO
+    val totalTaxAmount: Money = if (isLessThanFiveYears) Money.ZERO
     else calculateTax()
 
     private fun calculateTax(): Money {
@@ -21,5 +21,4 @@ class SelfEmployedContributionTax(
         return taxAmount * branches
     }
 
-    fun totalTaxAmount(): Money = totalTax
 }

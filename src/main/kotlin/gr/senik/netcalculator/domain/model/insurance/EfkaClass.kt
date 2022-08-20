@@ -36,13 +36,16 @@ class EfkaClass(
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "unemployment_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_unemployment"))
-    val unemploymentAmount: Money
+    val unemploymentAmount: Money,
 
-) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
+
+    ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
 
     override fun getId(): EfkaClassId = id
 
-    fun calculateTotalContributionAmount(): Money = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount + unemploymentAmount
+    val totalContributionAmount: Money
+        get() = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount + unemploymentAmount
+
     override fun toString(): String {
         return "EfkaClass(id=$id, type=$type, mainPensionAmount=$mainPensionAmount, healthCareMoneyAmount=$healthCareMoneyAmount, healthCareKindAmount=$healthCareKindAmount, unemploymentAmount=$unemploymentAmount) ${super.toString()}"
     }

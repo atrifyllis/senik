@@ -18,7 +18,7 @@ internal class IncomeTaxTest {
 
         val incomeTax = IncomeTax(Money(80_000), taxLevels)
 
-        assertThat(incomeTax.totalTaxAmount()).isEqualTo(Money(27_100.00))
+        assertThat(incomeTax.totalTaxAmount).isEqualTo(Money(27_100.00))
     }
 
     @Test
@@ -26,6 +26,6 @@ internal class IncomeTaxTest {
 
         val incomeTax = IncomeTax(Money(35_000), taxLevels)
 
-        assertThat(incomeTax.totalTaxAmount()).isEqualTo(Money(7_700.00))
+        assertThat(incomeTax.totalTaxAmount).isEqualTo(Money(7_700.00))
     }
 }
