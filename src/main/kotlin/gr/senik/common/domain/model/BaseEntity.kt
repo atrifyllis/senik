@@ -1,5 +1,6 @@
 package gr.senik.common.domain.model
 
+import org.jmolecules.ddd.types.Identifiable
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
@@ -16,7 +17,7 @@ import javax.persistence.Version
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-abstract class BaseEntity {
+abstract class BaseEntity<ID> : Identifiable<ID> {
 
     @Version
     @Column(name = "OPTLOCK")

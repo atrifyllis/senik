@@ -2,6 +2,7 @@ package gr.senik.netcalculator.domain.model.tax
 
 import gr.senik.common.domain.model.Money
 import mu.KotlinLogging
+import org.jmolecules.ddd.types.ValueObject
 
 private val log = KotlinLogging.logger {}
 
@@ -11,7 +12,7 @@ private val log = KotlinLogging.logger {}
 abstract class LevelBasedTax(
     private val taxableIncome: Money,
     private val taxLevels: List<TaxLevel>,
-) {
+) : ValueObject {
     // TODO this is not very readable
     /**
      * Starts from the taxableIncome and calculates for each level the tax amount that corresponds to the level.

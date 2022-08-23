@@ -1,5 +1,6 @@
 package gr.senik.netcalculator.application.service
 
+import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.application.ports.`in`.mapper.CalculationResultMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.Dummy
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
@@ -9,13 +10,15 @@ import gr.senik.netcalculator.application.ports.`in`.web.LoadCalculatorDataUseCa
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
+import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
-import gr.senik.netcalculator.domain.service.NetIncomeCalculator
+import gr.senik.netcalculator.domain.model.income.CalculatedNetIncome
 import org.springframework.stereotype.Service
 
 @Service
 class CalculatorDataService(
     private val loadReferenceDataPort: LoadReferenceDataPort,
+    private val calculateNetIncomePort: CalculateNetIncomePort,
     private val referenceDataMapper: ReferenceDataMapper,
     private val individualMapper: IndividualMapper,
     private val calculationResultMapper: CalculationResultMapper,
@@ -45,16 +48,27 @@ class CalculatorDataService(
         val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
         val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
 
-        val netIncomeCalculator = NetIncomeCalculator(
-            individual = individual,
-            efkaClasses = efkaClasses,
-            eteaepClasses = eteaepClasses,
+        val efkaContributionAmount = efkaClasses.first { it.id == individual.efkaClassId }.totalContributionAmount
+        val eteaepContributionAmount = eteaepClasses.first { it.id == individual.eteaepClassId }.totalContributionAmount
+
+        val calculatedNetIncome = CalculatedNetIncome(individual = individual)
+
+        val (insuranceCost, totalTax, netAnnualIncome) = calculatedNetIncome.calculateNetIncome(
+            efkaContributionAmount = efkaContributionAmount,
+            eteaepContributionAmount = eteaepContributionAmount,
             incomeTaxLevels = incomeTaxLevels,
             solidarityContributionTaxLevels = solidarityContributionTaxLevels,
             selfEmployedContributions = selfEmployedContributions
         )
-        val result = netIncomeCalculator.calculateNetIncome()
 
-        return calculationResultMapper.toCalculationResult(result)
+        calculateNetIncomePort.persist(calculatedNetIncome)
+
+        return calculationResultMapper.toCalculationResult(NetAnnualIncome(insuranceCost, totalTax, netAnnualIncome))
     }
 }
+
+data class NetAnnualIncome(
+    val insuranceCost: Money,
+    val totalTax: Money,
+    val netAnnualIncome: Money,
+)
