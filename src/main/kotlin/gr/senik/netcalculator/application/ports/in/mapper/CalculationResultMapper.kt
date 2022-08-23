@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
-import gr.senik.netcalculator.domain.service.NetIncomeCalculator
+import gr.senik.netcalculator.application.service.NetAnnualIncome
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.ReportingPolicy
@@ -10,5 +10,5 @@ import org.mapstruct.ReportingPolicy
 abstract class CalculationResultMapper {
 
     @Mapping(source = "netAnnualIncome", target = "netIncome")
-    abstract fun toCalculationResult(result: NetIncomeCalculator.NetAnnualIncome): CalculationResultDto
+    abstract fun toCalculationResult(result: NetAnnualIncome): CalculationResultDto
 }

@@ -1,6 +1,7 @@
 package gr.senik.netcalculator.domain.model.tax.selfemployedcontribution
 
 import gr.senik.common.domain.model.Money
+import org.jmolecules.ddd.types.ValueObject
 
 /**
  * Τέλος επιτιδεύματος <br/>
@@ -11,7 +12,7 @@ class SelfEmployedContributionTax(
     private val branches: Int = 1,
     isLessThanFiveYears: Boolean = false,
     private val selfEmployedContributions: List<SelfEmployedContribution>,
-) {
+) : ValueObject {
     // exempt when insurance person is registered for less than 5 years
     val totalTaxAmount: Money = if (isLessThanFiveYears) Money.ZERO
     else calculateTax()
