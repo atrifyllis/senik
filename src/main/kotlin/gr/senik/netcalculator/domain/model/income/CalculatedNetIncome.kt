@@ -80,8 +80,6 @@ class CalculatedNetIncome(
         calculateSolidarityContributionTax(solidarityContributionTaxLevels)
         calculateSelfEmployedContributionTax(selfEmployedContributions)
         calculateTotalTax()
-        log.info { "Insurance cost: $insuranceCost" }
-        log.info { "Total tax: $totalTax" }
         this.netAnnualIncome = individual.grossIncome - totalTax - insuranceCost
         return Triple(insuranceCost, totalTax, netAnnualIncome)
     }
@@ -94,6 +92,7 @@ class CalculatedNetIncome(
             -> eteaepContributionAmount
         }
         this.insuranceCost = (efkaContributionAmount + eteaepCost) * 12
+        log.info { "Insurance cost: $insuranceCost" }
     }
 
     private fun calculateTaxableIncome() {
@@ -102,10 +101,12 @@ class CalculatedNetIncome(
 
     private fun calculateIncomeTax(taxLevels: List<IncomeTaxLevel>) {
         this.incomeTax = IncomeTax(taxableIncome, taxLevels).totalTaxAmount
+        log.info { "income Tax: $incomeTax" }
     }
 
     private fun calculateSolidarityContributionTax(taxLevels: List<SolidarityContributionTaxLevel>) {
         this.solidarityContributionTax = SolidarityContributionTax(taxableIncome, taxLevels).totalTaxAmount
+        log.info { "solidarity contribution tax: $solidarityContributionTax" }
     }
 
     private fun calculateSelfEmployedContributionTax(
@@ -119,16 +120,13 @@ class CalculatedNetIncome(
                 selfEmployedContributions = selfEmployedContributions
             )
                 .totalTaxAmount
+        log.info { "self employed contribution Tax: $selfEmployedContributionTax" }
     }
 
     private fun calculateTotalTax() {
-        log.info { "income Tax: $incomeTax" }
-        log.info { "solidarity contribution tax: $solidarityContributionTax" }
-        log.info { "self employed contribution Tax: $selfEmployedContributionTax" }
         this.totalTax = incomeTax +
                 solidarityContributionTax +
                 selfEmployedContributionTax
+        log.info { "Total tax: $totalTax" }
     }
-
-
 }
