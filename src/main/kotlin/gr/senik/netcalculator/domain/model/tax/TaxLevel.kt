@@ -23,10 +23,7 @@ abstract class TaxLevel(
     ) : AbstractAggregateRoot<TaxLevel, TaxLevelId>() {
 
     @EmbeddedId
-    private val id: TaxLevelId = TaxLevelId(UUID.randomUUID())
-    override fun getId(): TaxLevelId {
-        return id
-    }
+    override val id: TaxLevelId = TaxLevelId(UUID.randomUUID())
 
     // TODO this is ugly
     fun calculateLevelAmount(remainingAmount: Money): Money {

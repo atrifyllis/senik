@@ -16,7 +16,6 @@ class IndividualId(id: UUID?) : DomainEntityId(id)
 @Entity
 class Individual(
 
-
     @Enumerated(EnumType.STRING)
     var type: InsuranceType,
 
@@ -45,7 +44,7 @@ class Individual(
     ) : BaseEntity<IndividualId>() {
 
     @EmbeddedId
-    private val id: IndividualId = IndividualId(UUID.randomUUID())
+    override val id: IndividualId = IndividualId(UUID.randomUUID())
 
     @AttributeOverride(name = "amount", column = Column(name = "gross_annual_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "gross_annual_currency"))
@@ -56,8 +55,6 @@ class Individual(
             .map { it.dailyIncome * it.days }
             .sumOf { it.amount }
     )
-
-    override fun getId(): IndividualId = id
 }
 
 data class DailyIncome(val days: Int, val dailyIncome: Money)

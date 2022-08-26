@@ -13,7 +13,7 @@ class EfkaClassId(id: UUID?) : DomainEntityId(id)
 class EfkaClass(
 
     @EmbeddedId
-    private val id: EfkaClassId = EfkaClassId(UUID.randomUUID()),
+    override val id: EfkaClassId = EfkaClassId(UUID.randomUUID()),
 
     @Enumerated(EnumType.STRING)
     val type: EfkaClassType,
@@ -40,8 +40,6 @@ class EfkaClass(
 
 
     ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
-
-    override fun getId(): EfkaClassId = id
 
     val totalContributionAmount: Money
         get() = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount + unemploymentAmount

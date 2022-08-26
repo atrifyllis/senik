@@ -58,7 +58,6 @@ dependencies {
     implementation(libs.bundles.jmolecules)
     implementation(libs.bundles.openApi)
 
-
     runtimeOnly("org.postgresql:postgresql")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")

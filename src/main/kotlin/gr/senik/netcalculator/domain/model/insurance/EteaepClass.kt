@@ -14,7 +14,7 @@ class EteaepClassId(id: UUID?) : DomainEntityId(id)
 class EteaepClass(
 
     @EmbeddedId
-    private val id: EteaepClassId = EteaepClassId(UUID.randomUUID()),
+    override val id: EteaepClassId = EteaepClassId(UUID.randomUUID()),
 
     @Enumerated(EnumType.STRING)
     val type: EteaepClassType,
@@ -30,8 +30,6 @@ class EteaepClass(
     val lumpSumAmount: Money,
 
     ) : AbstractAggregateRoot<EteaepClass, EteaepClassId>() {
-
-    override fun getId(): EteaepClassId = id
 
     val totalContributionAmount: Money
         get() = auxiliaryPensionAmount + lumpSumAmount

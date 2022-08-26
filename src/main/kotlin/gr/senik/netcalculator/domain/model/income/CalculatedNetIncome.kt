@@ -23,7 +23,7 @@ class CalculatedNetIncomeId(id: UUID?) : DomainEntityId(id)
 @Table(name = "calculated_net_income")
 class CalculatedNetIncome(
     @EmbeddedId
-    private val id: CalculatedNetIncomeId = CalculatedNetIncomeId(UUID.randomUUID()),
+    override val id: CalculatedNetIncomeId = CalculatedNetIncomeId(UUID.randomUUID()),
 
     @OneToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "individual_id", referencedColumnName = "id")
@@ -64,8 +64,6 @@ class CalculatedNetIncome(
     @AttributeOverride(name = "amount", column = Column(name = "net_annual_income_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "net_annual_income_currency"))
     private lateinit var netAnnualIncome: Money
-
-    override fun getId(): CalculatedNetIncomeId = id
 
     fun calculateNetIncome(
         efkaContributionAmount: Money,
