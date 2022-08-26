@@ -18,7 +18,7 @@ versionChecker = "0.42.0"
 [libraries]
 hibernateTypes = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernateTypes" }
 
-jmoleculesDdd = { module = "org.jmolecules:jmolecules-ddd", version.ref = "jmolecules" }
+jmoleculesDdd = { module = "org.jmolecules:kmolecules-ddd", version.ref = "jmolecules" }
 jmoleculesEvents = { module = "org.jmolecules:jmolecules-events", version.ref = "jmolecules" }
 jmoleculesSpring = { module = "org.jmolecules.integrations:jmolecules-spring", version.ref = "jmoleculesIntegrations" }
 jmoleculesJackson = { module = "org.jmolecules.integrations:jmolecules-jackson", version.ref = "jmoleculesIntegrations" }

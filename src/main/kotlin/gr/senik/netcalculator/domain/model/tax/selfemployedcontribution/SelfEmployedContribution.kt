@@ -21,8 +21,5 @@ class SelfEmployedContribution(
 
     ) : AbstractAggregateRoot<SelfEmployedContribution, SelfEmployedContributionId>() {
     @EmbeddedId
-    private val id: SelfEmployedContributionId = SelfEmployedContributionId(UUID.randomUUID())
-    override fun getId(): SelfEmployedContributionId {
-        return id
-    }
+    override val id: SelfEmployedContributionId = SelfEmployedContributionId(UUID.randomUUID())
 }

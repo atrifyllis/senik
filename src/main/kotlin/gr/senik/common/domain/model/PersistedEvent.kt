@@ -20,14 +20,10 @@ class PersistedEvent
     val aggregateId: String,
 
     @Column(name = "aggregatetype")
-    val aggregateType: String
+    val aggregateType: String,
 ) : AbstractAggregateRoot<PersistedEvent, EventId>() {
     @EmbeddedId
-    private var id: EventId = EventId(UUID.randomUUID())
-
-    override fun getId(): EventId {
-        return this.id
-    }
+    override var id: EventId = EventId(UUID.randomUUID())
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
