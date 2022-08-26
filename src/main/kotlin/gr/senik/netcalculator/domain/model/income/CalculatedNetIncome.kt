@@ -42,28 +42,28 @@ class CalculatedNetIncome(
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "income_tax_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "income_tax_currency"))
-    private lateinit var incomeTax: Money
+    private var incomeTax: Money = Money.ZERO
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "solidarity_contribution_tax_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "solidarity_contribution_tax_currency"))
-    private lateinit var solidarityContributionTax: Money
+    private var solidarityContributionTax: Money = Money.ZERO
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "self_employed_contribution_tax_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "self_employed_contribution_tax_currency"))
-    private lateinit var selfEmployedContributionTax: Money
+    private var selfEmployedContributionTax: Money = Money.ZERO
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "total_tax_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "total_tax_currency"))
-    private lateinit var totalTax: Money
+    private var totalTax: Money = Money.ZERO
 
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "net_annual_income_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "net_annual_income_currency"))
-    private lateinit var netAnnualIncome: Money
+    private var netAnnualIncome: Money = Money.ZERO
 
     fun calculateNetIncome(
         efkaContributionAmount: Money,
