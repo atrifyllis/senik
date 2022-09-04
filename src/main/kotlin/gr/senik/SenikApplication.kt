@@ -12,6 +12,7 @@ import org.springframework.boot.runApplication
 @OpenAPIDefinition(
     info = Info(
         title = "SENIK",
+        version = "1"
     )
 )
 class SenikApplication
