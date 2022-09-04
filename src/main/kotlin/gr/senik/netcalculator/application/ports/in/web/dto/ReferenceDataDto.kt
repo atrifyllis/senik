@@ -1,10 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.web.dto
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.insurance.EfkaClassId
-import gr.senik.netcalculator.domain.model.insurance.EfkaClassType
-import gr.senik.netcalculator.domain.model.insurance.EteaepClassId
-import gr.senik.netcalculator.domain.model.insurance.EteaepClassType
+import gr.senik.netcalculator.domain.model.insurance.*
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionLevelType
 import gr.senik.netcalculator.domain.model.tax.TaxLevelId
 import gr.senik.netcalculator.domain.model.tax.TaxLevelType
@@ -46,4 +43,5 @@ data class ReferenceDataDto(
     val incomeTaxLevels: List<IncomeTaxLevelDto>,
     val solidarityContributionTaxLevels: List<SolidarityContributionTaxLevelDto>,
     val selfEmployedContributions: List<SelfEmployedContribution>,
+    val enabledInsuranceTypes: List<InsuranceType> = InsuranceType.values().toList(),
 )

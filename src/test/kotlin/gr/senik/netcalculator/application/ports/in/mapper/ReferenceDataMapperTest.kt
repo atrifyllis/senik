@@ -3,6 +3,7 @@ package gr.senik.netcalculator.application.ports.`in`.mapper
 import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.insurance.EfkaClassType
 import gr.senik.netcalculator.domain.model.insurance.InsuranceTestHelper
+import gr.senik.netcalculator.domain.model.insurance.InsuranceType
 import gr.senik.netcalculator.domain.model.tax.TaxTestHelper
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -22,7 +23,8 @@ internal class ReferenceDataMapperTest {
             eteaepClasses,
             incomeTaxLevels,
             solidarityContributionTaxLevels,
-            selfEmployedContributions
+            selfEmployedContributions,
+            InsuranceType.values().toList()
         )
 
         assertThat(referenceData.efkaClasses[0].id).isEqualTo(InsuranceTestHelper.EFKA_CLASS_ID_1)

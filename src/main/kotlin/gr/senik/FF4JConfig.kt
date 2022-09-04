@@ -14,7 +14,7 @@ import javax.sql.DataSource
  * Configure ff4j backed by databse stores.
  */
 @Configuration
-class FF4JConfiguration {
+class FF4JConfig {
 
 
     @Bean

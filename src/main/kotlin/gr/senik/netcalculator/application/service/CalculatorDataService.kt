@@ -13,6 +13,8 @@ import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
 import gr.senik.netcalculator.domain.model.income.CalculatedNetIncome
+import gr.senik.netcalculator.domain.model.insurance.InsuranceType
+import org.ff4j.FF4j
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,6 +24,7 @@ class CalculatorDataService(
     private val referenceDataMapper: ReferenceDataMapper,
     private val individualMapper: IndividualMapper,
     private val calculationResultMapper: CalculationResultMapper,
+    private val fF4j: FF4j,
 ) : LoadCalculatorDataUseCase, CalculateIncomeUseCase {
     override fun getReferenceData(): ReferenceDataDto {
         val eteaepClasses = loadReferenceDataPort.loadEteaepClasses()
@@ -29,13 +32,15 @@ class CalculatorDataService(
         val incomeTaxLevels = loadReferenceDataPort.loadIncomeTaxLevels()
         val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
         val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
+        val enabledInsuranceTypes = retrieveEnabledInsuranceTypes()
         return referenceDataMapper.toReferenceDataDto(
             Dummy(),
             efkaClasses,
             eteaepClasses,
             incomeTaxLevels,
             solidarityContributionTaxLevels,
-            selfEmployedContributions
+            selfEmployedContributions,
+            enabledInsuranceTypes
         )
     }
 
@@ -65,6 +70,10 @@ class CalculatorDataService(
 
         return calculationResultMapper.toCalculationResult(NetAnnualIncome(insuranceCost, totalTax, netAnnualIncome))
     }
+
+    private fun retrieveEnabledInsuranceTypes(): List<InsuranceType> =
+        InsuranceType.values().filter { fF4j.check(it.name) }
+
 }
 
 data class NetAnnualIncome(
