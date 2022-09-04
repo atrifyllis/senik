@@ -30,6 +30,9 @@ class SecurityConfig {
             }
             // by default uses a Bean by the name of corsConfigurationSource
             cors {}
+            csrf {
+                ignoringAntMatchers("/ff4j-web-console/**")  // ff4j does not work with CSRF
+            }
         }
         return http.build()
     }

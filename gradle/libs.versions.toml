@@ -13,6 +13,7 @@ springBoot = "2.7.2"
 springDepManagement = "1.0.12.RELEASE"
 sonarqube = "3.4.0.2513"
 versionChecker = "0.42.0"
+ff4j = "1.8.13"
 
 
 [libraries]
@@ -33,9 +34,14 @@ mapStructProcessor = { module = "org.mapstruct:mapstruct-processor", version.ref
 openapiUi = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "openapi" }
 openapiKotlin = { module = "org.springdoc:springdoc-openapi-kotlin", version.ref = "openapi" }
 
+ff4jSpring = { module = "org.ff4j:ff4j-spring-boot-starter", version.ref = "ff4j" }
+ff4jWeb = { module = "org.ff4j:ff4j-web", version.ref = "ff4j" }
+ff4jSpringJdbc = { module = "org.ff4j:ff4j-store-springjdbc", version.ref = "ff4j" }
+
 [bundles]
 jmolecules = ["jmoleculesDdd", "jmoleculesEvents", "jmoleculesSpring", "jmoleculesJackson"]
 openApi = ["openapiUi", "openapiKotlin"]
+ff4j = ["ff4jSpring", "ff4jWeb", "ff4jSpringJdbc"]
 
 [plugins]
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
