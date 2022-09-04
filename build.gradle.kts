@@ -57,6 +57,7 @@ dependencies {
 
     implementation(libs.bundles.jmolecules)
     implementation(libs.bundles.openApi)
+    implementation(libs.bundles.ff4j)
 
     runtimeOnly("org.postgresql:postgresql")
     compileOnly("org.projectlombok:lombok")

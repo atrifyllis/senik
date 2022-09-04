@@ -32,3 +32,15 @@ okta:
 
 springdoc:
   default-produces-media-type: application/json
+  paths-to-exclude: /internal-api/** # ff4j
+
+
+ff4j:
+  web-console:
+    enabled: true
+  audit:
+    enabled: true
+  api:
+    spring-doc:
+      enabled: false
+    context-path: "/internal-api/ff4j" #just to differentiate from our api
