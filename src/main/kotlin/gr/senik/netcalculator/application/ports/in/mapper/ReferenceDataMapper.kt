@@ -11,7 +11,9 @@ import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.ReportingPolicy
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
+    uses = [InsuranceTypeMapper::class] // could not find a way to use the custom mapping without explicit mention here
+)
 abstract class ReferenceDataMapper {
 
     @Mapping(target = "efkaClasses", source = "efkaClasses")

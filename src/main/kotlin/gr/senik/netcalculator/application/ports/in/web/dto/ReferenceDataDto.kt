@@ -44,11 +44,18 @@ data class SelfEmployedContributionDto(
     val amount: Money,
 )
 
+data class InsuranceTypeDto(
+    val id: String,
+    val type: String,
+)
+
 data class ReferenceDataDto(
     val eteaepClasses: List<EteaepClassDto>,
     val efkaClasses: List<EfkaClassDto>,
     val incomeTaxLevels: List<IncomeTaxLevelDto>,
     val solidarityContributionTaxLevels: List<SolidarityContributionTaxLevelDto>,
     val selfEmployedContributions: List<SelfEmployedContributionDto>,
-    val enabledInsuranceTypes: List<InsuranceType> = InsuranceType.values().toList(),
+    val enabledInsuranceTypes: List<InsuranceTypeDto> = InsuranceType.values()
+        .map { InsuranceTypeDto(it.name, it.name) }
+        .toList(),
 )
