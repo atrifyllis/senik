@@ -1,3 +1,6 @@
 = TODOs
 
-[] Money value object
+* [x] Money value object
+* [ ] arch unit
+* [ ] CRUD for reference data
+

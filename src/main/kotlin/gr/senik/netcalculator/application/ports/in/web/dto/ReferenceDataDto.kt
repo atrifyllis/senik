@@ -5,7 +5,8 @@ import gr.senik.netcalculator.domain.model.insurance.*
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionLevelType
 import gr.senik.netcalculator.domain.model.tax.TaxLevelId
 import gr.senik.netcalculator.domain.model.tax.TaxLevelType
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
+import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionId
 
 data class EteaepClassDto(
     val id: EteaepClassId,
@@ -37,11 +38,17 @@ data class SolidarityContributionTaxLevelDto(
     val levelFactor: Double,
 )
 
+data class SelfEmployedContributionDto(
+    val id: SelfEmployedContributionId,
+    val type: SECType,
+    val amount: Money,
+)
+
 data class ReferenceDataDto(
     val eteaepClasses: List<EteaepClassDto>,
     val efkaClasses: List<EfkaClassDto>,
     val incomeTaxLevels: List<IncomeTaxLevelDto>,
     val solidarityContributionTaxLevels: List<SolidarityContributionTaxLevelDto>,
-    val selfEmployedContributions: List<SelfEmployedContribution>,
+    val selfEmployedContributions: List<SelfEmployedContributionDto>,
     val enabledInsuranceTypes: List<InsuranceType> = InsuranceType.values().toList(),
 )
