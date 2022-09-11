@@ -1,6 +1,8 @@
 = TODOs
 
 * [x] Money value object
-* [ ] arch unit
+* [x] add feature flag support
+* [x] add ArchUnit
+* [ ] arch unit -> fix domain model references and re-enable jMolecules rule
 * [ ] CRUD for reference data
 
