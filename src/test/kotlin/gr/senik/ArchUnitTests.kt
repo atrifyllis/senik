@@ -12,7 +12,6 @@ import com.tngtech.archunit.library.Architectures.onionArchitecture
 import com.tngtech.archunit.library.GeneralCodingRules
 import com.tngtech.archunit.library.dependencies.SliceRule
 import com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices
-import org.jmolecules.archunit.JMoleculesRules
 
 private const val DOMAIN_MODEL_LAYER = "domain.model"
 private const val DOMAIN_SERVICE_LAYER = "domain.service"
@@ -79,7 +78,6 @@ class ArchUnitTests {
             .resideInAPackage("$APPLICATION_SERVICE_LAYER..")
 
 //    TODO jmolecules rules fail because we have direct reference to aggregates from otehr classes (e.g. ValueObjects)
-
 //    @ArchTest
 //    val dddJmoleculesRules: ArchRule = JMoleculesRules.all().allowEmptyShould(true)
 
@@ -92,6 +90,16 @@ class ArchUnitTests {
         .should().dependOnClassesThat()
         .haveNameMatching("org.springframework.data.jpa.repository.JpaRepository")
         .because("JpaRepositories should not be part of the domain layer")
+
+// rules like the one bellow are already checked in defaultOnionArchitectureRules
+//    @ArchTest
+//    val domainModelClassesShouldNotAccessClassesOutsideOfDomain: ClassesShouldConjunction =
+//        ArchRuleDefinition.noClasses()
+//            .that()
+//            .resideInAPackage("..$DOMAIN_MODEL_LAYER..")
+//            .should().accessClassesThat()
+//            .resideOutsideOfPackages("..$DOMAIN_MODEL_LAYER..", "..java..", "..kotlin..", "..mu..")
+
 
     @ArchTest
     val genericCodingRules: CompositeArchRule = CompositeArchRule

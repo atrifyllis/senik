@@ -1,8 +1,8 @@
 package gr.senik.netcalculator.domain.model.tax
 
-import gr.senik.common.domain.model.AbstractAggregateRoot
 import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
+import gr.senik.netcalculator.domain.model.income.CalculatedNetIncome
 import java.util.*
 import javax.persistence.*
 
@@ -20,7 +20,7 @@ abstract class TaxLevel(
 
     val levelFactor: Double,
 
-    ) : AbstractAggregateRoot<TaxLevel, TaxLevelId>() {
+    ) : org.jmolecules.ddd.types.Entity<CalculatedNetIncome, TaxLevelId> {
 
     @EmbeddedId
     override val id: TaxLevelId = TaxLevelId(UUID.randomUUID())
@@ -32,5 +32,6 @@ abstract class TaxLevel(
         return taxableAmount * levelFactor
     }
 
-    private fun calculateTaxableAmount(remainingAmount: Money) = if (remainingAmount <= levelLimit) remainingAmount else levelLimit
+    private fun calculateTaxableAmount(remainingAmount: Money) =
+        if (remainingAmount <= levelLimit) remainingAmount else levelLimit
 }

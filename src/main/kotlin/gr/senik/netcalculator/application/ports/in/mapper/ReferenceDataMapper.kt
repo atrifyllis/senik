@@ -7,12 +7,15 @@ import gr.senik.netcalculator.domain.model.insurance.InsuranceType
 import gr.senik.netcalculator.domain.model.tax.IncomeTaxLevel
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
+import org.mapstruct.InjectionStrategy
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.ReportingPolicy
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
-    uses = [InsuranceTypeMapper::class] // could not find a way to use the custom mapping without explicit mention here
+@Mapper(
+    componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
+    injectionStrategy = InjectionStrategy.CONSTRUCTOR, // otherwise field injection is used for mapper below which is bad practice
+    uses = [InsuranceTypeMapper::class] // could not find a way to use the custom mapping without explicit mention here,
 )
 abstract class ReferenceDataMapper {
 
