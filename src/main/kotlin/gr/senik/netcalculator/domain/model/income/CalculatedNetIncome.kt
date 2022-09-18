@@ -79,6 +79,9 @@ class CalculatedNetIncome(
         calculateSelfEmployedContributionTax(selfEmployedContributions)
         calculateTotalTax()
         this.netAnnualIncome = individual.grossIncome - totalTax - insuranceCost
+
+        this.registerEvent(NetIncomeCalculated(id, netAnnualIncome))
+
         return Triple(insuranceCost, totalTax, netAnnualIncome)
     }
 

@@ -16,5 +16,4 @@ open class DomainEvent(
     val aggregateId: DomainEntityId,
     @JsonIgnore // field used for outbox pattern only
     val aggregateType: String
-) :
-    DomainEvent
+) : DomainEvent
