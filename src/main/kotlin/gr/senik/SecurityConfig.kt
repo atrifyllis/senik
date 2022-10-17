@@ -38,11 +38,12 @@ class SecurityConfig {
     }
 
     @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource? {
+    fun corsConfigurationSource(corsConfig: CorsConfig): CorsConfigurationSource? {
         val configuration = CorsConfiguration()
-        configuration.allowedOrigins = listOf("http://localhost:4200", "http://kubernetes.docker.internal:8081", "http://localhost:8081")
+        configuration.allowedOrigins = corsConfig.allowedOrigins
         configuration.allowedMethods = listOf("*")
-        configuration.allowedHeaders = listOf("*") // fixes: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+        configuration.allowedHeaders =
+            listOf("*") // fixes: No 'Access-Control-Allow-Origin' header is present on the requested resource.
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
         return source
