@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: senik
+  name: senik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: senik
+  template:
+    metadata:
+      labels:
+        app: senik
+    spec:
+      containers:
+        - env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://db-service:5432/senik
+          image: otinanism/senik
+          name: senik
+          ports:
+            - containerPort: 8080
