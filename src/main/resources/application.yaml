@@ -44,3 +44,8 @@ ff4j:
     spring-doc:
       enabled: false
     context-path: "/internal-api/ff4j" #just to differentiate from our api
+
+cors:
+  allowedOrigins:
+    - "http://localhost:4200" # local dev mode
+    - "http://localhost:8081" # local k3d cluster
