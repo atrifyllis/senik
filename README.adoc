@@ -69,3 +69,16 @@ TO generate locally the OpenApi json file (to be used for example in frontend) f
     gradle generateOpenApiDocs
 
 The generated file is located in the build folder (openapi.json).
+
+=== Some notes for local k8 dev:
+
+docker build -t otinanism/senik-ui .
+
+kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
+
+kubectl create deployment senik --image=otinanism/senik --dry-run -o=yaml > deployment.yaml
+kubectl create service clusterip senik --tcp=8080:8080 --dry-run -o=yaml >> service.yaml
+
+k3d cluster create mycluster -p "8081:80@loadbalancer"
+
+./gradlew bootBuildImage --imageName=otinanism/senik

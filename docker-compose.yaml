@@ -12,32 +12,35 @@ services:
     volumes:
       - senik-volume:/var/lib/postgresql/data
 
-  sonarqube:
-    image: sonarqube:community
-    depends_on:
-      - sonarqube-db
-    environment:
-      SONAR_JDBC_URL: jdbc:postgresql://sonarqube-db:5432/sonar
-      SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
-      # bypass error: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-      sonar.search.javaAdditionalOpts: "-Dnode.store.allow_mmap=false"
-    volumes:
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_logs:/opt/sonarqube/logs
-    ports:
-      - "9000:9000"
-  sonarqube-db:
-    image: postgres:12
-    environment:
-      POSTGRES_USER: sonar
-      POSTGRES_PASSWORD: sonar
-    volumes:
-      - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
+#  sonarqube:
+#    image: sonarqube:community
+#    depends_on:
+#      - sonarqube-db
+#    environment:
+#      SONAR_JDBC_URL: jdbc:postgresql://sonarqube-db:5432/sonar
+#      SONAR_JDBC_USERNAME: sonar
+#      SONAR_JDBC_PASSWORD: sonar
+#      # bypass error: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+#      sonar.search.javaAdditionalOpts: "-Dnode.store.allow_mmap=false"
+#    volumes:
+#      - sonarqube_data:/opt/sonarqube/data
+#      - sonarqube_extensions:/opt/sonarqube/extensions
+#      - sonarqube_logs:/opt/sonarqube/logs
+#    ports:
+#      - "9000:9000"
+#  sonarqube-db:
+#    image: postgres:12
+#    environment:
+#      POSTGRES_USER: sonar
+#      POSTGRES_PASSWORD: sonar
+#    volumes:
+#      - postgresql:/var/lib/postgresql
+#      - postgresql_data:/var/lib/postgresql/data
 
-
+  app:
+    image: otinanism/senik
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/senik
 
 volumes:
   senik-volume:
