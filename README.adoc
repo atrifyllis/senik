@@ -71,8 +71,9 @@ TO generate locally the OpenApi json file (to be used for example in frontend) f
 The generated file is located in the build folder (openapi.json).
 
 === Some notes for local k8 dev:
+from base folder (important!):
 
-docker build -t otinanism/senik-ui .
+ docker build  -t otinanism/senik-ui -f apps/senik-ui/docker/Dockerfile .
 
 kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
 
