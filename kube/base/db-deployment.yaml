@@ -17,11 +17,20 @@ spec:
       containers:
         - env:
             - name: POSTGRES_DB
-              value: senik
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: senik-config
             - name: POSTGRES_PASSWORD
-              value: senik
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: senik-config
             - name: POSTGRES_USER
-              value: senik
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: senik-config
           image: debezium/postgres:14
           name: db
           ports:
