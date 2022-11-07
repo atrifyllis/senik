@@ -1,0 +1,8 @@
+---
+resources:
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
+  - db-deployment.yaml
+  - db-service.yaml
+  - senik-volume-persistentvolumeclaim.yaml

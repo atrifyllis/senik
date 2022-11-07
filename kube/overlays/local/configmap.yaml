@@ -4,3 +4,6 @@ metadata:
   name: senik-config
 data:
   SPRING_DATASOURCE_URL: "jdbc:postgresql://db-service:5432/senik"
+  POSTGRES_DB: "senik"
+  POSTGRES_PASSWORD: "senik"
+  POSTGRES_USER: "senik"
