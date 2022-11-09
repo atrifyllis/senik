@@ -1,0 +1,14 @@
+# Environment-specific values.
+
+config:
+  datasourcePrefix: "jdbc:postgresql://"
+  datasourcePort: 5432
+  db: "senik"
+  dbUser: "senik"
+  dbPassword: "senik"
+
+senik-app:
+  ingress:
+    host: kubernetes.docker.internal
+    path: /
+    port: 8080

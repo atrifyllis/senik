@@ -1,0 +1,15 @@
+apiVersion: v2
+name: senik
+description: A Helm chart for the senik backend (app and db)
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"
+
+dependencies:
+  - name: senik-app
+    version: 0.1.0
+  - name: senik-db
+    version: 0.1.0

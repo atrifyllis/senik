@@ -1,0 +1,9 @@
+apiVersion: v2
+name: senik-db
+description: A Helm chart for the senik database
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"

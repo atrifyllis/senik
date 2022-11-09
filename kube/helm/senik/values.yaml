@@ -1,0 +1,8 @@
+# Default values for senik.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+config:
+  datasource: "dumb"
+  db: "dumb"
+  dbUser: "dumb"
+  dbPassword: "dumb"
