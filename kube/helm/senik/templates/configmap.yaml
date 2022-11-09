@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{include "senik.fullname" . }}-config
+data:
+  SPRING_DATASOURCE_URL: "{{ .Values.config.datasourcePrefix }}
+  {{- include "call-nested" (list . "senik-db" "senik-db.fullname") -}}:
+  {{- .Values.config.datasourcePort }}/{{ .Values.config.db -}}"
+  POSTGRES_DB: {{ .Values.config.db }}
+  POSTGRES_USER: {{ .Values.config.dbUser }}
+  POSTGRES_PASSWORD: {{ .Values.config.dbPassword }}

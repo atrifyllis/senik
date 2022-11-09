@@ -1,0 +1,24 @@
+# Default values for senik-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: otinanism/senik
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+container:
+  port: 8080
+
+service:
+  type: ClusterIP
+  port: 8080
+
+# override in env-specific value files
+ingress:
+  host: dumb
+  path: dumb
+  port: 0

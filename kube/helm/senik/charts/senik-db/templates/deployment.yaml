@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "senik-db.fullname" . }}
+  labels:
+    {{- include "senik-db.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "senik-db.selectorLabels" . | nindent 6 }}
+  strategy:
+    type: {{.Values.strategyType}}
+  template:
+    metadata:
+      labels:
+        {{- include "senik-db.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{.Values.container.port}}
+              protocol: TCP
+          volumeMounts:
+            - mountPath: {{.Values.volume.mountPath}}
+              name: {{ include "senik-db.fullname" . }}
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: {{ include "senik.fullname" . }}-config
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: {{ include "senik.fullname" . }}-config
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: {{ include "senik.fullname" . }}-config
+      volumes:
+        - name: {{ include "senik-db.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ include "senik-db.fullname" . }}-claim
