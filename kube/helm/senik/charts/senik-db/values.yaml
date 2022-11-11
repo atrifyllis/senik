@@ -20,7 +20,7 @@ volume:
 
 pvc:
   accessMode: ReadWriteOnce
-  storage: 100Mi
+  storage: 500Mi
 
 service:
   type: ClusterIP

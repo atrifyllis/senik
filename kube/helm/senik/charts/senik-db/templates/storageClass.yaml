@@ -1,0 +1,8 @@
+{{/* This storage class retains the PV after deletion of PVC (k3d's default local-path storage class does not)*/}}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-path-retain
+provisioner: rancher.io/local-path
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
