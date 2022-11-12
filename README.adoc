@@ -75,11 +75,22 @@ from base folder (important!):
 
  docker build  -t otinanism/senik-ui -f apps/senik-ui/docker/Dockerfile .
 
-kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
+  kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
 
-kubectl create deployment senik --image=otinanism/senik --dry-run -o=yaml > deployment.yaml
-kubectl create service clusterip senik --tcp=8080:8080 --dry-run -o=yaml >> service.yaml
+  kubectl create deployment senik --image=otinanism/senik --dry-run -o=yaml > deployment.yaml
 
-k3d cluster create mycluster -p "8081:80@loadbalancer"
+  kubectl create service clusterip senik --tcp=8080:8080 --dry-run -o=yaml >> service.yaml
 
-./gradlew bootBuildImage --imageName=otinanism/senik
+  k3d cluster create mycluster -p "8081:80@loadbalancer"
+
+or to expose NodePorts in host:
+
+  k3d cluster create mycluster2 --api-port 6550 -p "8081:80@loadbalancer" -p "30000-32767:30000-32767@server:0"
+
+--> this hangs, use maybe less ports?
+
+  k3d cluster create mycluster --api-port 6550 -p "8081:80@loadbalancer" -p "30000-30020:30000-30020@server:0" -v C:\Users\alx\k3d\volumes:/var/lib/rancher/k3s/storage@all
+
+--> ATTENTION! for volume mount to work it needs to be run from powershell!!!
+
+  ./gradlew bootBuildImage --imageName=otinanism/senik
