@@ -3,7 +3,7 @@ package gr.senik
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.web.servlet.invoke
+import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
@@ -31,7 +31,7 @@ class SecurityConfig {
             // by default uses a Bean by the name of corsConfigurationSource
             cors {}
             csrf {
-                ignoringAntMatchers("/ff4j-web-console/**")  // ff4j does not work with CSRF
+                ignoringRequestMatchers("/ff4j-web-console/**")  // ff4j does not work with CSRF
             }
         }
         return http.build()

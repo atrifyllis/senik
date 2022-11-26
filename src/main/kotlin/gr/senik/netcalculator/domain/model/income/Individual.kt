@@ -8,7 +8,7 @@ import gr.senik.netcalculator.domain.model.insurance.EteaepClassId
 import gr.senik.netcalculator.domain.model.insurance.InsuranceType
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Embeddable
 class IndividualId(id: UUID?) : DomainEntityId(id)

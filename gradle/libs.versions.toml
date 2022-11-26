@@ -1,25 +1,25 @@
 [versions]
-hibernateTypes = "2.17.3"
+hibernateTypes = "2.20.0"
 jmolecules = "1.6.0"
 jmoleculesIntegrations = "1.6.0"
-oktaSpring = "2.1.5"
-kotlin = "1.7.20-Beta"
-kotlinLogging = "2.1.23"
-mapStruct = "1.5.2.Final"
-openapi = "1.6.9"
-openapiGradlePlugin = "1.4.0"
+oktaSpring = "2.1.6"
+kotlin = "1.8.0-Beta"
+kotlinLogging = "3.0.4"
+mapStruct = "1.5.3.Final"
+openapi = "1.6.13"
+openapiGradlePlugin = "1.5.0"
 gradleLogger = "3.2.0"
-springBoot = "2.7.2"
-springDepManagement = "1.0.12.RELEASE"
+springBoot = "3.0.0"
+springDepManagement = "1.1.0"
 sonarqube = "3.4.0.2513"
-versionChecker = "0.42.0"
+versionChecker = "0.44.0"
 ff4j = "1.8.13"
-archUnit = "0.23.1"
+archUnit = "1.0.1"
 jMoleculesArchUnit = "1.0.0"
 
 
 [libraries]
-hibernateTypes = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernateTypes" }
+hibernateTypes = { module = "com.vladmihalcea:hibernate-types-60", version.ref = "hibernateTypes" }
 
 jmoleculesDdd = { module = "org.jmolecules:kmolecules-ddd", version.ref = "jmolecules" }
 jmoleculesEvents = { module = "org.jmolecules:jmolecules-events", version.ref = "jmolecules" }

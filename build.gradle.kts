@@ -33,7 +33,7 @@ repositories {
     mavenCentral()
 }
 
-extra["testcontainersVersion"] = "1.17.3"
+extra["testcontainersVersion"] = "1.17.6"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -107,11 +107,23 @@ tasks.sonarqube {
 }
 
 allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.Embeddable")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 openApi {
     apiDocsUrl.set("http://localhost:8080/v3/api-docs")
+}
+
+//TODO: this is needed for error:
+//> Task with name 'bootRunMainClassName' not found in root project 'senik'.
+//https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/79
+// https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/94
+// remove when fixed
+tasks.register<DefaultTask>("bootRunMainClassName") {
+}
+
+tasks.bootRun {
+    mainClass.set("gr.senik.SenikApplication")
 }

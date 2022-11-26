@@ -4,7 +4,7 @@ import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
 import gr.senik.netcalculator.application.ports.`in`.web.LoadCalculatorDataUseCase
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 @RequestMapping

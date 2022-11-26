@@ -4,7 +4,7 @@ import gr.senik.common.domain.model.AbstractAggregateRoot
 import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Embeddable
 class EteaepClassId(id: UUID?) : DomainEntityId(id)
