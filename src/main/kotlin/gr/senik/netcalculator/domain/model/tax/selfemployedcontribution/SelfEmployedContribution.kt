@@ -4,7 +4,7 @@ import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.income.CalculatedNetIncome
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Embeddable
 class SelfEmployedContributionId(id: UUID?) : DomainEntityId(id)

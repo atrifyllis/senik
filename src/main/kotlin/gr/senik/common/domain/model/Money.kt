@@ -4,7 +4,7 @@ import org.jmolecules.ddd.annotation.ValueObject
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
-import javax.persistence.Embeddable
+import jakarta.persistence.Embeddable
 
 private const val EUR = "EUR"
 

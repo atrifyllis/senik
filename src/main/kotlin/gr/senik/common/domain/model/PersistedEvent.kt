@@ -1,16 +1,17 @@
 package gr.senik.common.domain.model
 
-import org.hibernate.annotations.Type
+import com.vladmihalcea.hibernate.type.json.JsonType
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.EmbeddedId
-import javax.persistence.Entity
+import jakarta.persistence.Column
+import jakarta.persistence.EmbeddedId
+import jakarta.persistence.Entity
+import org.hibernate.annotations.Type
 
 @Entity
 class PersistedEvent
     (
-    @Type(type = "com.vladmihalcea.hibernate.type.json.JsonType")
+    @Type(JsonType::class)
     @Column(columnDefinition = "json")
     val payload: DomainEvent,
 

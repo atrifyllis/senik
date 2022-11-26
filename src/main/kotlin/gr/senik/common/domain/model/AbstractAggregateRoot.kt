@@ -2,15 +2,13 @@ package gr.senik.common.domain.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.vladmihalcea.hibernate.type.json.JsonType
-import org.hibernate.annotations.TypeDef
-import org.hibernate.annotations.TypeDefs
 import org.jmolecules.ddd.types.AggregateRoot
 import org.jmolecules.ddd.types.Identifier
 import org.springframework.data.domain.AfterDomainEventPublication
 import org.springframework.data.domain.DomainEvents
 import java.util.*
-import javax.persistence.MappedSuperclass
-import javax.persistence.Transient
+import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.Transient
 
 /**
  * Base class for aggregate roots.
@@ -18,7 +16,6 @@ import javax.persistence.Transient
  * @param <ID> the aggregate root ID type.
 </ID> */
 @MappedSuperclass
-@TypeDefs(TypeDef(name = "json", typeClass = JsonType::class))
 abstract class AbstractAggregateRoot<T : AggregateRoot<T, ID>, ID : Identifier> protected constructor() :
     BaseAggregate<T, ID>() {
 

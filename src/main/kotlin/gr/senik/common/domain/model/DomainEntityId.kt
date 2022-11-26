@@ -3,8 +3,8 @@ package gr.senik.common.domain.model
 import org.jmolecules.ddd.types.Identifier
 import java.io.Serializable
 import java.util.*
-import javax.persistence.Embeddable
-import javax.persistence.MappedSuperclass
+import jakarta.persistence.Embeddable
+import jakarta.persistence.MappedSuperclass
 
 /**
  * Base class for all Aggregate Root Ids.

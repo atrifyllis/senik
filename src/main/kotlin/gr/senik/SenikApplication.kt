@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
     runApplication<SenikApplication>(*args)
 }
 
-@SpringBootApplication(exclude = [FF4JOpenApiConfiguration::class])
+@SpringBootApplication
 // only way I found to override FF4j FF4JOpenApiConfiguration
 // excluding the auto-configuration class did not work
 @OpenAPIDefinition(

@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import javax.servlet.http.HttpServletRequest
-import javax.validation.ConstraintViolationException
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.validation.ConstraintViolationException
+import org.springframework.http.HttpStatusCode
 
 
 /**
@@ -40,9 +41,9 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
     override fun handleMethodArgumentNotValid(
         ex: MethodArgumentNotValidException,
         headers: HttpHeaders,
-        status: HttpStatus,
+        status: HttpStatusCode,
         request: WebRequest
-    ): ResponseEntity<Any> {
+    ): ResponseEntity<Any>? {
         val messages: List<String> = ex.bindingResult.fieldErrors.map { "${it.field} ${it.defaultMessage}" }
         return ResponseEntity(messages, HttpStatus.BAD_REQUEST)
 

@@ -12,7 +12,7 @@ import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmpl
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionTax
 import mu.KotlinLogging
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 private val log = KotlinLogging.logger {}
 
