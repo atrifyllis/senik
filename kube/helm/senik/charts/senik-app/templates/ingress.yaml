@@ -1,3 +1,5 @@
+{{- $fullName :=  include "senik-app.fullname" . }}
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -8,17 +10,26 @@ metadata:
     ingress.kubernetes.io/ssl-redirect: 'false'
     # share a single ALB with all ingress rules with search-app-ingress
     alb.ingress.kubernetes.io/group.name: senik
+    # by default the alb is internal!!!:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]' # link alb with certificate, using the host bellow
+    alb.ingress.kubernetes.io/success-codes: 200-404 # alb health check fails when 401!
 spec:
+  ingressClassName: alb # to link ingress with alb
   rules:
+      {{- range .Values.ingress.hosts }}
     - http:
         paths:
-          - path: {{ .Values.ingress.path }}
+            {{- range .paths }}
+          - path: {{ .path }}
             pathType: Prefix
             backend:
               service:
-                name: {{ include "senik-app.fullname" . }}-service
+                name: {{ $fullName }}-service
                 port:
-                  number: {{ .Values.ingress.port }}
-      {{- if .Values.ingress.host}}
-      host: {{ .Values.ingress.host }}
+                  number: {{ .port }}
+            {{end }}
+     {{- if .host}}
+      host: {{ .host | quote }}
       {{- end }}
+      {{ end }}

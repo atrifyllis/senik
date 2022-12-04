@@ -6,7 +6,7 @@ config:
   db: "senik"
   dbUser: "senik"
   dbPassword: "senik"
-  allowedOrigins: "https://dev.senik.tk"
+  allowedOrigins: "https://www.senik.tk"
 
 senik-app:
   service:
@@ -15,7 +15,7 @@ senik-app:
     port: 80
   ingress:
     hosts:
-      - host: devapi.senik.tk
+      - host: api.senik.tk
         paths:
           - path: /
             port: 80

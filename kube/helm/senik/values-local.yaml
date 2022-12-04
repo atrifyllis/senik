@@ -12,3 +12,6 @@ senik-app:
     host: kubernetes.docker.internal
     path: /
     port: 8080
+
+senik-db:
+  storageClass: local-path-retain
