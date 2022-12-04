@@ -27,6 +27,7 @@ spec:
           volumeMounts:
             - mountPath: {{.Values.volume.mountPath}}
               name: {{ include "senik-db.fullname" . }}
+              subPath: postgres # EBS does not create an empty directory and postgress has issues with that
           env:
             - name: POSTGRES_DB
               valueFrom:

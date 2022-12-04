@@ -5,7 +5,7 @@ metadata:
     {{- include "senik-db.labels" . | nindent 4 }}
   name: {{ include "senik-db.fullname" . }}-claim
 spec:
-  storageClassName: local-path-retain
+  storageClassName: {{ .Values.storageClass }}
   accessModes:
     - {{ .Values.pvc.accessMode }}
   resources:

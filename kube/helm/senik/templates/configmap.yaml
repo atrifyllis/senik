@@ -9,3 +9,4 @@ data:
   POSTGRES_DB: {{ .Values.config.db }}
   POSTGRES_USER: {{ .Values.config.dbUser }}
   POSTGRES_PASSWORD: {{ .Values.config.dbPassword }}
+  CORS_ALLOWED_ORIGINS: {{ .Values.config.allowedOrigins }}
