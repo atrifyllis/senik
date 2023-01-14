@@ -6,12 +6,17 @@ config:
   db: "senik"
   dbUser: "senik"
   dbPassword: "senik"
+  allowedOrigins: "http://localhost:8081"
+
 
 senik-app:
   ingress:
-    host: kubernetes.docker.internal
-    path: /
-    port: 8080
+    local: true
+    hosts:
+      - host: kubernetes.docker.internal
+        paths:
+          - path: /
+            port: 80
 
 senik-db:
   storageClass: local-path-retain

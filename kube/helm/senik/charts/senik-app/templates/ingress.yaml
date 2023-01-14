@@ -9,13 +9,17 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: 'false'
     # share a single ALB with all ingress rules with search-app-ingress
+   {{- if not .Values.ingress.local}}
     alb.ingress.kubernetes.io/group.name: senik
     # by default the alb is internal!!!:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]' # link alb with certificate, using the host bellow
     alb.ingress.kubernetes.io/success-codes: 200-404 # alb health check fails when 401!
+    {{- end }}
 spec:
+  {{- if not .Values.ingress.local}}
   ingressClassName: alb # to link ingress with alb
+  {{- end }}
   rules:
       {{- range .Values.ingress.hosts }}
     - http:
