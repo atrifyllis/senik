@@ -10,15 +10,19 @@ For starters, it focuses only in insurance of type TSMEDE.
 
 == Tech stack
 
-This is a Spring boot application written in Kotlin and  built with Gradle.
+This is a Spring boot application written in Kotlin and built with Gradle.
 
 === Database
-It uses PostgreSQL as a database. Flyway is used for database migrations.
+
+It uses PostgreSQL as a database.
+Flyway is used for database migrations.
 
 === API
+
 The API is exposed as openapi 3.0 standard: link:{base-url}/swagger-ui/index.html[]]
 
 === Security
+
 Okta is used together with Spring security for authentication and authorization with Oauth OpenID Connect protocol.
 
 The link:https://github.com/okta/okta-spring-boot[Okta Spring Boot Starter] is used which autoconfigures Spring Security.
@@ -34,12 +38,12 @@ open12345
 
 == Architecture
 
-This is an attempt to use DDD together with the Hexagonal Architecture (ports and adapters). You can see bellow the generic structure of the application:
+This is an attempt to use DDD together with the Hexagonal Architecture (ports and adapters).
+You can see bellow the generic structure of the application:
 
 image::hexagonal.png[hexagonal]
 
 == Usage
-
 
 === 1. Import the postman scripts in Postman:
 
@@ -58,7 +62,7 @@ Retrieve an access token:
 
 image::postman-token.png[]
 
-Use the  Okta credentials  to login as a simple user.
+Use the Okta credentials to login as a simple user.
 
 After you have acquired the token you can call the different endpoints.
 
@@ -71,6 +75,7 @@ TO generate locally the OpenApi json file (to be used for example in frontend) f
 The generated file is located in the build folder (openapi.json).
 
 === Some notes for local k8 dev:
+
 from base folder (important!):
 
  docker build  -t otinanism/senik-ui -f apps/senik-ui/docker/Dockerfile .
@@ -94,3 +99,7 @@ or to expose NodePorts in host:
 --> ATTENTION! for volume mount to work it needs to be run from powershell!!!
 
   ./gradlew bootBuildImage --imageName=otinanism/senik
+
+For the moment, this entry needs to be in hosts file:
+
+  127.0.0.1 kubernetes.docker.internal
