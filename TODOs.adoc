@@ -6,4 +6,5 @@
 * [ ] arch unit -> fix domain model references and re-enable jMolecules rule -> this does not work because of an issue of archunit in kotlin (to be investigated)
 * [ ] CRUD for reference data - if needed should be in different bounded context probably?
 * [ ] other insurance types
+* [ ] Native image
 
