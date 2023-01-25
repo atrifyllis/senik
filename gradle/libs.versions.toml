@@ -16,6 +16,7 @@ versionChecker = "0.44.0"
 ff4j = "1.9"
 archUnit = "1.0.1"
 jMoleculesArchUnit = "1.0.0"
+native = "0.9.19"
 
 
 [libraries]
@@ -60,5 +61,7 @@ openapi = { id = "org.springdoc.openapi-gradle-plugin", version.ref = "openapiGr
 gradlePrettyLogger = { id = "com.adarshr.test-logger", version.ref = "gradleLogger" }
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 versionChecker = { id = "com.github.ben-manes.versions", version.ref = "versionChecker" }
+native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
+
 
 

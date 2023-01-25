@@ -1,14 +1,13 @@
 package gr.senik.common.domain.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.vladmihalcea.hibernate.type.json.JsonType
+import jakarta.persistence.MappedSuperclass
+import jakarta.persistence.Transient
 import org.jmolecules.ddd.types.AggregateRoot
 import org.jmolecules.ddd.types.Identifier
 import org.springframework.data.domain.AfterDomainEventPublication
 import org.springframework.data.domain.DomainEvents
 import java.util.*
-import jakarta.persistence.MappedSuperclass
-import jakarta.persistence.Transient
 
 /**
  * Base class for aggregate roots.

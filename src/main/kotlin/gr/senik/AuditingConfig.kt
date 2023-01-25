@@ -23,7 +23,7 @@ class AuditingConfig {
         return AuditorAware {
             Optional.of(
                 when {
-                    SecurityContextHolder.getContext().authentication.name != null -> SecurityContextHolder.getContext().authentication.name
+                    SecurityContextHolder.getContext()?.authentication?.name != null -> SecurityContextHolder.getContext().authentication.name
                     else -> "unauthenticated"
                 }
             )

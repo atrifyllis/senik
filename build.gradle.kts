@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.openapi)
     alias(libs.plugins.versionChecker)
+    alias(libs.plugins.native)
 
     jacoco
 }
@@ -48,6 +49,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.flywaydb:flyway-core")
+    implementation("org.postgresql:postgresql")
+    implementation("io.github.classgraph:classgraph")
 
 
     implementation(libs.oktaSpring)
