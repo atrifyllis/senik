@@ -10,9 +10,9 @@ import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTax
 import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
 import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionTax
+import jakarta.persistence.*
 import mu.KotlinLogging
 import java.util.*
-import jakarta.persistence.*
 
 private val log = KotlinLogging.logger {}
 
@@ -71,7 +71,7 @@ class CalculatedNetIncome(
         incomeTaxLevels: List<IncomeTaxLevel>,
         solidarityContributionTaxLevels: List<SolidarityContributionTaxLevel>,
         selfEmployedContributions: List<SelfEmployedContribution>,
-    ): Triple<Money, Money, Money> {
+    ): CalculationResult {
         calculateInsuranceCost(efkaContributionAmount, eteaepContributionAmount)
         calculateTaxableIncome()
         calculateIncomeTax(incomeTaxLevels)
@@ -82,7 +82,14 @@ class CalculatedNetIncome(
 
         this.registerEvent(NetIncomeCalculated(id, netAnnualIncome))
 
-        return Triple(insuranceCost, totalTax, netAnnualIncome)
+        return CalculationResult(
+            insuranceCost = insuranceCost,
+            taxableIncome = taxableIncome,
+            totalTax = totalTax,
+            netAnnualIncome = netAnnualIncome,
+            solidarityContributionTax = solidarityContributionTax,
+            selfEmployedContributionTax = selfEmployedContributionTax
+        )
     }
 
     private fun calculateInsuranceCost(efkaContributionAmount: Money, eteaepContributionAmount: Money) {
@@ -131,3 +138,12 @@ class CalculatedNetIncome(
         log.info { "Total tax: $totalTax" }
     }
 }
+
+data class CalculationResult(
+    val insuranceCost: Money,
+    val taxableIncome: Money,
+    val totalTax: Money,
+    val netAnnualIncome: Money,
+    val solidarityContributionTax: Money,
+    val selfEmployedContributionTax: Money
+)

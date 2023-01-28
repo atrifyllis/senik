@@ -58,7 +58,7 @@ class CalculatorDataService(
 
         val calculatedNetIncome = CalculatedNetIncome(individual = individual)
 
-        val (insuranceCost, totalTax, netAnnualIncome) = calculatedNetIncome.calculateNetIncome(
+        val result = calculatedNetIncome.calculateNetIncome(
             efkaContributionAmount = efkaContributionAmount,
             eteaepContributionAmount = eteaepContributionAmount,
             incomeTaxLevels = incomeTaxLevels,
@@ -68,7 +68,16 @@ class CalculatorDataService(
 
         calculateNetIncomePort.persist(calculatedNetIncome)
 
-        return calculationResultMapper.toCalculationResult(NetAnnualIncome(insuranceCost, totalTax, netAnnualIncome))
+        return calculationResultMapper.toCalculationResult(
+            NetAnnualIncome(
+                result.insuranceCost,
+                result.taxableIncome,
+                result.totalTax,
+                result.netAnnualIncome,
+                result.selfEmployedContributionTax,
+                result.solidarityContributionTax,
+            )
+        )
     }
 
     private fun retrieveEnabledInsuranceTypes(): List<InsuranceType> =
@@ -78,6 +87,9 @@ class CalculatorDataService(
 
 data class NetAnnualIncome(
     val insuranceCost: Money,
+    val taxableIncome: Money,
     val totalTax: Money,
     val netAnnualIncome: Money,
+    val selfEmployedContributionTax: Money,
+    val solidarityContributionTax: Money,
 )
