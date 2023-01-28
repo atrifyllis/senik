@@ -114,19 +114,3 @@ allOpen {
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
 }
-
-openApi {
-    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
-}
-
-//TODO: this is needed for error:
-//> Task with name 'bootRunMainClassName' not found in root project 'senik'.
-//https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/79
-// https://github.com/springdoc/springdoc-openapi-gradle-plugin/issues/94
-// remove when fixed
-tasks.register<DefaultTask>("bootRunMainClassName") {
-}
-
-tasks.bootRun {
-    mainClass.set("gr.senik.SenikApplication")
-}
