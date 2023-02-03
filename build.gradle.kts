@@ -14,7 +14,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.openapi)
     alias(libs.plugins.versionChecker)
-    alias(libs.plugins.native)
+//    alias(libs.plugins.native)
 
     jacoco
 }
@@ -114,3 +114,4 @@ allOpen {
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
 }
+
