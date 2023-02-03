@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.netcalculator.application.ports.`in`.web.dto.EteaepClassDto
-import gr.senik.netcalculator.domain.model.insurance.EteaepClass
+import gr.senik.netcalculator.domain.model.v2.EteaepClass
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 

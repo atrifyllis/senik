@@ -1,6 +1,5 @@
 package gr.senik.netcalculator.application.service
 
-import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.application.ports.`in`.mapper.CalculationResultMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.Dummy
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
@@ -12,8 +11,8 @@ import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDt
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
-import gr.senik.netcalculator.domain.model.income.CalculatedNetIncome
-import gr.senik.netcalculator.domain.model.insurance.InsuranceType
+import gr.senik.netcalculator.domain.model.v2.Income
+import gr.senik.netcalculator.domain.model.v2.LegalEntityId
 import org.ff4j.FF4j
 import org.springframework.stereotype.Service
 
@@ -45,51 +44,38 @@ class CalculatorDataService(
     }
 
     override fun calculate(command: CalculationCommand): CalculationResultDto {
-        val individual = individualMapper.toIndividual(command.individual)
 
-        val efkaClasses = loadReferenceDataPort.loadEfkaClasses()
-        val eteaepClasses = loadReferenceDataPort.loadEteaepClasses()
-        val incomeTaxLevels = loadReferenceDataPort.loadIncomeTaxLevels()
-        val solidarityContributionTaxLevels = loadReferenceDataPort.loadSolidarityContributionTaxLevels()
-        val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
+        val efkaClass = loadReferenceDataPort.loadEfkaClasses()
+            .first { it.id.id == command.individual.efkaClassId }
+        val eteaepClass =
+            loadReferenceDataPort.loadEteaepClasses()
+                .first { it.id.id == command.individual.eteaepClassId }
 
-        val efkaContributionAmount = efkaClasses.first { it.id == individual.efkaClassId }.totalContributionAmount
-        val eteaepContributionAmount = eteaepClasses.first { it.id == individual.eteaepClassId }.totalContributionAmount
+        val incomeTax = loadReferenceDataPort.loadIncomeTax()
+        val solidarityContributionTax = loadReferenceDataPort.loadSolidarityContributionTax()
 
-        val calculatedNetIncome = CalculatedNetIncome(individual = individual)
+        val selfEmployedContribution =
+            loadReferenceDataPort.loadSelfEmployedContributions()
+                .first { it.type == command.individual.secType }
 
-        val result = calculatedNetIncome.calculateNetIncome(
-            efkaContributionAmount = efkaContributionAmount,
-            eteaepContributionAmount = eteaepContributionAmount,
-            incomeTaxLevels = incomeTaxLevels,
-            solidarityContributionTaxLevels = solidarityContributionTaxLevels,
-            selfEmployedContributions = selfEmployedContributions
+        val individual = individualMapper.toIndividual(
+            LegalEntityId.generateId(),
+            command.individual,
+            efkaClass,
+            eteaepClass,
+            selfEmployedContribution,
+            incomeTax,
+            solidarityContributionTax
         )
 
-        calculateNetIncomePort.persist(calculatedNetIncome)
+        val income: Income = individual.calculateIncome()
 
-        return calculationResultMapper.toCalculationResult(
-            NetAnnualIncome(
-                result.insuranceCost,
-                result.taxableIncome,
-                result.totalTax,
-                result.netAnnualIncome,
-                result.selfEmployedContributionTax,
-                result.solidarityContributionTax,
-            )
-        )
+        calculateNetIncomePort.persist(individual, income)
+
+        return calculationResultMapper.toCalculationResult(income)
     }
 
-    private fun retrieveEnabledInsuranceTypes(): List<InsuranceType> =
-        InsuranceType.values().filter { fF4j.check(it.name) }
+    private fun retrieveEnabledInsuranceTypes(): List<gr.senik.netcalculator.domain.model.v2.InsuranceType> =
+        gr.senik.netcalculator.domain.model.v2.InsuranceType.values().filter { fF4j.check(it.name) }
 
 }
-
-data class NetAnnualIncome(
-    val insuranceCost: Money,
-    val taxableIncome: Money,
-    val totalTax: Money,
-    val netAnnualIncome: Money,
-    val selfEmployedContributionTax: Money,
-    val solidarityContributionTax: Money,
-)

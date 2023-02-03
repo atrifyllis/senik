@@ -1,12 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.web.dto
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.insurance.*
-import gr.senik.netcalculator.domain.model.tax.SolidarityContributionLevelType
-import gr.senik.netcalculator.domain.model.tax.TaxLevelId
-import gr.senik.netcalculator.domain.model.tax.TaxLevelType
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionId
+import gr.senik.netcalculator.domain.model.v2.*
 
 data class EteaepClassDto(
     val id: EteaepClassId,
@@ -26,14 +21,14 @@ data class EfkaClassDto(
 
 data class IncomeTaxLevelDto(
     val id: TaxLevelId,
-    val type: TaxLevelType,
+//    val type: TaxLevelType,
     val levelLimit: Money,
     val levelFactor: Double,
 )
 
 data class SolidarityContributionTaxLevelDto(
     val id: TaxLevelId,
-    val type: SolidarityContributionLevelType,
+//    val type: SolidarityContributionLevelType,
     val levelLimit: Money,
     val levelFactor: Double,
 )

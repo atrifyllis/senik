@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.netcalculator.application.ports.`in`.web.dto.EfkaClassDto
-import gr.senik.netcalculator.domain.model.insurance.EfkaClass
+import gr.senik.netcalculator.domain.model.v2.EfkaClass
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 

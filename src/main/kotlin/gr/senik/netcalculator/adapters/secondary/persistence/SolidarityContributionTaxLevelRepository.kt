@@ -1,7 +1,6 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
-import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
-import gr.senik.netcalculator.domain.model.tax.TaxLevelId
 import org.springframework.data.jpa.repository.JpaRepository
+import java.util.*
 
-interface SolidarityContributionTaxLevelRepository : JpaRepository<SolidarityContributionTaxLevel, TaxLevelId>
+interface SolidarityContributionTaxLevelRepository : JpaRepository<SolidarityContributionLevelEntity, UUID>

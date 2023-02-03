@@ -1,14 +1,16 @@
 package gr.senik.netcalculator.application.ports.`in`.web.dto
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.income.DailyIncome
-import gr.senik.netcalculator.domain.model.insurance.InsuranceType
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SECType
+import gr.senik.netcalculator.domain.model.v2.DailyIncome
+import gr.senik.netcalculator.domain.model.v2.InsuranceType
+import gr.senik.netcalculator.domain.model.v2.LegalEntityType
+import gr.senik.netcalculator.domain.model.v2.SECType
 import java.util.*
 
 data class CalculationCommand(val individual: IndividualDto)
 
 data class IndividualDto(
+    val legalEntityType: LegalEntityType = LegalEntityType.INDIVIDUAL,
     val type: InsuranceType,
     val efkaClassId: UUID,
     val eteaepClassId: UUID,
@@ -27,7 +29,7 @@ data class CalculationResultDto(
     val insuranceCost: Money,
     val totalTax: Money,
     val solidarityContributionTax: Money,
-    val selfEmployedContributionTax: Money
+    val selfEmployedContributionTax: Money,
 ) {
     val monthlyIncome: Money = netIncome / 12
 }

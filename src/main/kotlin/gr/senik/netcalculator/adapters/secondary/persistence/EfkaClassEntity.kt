@@ -1,19 +1,17 @@
-package gr.senik.netcalculator.domain.model.insurance
+package gr.senik.netcalculator.adapters.secondary.persistence
 
-import gr.senik.common.domain.model.AbstractAggregateRoot
-import gr.senik.common.domain.model.DomainEntityId
+import gr.senik.common.domain.model.BaseEntity
 import gr.senik.common.domain.model.Money
-import java.util.*
+import gr.senik.netcalculator.domain.model.v2.EfkaClassType
 import jakarta.persistence.*
-
-@Embeddable
-class EfkaClassId(id: UUID?) : DomainEntityId(id)
+import java.util.*
 
 @Entity
-class EfkaClass(
+@Table(name = "efka_class")
+class EfkaClassEntity(
 
-    @EmbeddedId
-    override val id: EfkaClassId = EfkaClassId(UUID.randomUUID()),
+    @Id
+    override val id: UUID,
 
     @Enumerated(EnumType.STRING)
     val type: EfkaClassType,
@@ -37,15 +35,4 @@ class EfkaClass(
     @AttributeOverride(name = "amount", column = Column(name = "unemployment_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "currency_unemployment"))
     val unemploymentAmount: Money,
-
-
-    ) : AbstractAggregateRoot<EfkaClass, EfkaClassId>() {
-
-    val totalContributionAmount: Money
-        get() = mainPensionAmount + healthCareMoneyAmount + healthCareKindAmount + unemploymentAmount
-
-    override fun toString(): String {
-        return "EfkaClass(id=$id, type=$type, mainPensionAmount=$mainPensionAmount, healthCareMoneyAmount=$healthCareMoneyAmount, healthCareKindAmount=$healthCareKindAmount, unemploymentAmount=$unemploymentAmount) ${super.toString()}"
-    }
-
-}
+) : BaseEntity<UUID>()

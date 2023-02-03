@@ -17,6 +17,8 @@ internal class IndividualTest {
     fun `should calculate gross income from two daily incomes`() {
         val insuredPerson = InsuranceTestHelper.individualWithDailyIncomes
 
+        val income = insuredPerson.calculateIncome()
+
         assertThat(insuredPerson.grossIncome).isEqualTo(Money(65800))
     }
 }

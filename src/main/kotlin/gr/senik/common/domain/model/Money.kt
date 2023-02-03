@@ -1,16 +1,17 @@
 package gr.senik.common.domain.model
 
+import jakarta.persistence.Embeddable
 import org.jmolecules.ddd.annotation.ValueObject
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.util.*
-import jakarta.persistence.Embeddable
 
 private const val EUR = "EUR"
 
 @Embeddable
 @ValueObject
-class Money(
+
+class Money @Default constructor(
     var amount: BigDecimal,
     var currencyCode: String,
 ) {
