@@ -1,7 +1,6 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContributionId
 import org.springframework.data.jpa.repository.JpaRepository
+import java.util.*
 
-interface SelfEmployedContributionRepository : JpaRepository<SelfEmployedContribution, SelfEmployedContributionId>
+interface SelfEmployedContributionRepository : JpaRepository<SelfEmployedContributionEntity, UUID>

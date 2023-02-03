@@ -24,7 +24,7 @@ class MyRuntimeHints : RuntimeHintsRegistrar {
         hints.reflection().registerType(Configuration::class.java, MemberCategory.INVOKE_DECLARED_METHODS)
         hints.reflection().registerType(ResolvedModule::class.java, MemberCategory.INVOKE_DECLARED_METHODS)
 
-        listOf<String>(
+        listOf(
             "com.vladmihalcea.hibernate.type.json.JsonType",
 
             "nonapi.io.github.classgraph.classloaderhandler.AntClassLoaderHandler",

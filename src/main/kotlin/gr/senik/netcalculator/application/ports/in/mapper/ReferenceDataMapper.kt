@@ -1,12 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
-import gr.senik.netcalculator.domain.model.insurance.EfkaClass
-import gr.senik.netcalculator.domain.model.insurance.EteaepClass
-import gr.senik.netcalculator.domain.model.insurance.InsuranceType
-import gr.senik.netcalculator.domain.model.tax.IncomeTaxLevel
-import gr.senik.netcalculator.domain.model.tax.SolidarityContributionTaxLevel
-import gr.senik.netcalculator.domain.model.tax.selfemployedcontribution.SelfEmployedContribution
+import gr.senik.netcalculator.domain.model.v2.*
 import org.mapstruct.InjectionStrategy
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -15,7 +10,9 @@ import org.mapstruct.ReportingPolicy
 @Mapper(
     componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
     injectionStrategy = InjectionStrategy.CONSTRUCTOR, // otherwise field injection is used for mapper below which is bad practice
-    uses = [InsuranceTypeMapper::class] // could not find a way to use the custom mapping without explicit mention here,
+    uses = [InsuranceTypeMapper::class,
+        SelfEmployedContributionMapper::class
+    ] // could not find a way to use the custom mapping without explicit mention here,
 )
 abstract class ReferenceDataMapper {
 
@@ -29,16 +26,10 @@ abstract class ReferenceDataMapper {
         dummy: Dummy,
         efkaClasses: List<EfkaClass>,
         eteaepClasses: List<EteaepClass>,
-        incomeTaxLevels: List<IncomeTaxLevel>,
-        solidarityContributionTaxLevels: List<SolidarityContributionTaxLevel>,
+        incomeTaxLevels: List<TaxLevel>,
+        solidarityContributionTaxLevels: List<TaxLevel>,
         selfEmployedContributions: List<SelfEmployedContribution>,
         enabledInsuranceTypes: List<InsuranceType>,
     ): ReferenceDataDto
 }
 
-/**
- * Dummy class to force the mapper to map iterables to non-iterable.
- */
-class Dummy {
-
-}

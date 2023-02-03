@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.tax.selfemployedcontribution
+package gr.senik.netcalculator.domain.model.v2
 
 enum class SECType {
     SINGLE_EMPLOYER_SMALL_AREA,

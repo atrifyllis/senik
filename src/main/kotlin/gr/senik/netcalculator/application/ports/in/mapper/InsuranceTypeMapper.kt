@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.netcalculator.application.ports.`in`.web.dto.InsuranceTypeDto
-import gr.senik.netcalculator.domain.model.insurance.InsuranceType
+import gr.senik.netcalculator.domain.model.v2.InsuranceType
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 
