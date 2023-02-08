@@ -1,8 +1,10 @@
 package gr.senik.netcalculator.domain.model.v2
 
+import gr.senik.common.domain.model.AbstractAggregateRoot
+import gr.senik.common.domain.model.DomainEntityId
 import java.util.*
 
-class LegalEntityId(val id: UUID) {
+class LegalEntityId(id: UUID) : DomainEntityId(id) {
     companion object {
         fun generateId(): LegalEntityId {
             return LegalEntityId(UUID.randomUUID())
@@ -11,7 +13,7 @@ class LegalEntityId(val id: UUID) {
 }
 
 abstract class LegalEntity(
-    val id: LegalEntityId,
+    override val id: LegalEntityId,
     val type: LegalEntityType,
     val efkaClass: EfkaClass,
     val eteaepClass: EteaepClass,
@@ -19,7 +21,7 @@ abstract class LegalEntity(
     val incomeTax: IncomeTax,
     val solidarityTax: SolidarityTax,
 
-    ) {
+    ) : AbstractAggregateRoot<LegalEntity, LegalEntityId>() {
     abstract fun calculateIncome(): Income
 }
 

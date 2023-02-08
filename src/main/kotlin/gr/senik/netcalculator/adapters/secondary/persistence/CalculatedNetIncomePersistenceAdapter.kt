@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 class CalculatedNetIncomePersistenceAdapter(
     private val calculatedIncomeRepository: CalculatedIncomeRepository,
     private val calculatedIncomeEntityMapper: CalculatedIncomeEntityMapper,
+    private val domainEventPublisher: DomainEventPublisher,
 
     ) : CalculateNetIncomePort {
     override fun persist(individual: Individual, income: Income) {
@@ -19,5 +20,6 @@ class CalculatedNetIncomePersistenceAdapter(
                 income = income
             )
         )
+        domainEventPublisher.publishEvents(individual)
     }
 }

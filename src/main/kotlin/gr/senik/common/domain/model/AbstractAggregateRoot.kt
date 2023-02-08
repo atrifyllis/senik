@@ -37,7 +37,7 @@ abstract class AbstractAggregateRoot<T : AggregateRoot<T, ID>, ID : Identifier> 
      * Called by the persistence framework to clear all registered domain events once they have been published.
      */
     @AfterDomainEventPublication
-    protected fun clearDomainEvents() {
+    fun clearDomainEvents() {
         domainEvents.clear()
     }
 
@@ -46,7 +46,7 @@ abstract class AbstractAggregateRoot<T : AggregateRoot<T, ID>, ID : Identifier> 
      * framework only.
      */
     @DomainEvents
-    protected fun domainEvents(): Collection<Any> {
+    fun domainEvents(): Collection<Any> {
         return Collections.unmodifiableList<Any>(domainEvents)
     }
 }
