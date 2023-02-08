@@ -26,7 +26,7 @@ abstract class CalculatedIncomeEntityMapper {
     abstract fun toEntity(individual: Individual, income: Income): CalculatedIncomeEntity
 
 
-    fun map(id: LegalEntityId): UUID {
+    fun map(id: LegalEntityId): UUID? {
         return id.id
     }
 
@@ -38,7 +38,7 @@ abstract class CalculatedIncomeEntityMapper {
         return id.id.id
     }
 
-    fun map(id: IncomeId): UUID {
+    fun map(id: IncomeId): UUID? {
         return id.id
     }
 }

@@ -1,9 +1,8 @@
 package gr.senik.netcalculator.domain.model.v2
 
+import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
 import java.util.*
-
-class IndividualId(val id: UUID)
 
 class Individual(
     id: LegalEntityId,
@@ -15,7 +14,7 @@ class Individual(
     incomeTax: IncomeTax,
     solidarityTax: SolidarityTax,
     grossIncome: Money?,
-    private val grossDailyIncomes: List<DailyIncome>,
+    grossDailyIncomes: List<DailyIncome>,
     val expensesAmount: Money,
     val branches: Int,
     val isLessThanFiveYears: Boolean,
@@ -37,7 +36,7 @@ class Individual(
 
         val netIncome = grossIncome - totalTaxAmount - insuranceCost
 
-        return Income(
+        val income = Income(
             Income.generateId(),
             insuranceCost = insuranceCost,
             taxableIncome = taxableIncome,
@@ -47,6 +46,16 @@ class Individual(
             totalTaxAmount = totalTaxAmount,
             netIncome = netIncome
         )
+
+        registerEvent(
+            IncomeCalculated(
+                incomeId = income.id,
+                individualId = this.id,
+                income = income.netIncome,
+            )
+        )
+
+        return income
     }
 
 
@@ -89,7 +98,7 @@ class Income(
     }
 }
 
-class IncomeId(val id: UUID)
+class IncomeId(id: UUID) : DomainEntityId(id)
 
 data class DailyIncome(val days: Int, val dailyIncome: Money)
 
