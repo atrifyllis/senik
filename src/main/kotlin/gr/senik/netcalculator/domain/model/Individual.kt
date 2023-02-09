@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 import gr.senik.common.domain.model.DomainEntityId
 import gr.senik.common.domain.model.Money
@@ -6,7 +6,7 @@ import java.util.*
 
 class Individual(
     id: LegalEntityId,
-    type: LegalEntityType = LegalEntityType.INDIVIDUAL,
+    legalEntityType: LegalEntityType? = LegalEntityType.INDIVIDUAL,
     val insuranceType: InsuranceType,
     efkaClass: EfkaClass,
     eteaepClass: EteaepClass,
@@ -15,10 +15,10 @@ class Individual(
     solidarityTax: SolidarityTax,
     grossIncome: Money?,
     grossDailyIncomes: List<DailyIncome>,
-    val expensesAmount: Money,
+    val annualExpensesAmount: Money,
     val branches: Int,
     val isLessThanFiveYears: Boolean,
-) : LegalEntity(id, type, efkaClass, eteaepClass, selfEmployedContribution, incomeTax, solidarityTax) {
+) : LegalEntity(id, legalEntityType, efkaClass, eteaepClass, selfEmployedContribution, incomeTax, solidarityTax) {
     val grossIncome: Money
 
     init {
@@ -28,7 +28,7 @@ class Individual(
 
     override fun calculateIncome(): Income {
         val insuranceCost = calculateInsuranceCost()
-        val taxableIncome = grossIncome - insuranceCost - expensesAmount
+        val taxableIncome = grossIncome - insuranceCost - annualExpensesAmount
         val incomeTaxAmount = incomeTax.calculateTax(taxableIncome)
         val solidarityContributionAmount = solidarityTax.calculateTax(taxableIncome)
         val selfEmployedContributionAmount = selfEmployedContribution.calculateTax(isLessThanFiveYears, branches)
@@ -41,9 +41,9 @@ class Individual(
             insuranceCost = insuranceCost,
             taxableIncome = taxableIncome,
             incomeTaxAmount = incomeTaxAmount,
-            selfEmployedContributionAmount = selfEmployedContributionAmount,
-            solidarityContributionAmount = solidarityContributionAmount,
-            totalTaxAmount = totalTaxAmount,
+            selfEmployedContributionTax = selfEmployedContributionAmount,
+            solidarityContributionTax = solidarityContributionAmount,
+            totalTax = totalTaxAmount,
             netIncome = netIncome
         )
 
@@ -86,9 +86,9 @@ class Income(
     val insuranceCost: Money,
     val taxableIncome: Money,
     val incomeTaxAmount: Money,
-    val selfEmployedContributionAmount: Money,
-    val solidarityContributionAmount: Money,
-    val totalTaxAmount: Money,
+    val selfEmployedContributionTax: Money,
+    val solidarityContributionTax: Money,
+    val totalTax: Money,
     val netIncome: Money,
 ) {
     companion object {

@@ -1,9 +1,10 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
+import gr.senik.common.secondary_adapters.persistence.DomainEventPublisher
 import gr.senik.netcalculator.adapters.secondary.persistence.mapper.CalculatedIncomeEntityMapper
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
-import gr.senik.netcalculator.domain.model.v2.Income
-import gr.senik.netcalculator.domain.model.v2.Individual
+import gr.senik.netcalculator.domain.model.Income
+import gr.senik.netcalculator.domain.model.Individual
 import org.springframework.stereotype.Service
 
 @Service

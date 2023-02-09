@@ -1,10 +1,10 @@
 package gr.senik.netcalculator.domain.model.tax.selfemployedcontribution
 
 import gr.senik.common.domain.model.Money
+import gr.senik.netcalculator.domain.model.SECType
+import gr.senik.netcalculator.domain.model.SelfEmployedContribution
+import gr.senik.netcalculator.domain.model.SelfEmployedContributionId
 import gr.senik.netcalculator.domain.model.tax.TaxTestHelper
-import gr.senik.netcalculator.domain.model.v2.SECType
-import gr.senik.netcalculator.domain.model.v2.SelfEmployedContribution
-import gr.senik.netcalculator.domain.model.v2.SelfEmployedContributionId
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -23,7 +23,7 @@ internal class SelfEmployedContributionTaxTest {
     fun `should calculate self-employed contribution tax`() {
         val selfEmployedContributionTax = SelfEmployedContribution(
             id = SelfEmployedContributionId(UUID.randomUUID()),
-            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            secType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
             amount = Money(500)
         )
 
@@ -34,7 +34,7 @@ internal class SelfEmployedContributionTaxTest {
     fun `should calculate self-employed contribution tax when insured less than 5 years`() {
         val selfEmployedContributionTax = SelfEmployedContribution(
             id = SelfEmployedContributionId(UUID.randomUUID()),
-            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            secType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
             amount = Money(500)
         )
 

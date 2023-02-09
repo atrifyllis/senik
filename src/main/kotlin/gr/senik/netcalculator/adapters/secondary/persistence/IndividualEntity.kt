@@ -2,8 +2,8 @@ package gr.senik.netcalculator.adapters.secondary.persistence
 
 import gr.senik.common.domain.model.BaseEntity
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.InsuranceType
-import gr.senik.netcalculator.domain.model.v2.SECType
+import gr.senik.netcalculator.domain.model.InsuranceType
+import gr.senik.netcalculator.domain.model.SECType
 import jakarta.persistence.*
 import java.util.*
 
@@ -15,7 +15,8 @@ class IndividualEntity(
     override var id: UUID,
 
     @Enumerated(EnumType.STRING)
-    var type: InsuranceType,
+    @Column(name = "type")
+    var insuranceType: InsuranceType,
 
     @AttributeOverride(name = "id", column = Column(name = "efka_class_id"))
     var efkaClassId: UUID,

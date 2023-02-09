@@ -11,8 +11,9 @@ import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDt
 import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
-import gr.senik.netcalculator.domain.model.v2.Income
-import gr.senik.netcalculator.domain.model.v2.LegalEntityId
+import gr.senik.netcalculator.domain.model.Income
+import gr.senik.netcalculator.domain.model.InsuranceType
+import gr.senik.netcalculator.domain.model.LegalEntityId
 import org.ff4j.FF4j
 import org.springframework.stereotype.Service
 
@@ -56,7 +57,7 @@ class CalculatorDataService(
 
         val selfEmployedContribution =
             loadReferenceDataPort.loadSelfEmployedContributions()
-                .first { it.type == command.individual.secType }
+                .first { it.secType == command.individual.secType }
 
         val individual = individualMapper.toIndividual(
             LegalEntityId.generateId(),
@@ -75,7 +76,7 @@ class CalculatorDataService(
         return calculationResultMapper.toCalculationResult(income)
     }
 
-    private fun retrieveEnabledInsuranceTypes(): List<gr.senik.netcalculator.domain.model.v2.InsuranceType> =
-        gr.senik.netcalculator.domain.model.v2.InsuranceType.values().filter { fF4j.check(it.name) }
+    private fun retrieveEnabledInsuranceTypes(): List<InsuranceType> =
+        InsuranceType.values().filter { fF4j.check(it.name) }
 
 }

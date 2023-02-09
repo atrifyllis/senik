@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 import gr.senik.common.domain.model.Money
 import java.util.*
@@ -26,6 +26,10 @@ class SolidarityTax(
     taxLevels: List<TaxLevel>,
 ) : LevelBasedTax(legalEntityType, taxLevels)
 
+enum class SolidarityContributionLevelType {
+    FIRST_12K, SECOND_8K, THIRD_10K, FOURTH_10K, FIFTH_25K, SIXTH_155K, EXCESS
+}
+
 class IncomeTaxId(val id: UUID)
 
 class IncomeTax(
@@ -33,6 +37,11 @@ class IncomeTax(
     legalEntityType: LegalEntityType,
     taxLevels: List<TaxLevel>,
 ) : LevelBasedTax(legalEntityType, taxLevels)
+
+enum class IncomeTaxLevelType {
+    FIRST_10K, SECOND_10K, THIRD_10K, FOURTH_10K, EXCESS
+}
+
 
 class TaxLevelId(val id: UUID)
 

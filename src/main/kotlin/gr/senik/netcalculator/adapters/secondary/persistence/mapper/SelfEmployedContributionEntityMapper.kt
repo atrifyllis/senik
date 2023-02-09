@@ -1,8 +1,8 @@
 package gr.senik.netcalculator.adapters.secondary.persistence.mapper
 
 import gr.senik.netcalculator.adapters.secondary.persistence.SelfEmployedContributionEntity
-import gr.senik.netcalculator.domain.model.v2.SelfEmployedContribution
-import gr.senik.netcalculator.domain.model.v2.SelfEmployedContributionId
+import gr.senik.netcalculator.domain.model.SelfEmployedContribution
+import gr.senik.netcalculator.domain.model.SelfEmployedContributionId
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 import java.util.*

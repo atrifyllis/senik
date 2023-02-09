@@ -1,10 +1,10 @@
 package gr.senik.netcalculator.adapters.secondary.persistence.mapper
 
 import gr.senik.netcalculator.adapters.secondary.persistence.IndividualEntity
-import gr.senik.netcalculator.domain.model.v2.EfkaClass
-import gr.senik.netcalculator.domain.model.v2.EteaepClass
-import gr.senik.netcalculator.domain.model.v2.Individual
-import gr.senik.netcalculator.domain.model.v2.LegalEntityId
+import gr.senik.netcalculator.domain.model.EfkaClass
+import gr.senik.netcalculator.domain.model.EteaepClass
+import gr.senik.netcalculator.domain.model.Individual
+import gr.senik.netcalculator.domain.model.LegalEntityId
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.ReportingPolicy
@@ -12,15 +12,10 @@ import java.util.*
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 abstract class IndividualEntityMapper {
-    @Mapping(source = "individual.id", target = "id")
-    @Mapping(source = "individual.insuranceType", target = "type")
+    @Mapping(source = "individual.lessThanFiveYears", target = "lessThanFiveYears")
     @Mapping(source = "individual.efkaClass", target = "efkaClassId")
     @Mapping(source = "individual.eteaepClass", target = "eteaepClassId")
-//    @Mapping(source = "individual.id", target = "individual.id")
-//    @Mapping(source = "individual.grossDailyIncomes", target = "individual.grossDailyIncomes")
-    @Mapping(source = "individual.expensesAmount", target = "annualExpensesAmount")
-    @Mapping(source = "individual.selfEmployedContribution.type", target = "secType")
-//    @Mapping(source = "individual.grossIncome", target = "grossIncome")
+    @Mapping(source = "individual.selfEmployedContribution.secType", target = "secType")
     abstract fun toEntity(individual: Individual): IndividualEntity
 
 

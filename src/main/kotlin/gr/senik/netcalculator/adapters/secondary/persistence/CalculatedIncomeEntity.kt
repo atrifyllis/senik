@@ -24,7 +24,7 @@ class CalculatedIncomeEntity(
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "income_tax_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "income_tax_currency"))
-    var incomeTax: Money = Money.ZERO,
+    var incomeTaxAmount: Money = Money.ZERO,
 
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "solidarity_contribution_tax_amount"))
@@ -44,5 +44,5 @@ class CalculatedIncomeEntity(
     @Embedded
     @AttributeOverride(name = "amount", column = Column(name = "net_annual_income_amount"))
     @AttributeOverride(name = "currencyCode", column = Column(name = "net_annual_income_currency"))
-    var netAnnualIncome: Money = Money.ZERO,
+    var netIncome: Money = Money.ZERO,
 ) : BaseEntity<UUID>()

@@ -1,8 +1,8 @@
 package gr.senik.netcalculator.adapters.secondary.persistence.mapper
 
 import gr.senik.netcalculator.adapters.secondary.persistence.EfkaClassEntity
-import gr.senik.netcalculator.domain.model.v2.EfkaClass
-import gr.senik.netcalculator.domain.model.v2.EfkaClassId
+import gr.senik.netcalculator.domain.model.EfkaClass
+import gr.senik.netcalculator.domain.model.EfkaClassId
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 import java.util.*

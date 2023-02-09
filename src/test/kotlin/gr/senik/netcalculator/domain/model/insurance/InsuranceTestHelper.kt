@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.domain.model.insurance
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.*
+import gr.senik.netcalculator.domain.model.*
 import java.util.*
 
 class InsuranceTestHelper {
@@ -40,7 +40,7 @@ class InsuranceTestHelper {
         )
         private val selfEmployedContribution = SelfEmployedContribution(
             id = SelfEmployedContributionId(UUID.randomUUID()),
-            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            secType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
             amount = Money(500)
         )
         val insurancePersonWithAnnualIncome = Individual(
@@ -53,14 +53,14 @@ class InsuranceTestHelper {
             solidarityTax = solidarityTax,
             grossIncome = Money(85_000),
             grossDailyIncomes = emptyList(),
-            expensesAmount = Money.ZERO,
+            annualExpensesAmount = Money.ZERO,
             branches = 1,
             isLessThanFiveYears = true,
         )
 
         val individualWithDailyIncomes = Individual(
             id = LegalEntityId(UUID.randomUUID()),
-            type = LegalEntityType.INDIVIDUAL,
+            legalEntityType = LegalEntityType.INDIVIDUAL,
             insuranceType = InsuranceType.TSMEDE,
             efkaClass = efkaClasses.first(),
             eteaepClass = eteaepClasses.first(),
@@ -72,7 +72,7 @@ class InsuranceTestHelper {
                 DailyIncome(120, Money(240)),
                 DailyIncome(100, Money(370))
             ),
-            expensesAmount = Money.ZERO,
+            annualExpensesAmount = Money.ZERO,
             branches = 1,
             isLessThanFiveYears = true,
         )

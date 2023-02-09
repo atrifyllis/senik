@@ -1,7 +1,8 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.LegalEntityType
+import gr.senik.netcalculator.domain.model.LegalEntityType
+import gr.senik.netcalculator.domain.model.SolidarityContributionLevelType
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -21,6 +22,4 @@ class SolidarityContributionLevelEntity(
     levelFactor: Double,
 ) : TaxLevelEntity(id, order, levelLimit, levelFactor)
 
-enum class SolidarityContributionLevelType {
-    FIRST_12K, SECOND_8K, THIRD_10K, FOURTH_10K, FIFTH_25K, SIXTH_155K, EXCESS
-}
+

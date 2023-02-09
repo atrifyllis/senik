@@ -1,7 +1,8 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.LegalEntityType
+import gr.senik.netcalculator.domain.model.IncomeTaxLevelType
+import gr.senik.netcalculator.domain.model.LegalEntityType
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
@@ -13,14 +14,10 @@ import java.util.*
 class IncomeTaxLevelEntity(
     id: UUID,
     @Enumerated(EnumType.STRING)
-    val type: TaxLevelType,
+    val type: IncomeTaxLevelType,
     @Enumerated(EnumType.STRING)
     val legalEntityType: LegalEntityType,
     order: Int,
     levelLimit: Money,
     levelFactor: Double,
 ) : TaxLevelEntity(id, order, levelLimit, levelFactor)
-
-enum class TaxLevelType {
-    FIRST_10K, SECOND_10K, THIRD_10K, FOURTH_10K, EXCESS
-}
