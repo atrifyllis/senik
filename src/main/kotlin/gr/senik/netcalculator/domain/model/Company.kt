@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 class Company(
     id: LegalEntityId, type: LegalEntityType = LegalEntityType.COMPANY,

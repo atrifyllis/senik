@@ -2,7 +2,7 @@ package gr.senik.netcalculator.adapters.secondary.persistence
 
 import gr.senik.netcalculator.adapters.secondary.persistence.mapper.*
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
-import gr.senik.netcalculator.domain.model.v2.*
+import gr.senik.netcalculator.domain.model.*
 import org.springframework.stereotype.Service
 
 @Service

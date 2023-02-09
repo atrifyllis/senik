@@ -1,8 +1,8 @@
 package gr.senik.netcalculator.adapters.secondary.persistence.mapper
 
 import gr.senik.netcalculator.adapters.secondary.persistence.SolidarityContributionLevelEntity
-import gr.senik.netcalculator.domain.model.v2.TaxLevel
-import gr.senik.netcalculator.domain.model.v2.TaxLevelId
+import gr.senik.netcalculator.domain.model.TaxLevel
+import gr.senik.netcalculator.domain.model.TaxLevelId
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
 import java.util.*

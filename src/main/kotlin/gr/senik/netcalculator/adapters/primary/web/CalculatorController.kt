@@ -3,8 +3,10 @@ package gr.senik.netcalculator.adapters.primary.web
 import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
 import gr.senik.netcalculator.application.ports.`in`.web.LoadCalculatorDataUseCase
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
-import org.springframework.web.bind.annotation.*
+import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
+import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import jakarta.validation.Valid
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
@@ -13,8 +15,9 @@ class CalculatorController(
     private val calculateIncomeUseCase: CalculateIncomeUseCase
 ) {
     @GetMapping("/reference-data")
-    fun getReferenceData() = loadCalculatorDataUseCase.getReferenceData()
+    fun getReferenceData(): ReferenceDataDto = loadCalculatorDataUseCase.getReferenceData()
 
     @PostMapping("/calculate-income")
-    fun calculateNetIncome(@Valid @RequestBody command: CalculationCommand) = calculateIncomeUseCase.calculate(command)
+    fun calculateNetIncome(@Valid @RequestBody command: CalculationCommand): CalculationResultDto =
+        calculateIncomeUseCase.calculate(command)
 }

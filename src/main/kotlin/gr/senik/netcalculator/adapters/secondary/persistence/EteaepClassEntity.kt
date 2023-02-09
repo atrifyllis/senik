@@ -2,7 +2,7 @@ package gr.senik.netcalculator.adapters.secondary.persistence
 
 import gr.senik.common.domain.model.BaseEntity
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.EteaepClassType
+import gr.senik.netcalculator.domain.model.EteaepClassType
 import jakarta.persistence.*
 import java.util.*
 

@@ -1,10 +1,10 @@
 package gr.senik.netcalculator.domain.model.tax
 
 import gr.senik.common.domain.model.Money
-import gr.senik.netcalculator.domain.model.v2.LegalEntityType
-import gr.senik.netcalculator.domain.model.v2.SolidarityTax
-import gr.senik.netcalculator.domain.model.v2.TaxDataHelper
-import gr.senik.netcalculator.domain.model.v2.TaxLevel
+import gr.senik.netcalculator.domain.model.LegalEntityType
+import gr.senik.netcalculator.domain.model.SolidarityTax
+import gr.senik.netcalculator.domain.model.TaxDataHelper
+import gr.senik.netcalculator.domain.model.TaxLevel
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

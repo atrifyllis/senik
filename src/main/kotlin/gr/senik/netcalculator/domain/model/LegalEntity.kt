@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 import gr.senik.common.domain.model.AbstractAggregateRoot
 import gr.senik.common.domain.model.DomainEntityId
@@ -14,7 +14,7 @@ class LegalEntityId(id: UUID) : DomainEntityId(id) {
 
 abstract class LegalEntity(
     override val id: LegalEntityId,
-    val type: LegalEntityType,
+    val type: LegalEntityType? = LegalEntityType.INDIVIDUAL,
     val efkaClass: EfkaClass,
     val eteaepClass: EteaepClass,
     val selfEmployedContribution: SelfEmployedContribution,

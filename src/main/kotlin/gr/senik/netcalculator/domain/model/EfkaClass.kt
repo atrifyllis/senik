@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 import gr.senik.common.domain.model.Money
 import java.util.*

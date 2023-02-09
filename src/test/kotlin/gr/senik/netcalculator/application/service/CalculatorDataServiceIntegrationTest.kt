@@ -4,10 +4,10 @@ import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.IntegrationTestBase
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
 import gr.senik.netcalculator.application.ports.`in`.web.dto.IndividualDto
-import gr.senik.netcalculator.domain.model.v2.DailyIncome
-import gr.senik.netcalculator.domain.model.v2.EfkaClassType
-import gr.senik.netcalculator.domain.model.v2.EteaepClassType
-import gr.senik.netcalculator.domain.model.v2.InsuranceType
+import gr.senik.netcalculator.domain.model.DailyIncome
+import gr.senik.netcalculator.domain.model.EfkaClassType
+import gr.senik.netcalculator.domain.model.EteaepClassType
+import gr.senik.netcalculator.domain.model.InsuranceType
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,7 +41,7 @@ internal class CalculatorDataServiceIntegrationTest : IntegrationTestBase() {
     fun `should calculate net income`() {
         val command = CalculationCommand(
             individual = IndividualDto(
-                type = InsuranceType.TSMEDE,
+                insuranceType = InsuranceType.TSMEDE,
                 efkaClassId = UUID.fromString("d55ec320-c0fe-4222-808e-3b52d9087061"),
                 eteaepClassId = UUID.fromString("14d0b02a-2898-4c7b-8519-3bf163f8f931"),
                 grossDailyIncomes = listOf(DailyIncome(days = 220, dailyIncome = Money(370))),

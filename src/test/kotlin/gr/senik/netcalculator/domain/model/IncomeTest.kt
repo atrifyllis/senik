@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.domain.model.v2
+package gr.senik.netcalculator.domain.model
 
 import gr.senik.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.insurance.InsuranceTestHelper.Companion.efkaClasses
@@ -20,7 +20,7 @@ class IncomeTest {
 
         val selfEmployedContribution = SelfEmployedContribution(
             id = SelfEmployedContributionId(fromString("4cbd2d39-7921-480a-9ab5-6a1ddf98f680")),
-            type = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+            secType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
             Money(500)
         )
 
@@ -41,7 +41,7 @@ class IncomeTest {
             solidarityTax = solidarityTax,
             grossIncome = Money(81_400),
             grossDailyIncomes = emptyList(),
-            expensesAmount = Money.ZERO,
+            annualExpensesAmount = Money.ZERO,
             branches = 1,
             isLessThanFiveYears = false,
         )
@@ -52,9 +52,9 @@ class IncomeTest {
         assertThat(cut.taxableIncome).isEqualTo(Money(77944.00))
         assertThat(cut.insuranceCost).isEqualTo(Money(3456.00))
         assertThat(cut.incomeTaxAmount).isEqualTo(Money(26195.36))
-        assertThat(cut.selfEmployedContributionAmount).isEqualTo(Money(500.00))
-        assertThat(cut.solidarityContributionAmount).isEqualTo(Money(4365.96))
-        assertThat(cut.totalTaxAmount).isEqualTo(Money(31061.32))
+        assertThat(cut.selfEmployedContributionTax).isEqualTo(Money(500.00))
+        assertThat(cut.solidarityContributionTax).isEqualTo(Money(4365.96))
+        assertThat(cut.totalTax).isEqualTo(Money(31061.32))
         assertThat(cut.netIncome).isEqualTo(Money(46882.68))
     }
 

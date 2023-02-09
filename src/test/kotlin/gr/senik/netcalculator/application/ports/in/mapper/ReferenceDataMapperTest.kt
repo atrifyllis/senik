@@ -1,10 +1,10 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
 import gr.senik.common.domain.model.Money
+import gr.senik.netcalculator.domain.model.EfkaClassType
+import gr.senik.netcalculator.domain.model.InsuranceType
+import gr.senik.netcalculator.domain.model.TaxDataHelper
 import gr.senik.netcalculator.domain.model.insurance.InsuranceTestHelper
-import gr.senik.netcalculator.domain.model.v2.EfkaClassType
-import gr.senik.netcalculator.domain.model.v2.InsuranceType
-import gr.senik.netcalculator.domain.model.v2.TaxDataHelper
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -18,7 +18,7 @@ internal class ReferenceDataMapperTest {
         val solidarityContributionTaxLevels = TaxDataHelper.solidarityTaxLevels()
         val selfEmployedContributions = TaxDataHelper.selfEmployedContributions()
         val referenceData =
-            ReferenceDataMapperImpl(InsuranceTypeMapperImpl(), SelfEmployedContributionMapperImpl()).toReferenceDataDto(
+            ReferenceDataMapperImpl(InsuranceTypeMapperImpl()).toReferenceDataDto(
                 Dummy(),
                 efkaClasses,
                 eteaepClasses,

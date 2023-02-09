@@ -1,8 +1,8 @@
 package gr.senik.netcalculator.domain.model.tax
 
-import gr.senik.netcalculator.domain.model.v2.IncomeTax
-import gr.senik.netcalculator.domain.model.v2.SelfEmployedContribution
-import gr.senik.netcalculator.domain.model.v2.SolidarityTax
+import gr.senik.netcalculator.domain.model.IncomeTax
+import gr.senik.netcalculator.domain.model.SelfEmployedContribution
+import gr.senik.netcalculator.domain.model.SolidarityTax
 
 class TaxTestHelper {
     companion object {
