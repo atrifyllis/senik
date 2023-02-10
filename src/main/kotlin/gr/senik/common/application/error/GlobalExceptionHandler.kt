@@ -10,12 +10,16 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.ConstraintViolationException
+import mu.KotlinLogging
 import org.springframework.http.HttpStatusCode
+import org.springframework.http.converter.HttpMessageNotReadableException
 
 
 /**
  * Handles many spring exceptions and also should handle custom exceptions.
  */
+private val log = KotlinLogging.logger {}
+
 @ControllerAdvice
 class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
 
@@ -47,5 +51,15 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
         val messages: List<String> = ex.bindingResult.fieldErrors.map { "${it.field} ${it.defaultMessage}" }
         return ResponseEntity(messages, HttpStatus.BAD_REQUEST)
 
+    }
+
+    override fun handleHttpMessageNotReadable(
+        ex: HttpMessageNotReadableException,
+        headers: HttpHeaders,
+        status: HttpStatusCode,
+        request: WebRequest,
+    ): ResponseEntity<Any>? {
+        log.error { ex.stackTraceToString() }
+        return super.handleHttpMessageNotReadable(ex, headers, status, request)
     }
 }
