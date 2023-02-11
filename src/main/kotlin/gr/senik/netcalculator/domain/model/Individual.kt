@@ -13,7 +13,7 @@ class Individual(
     selfEmployedContribution: SelfEmployedContribution,
     incomeTax: IncomeTax,
     solidarityTax: SolidarityTax,
-    grossIncome: Money?,
+    grossAnnualIncome: Money?,
     grossDailyIncomes: List<DailyIncome>,
     val annualExpensesAmount: Money,
     val branches: Int,
@@ -22,7 +22,8 @@ class Individual(
     val grossIncome: Money
 
     init {
-        this.grossIncome = grossIncome ?: Money(grossDailyIncomes.map { it.dailyIncome * it.days }.sumOf { it.amount })
+        this.grossIncome =
+            grossAnnualIncome ?: Money(grossDailyIncomes.map { it.dailyIncome * it.days }.sumOf { it.amount })
     }
 
 

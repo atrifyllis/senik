@@ -51,7 +51,7 @@ class InsuranceTestHelper {
             selfEmployedContribution = selfEmployedContribution,
             incomeTax = incomeTax,
             solidarityTax = solidarityTax,
-            grossIncome = Money(85_000),
+            grossAnnualIncome = Money(85_000),
             grossDailyIncomes = emptyList(),
             annualExpensesAmount = Money.ZERO,
             branches = 1,
@@ -67,7 +67,7 @@ class InsuranceTestHelper {
             selfEmployedContribution = selfEmployedContribution,
             incomeTax = incomeTax,
             solidarityTax = solidarityTax,
-            grossIncome = null,
+            grossAnnualIncome = null,
             grossDailyIncomes = listOf(
                 DailyIncome(120, Money(240)),
                 DailyIncome(100, Money(370))

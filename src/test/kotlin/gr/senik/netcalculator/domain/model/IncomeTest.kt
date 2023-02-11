@@ -39,7 +39,7 @@ class IncomeTest {
             selfEmployedContribution = selfEmployedContribution,
             incomeTax = incomeTax,
             solidarityTax = solidarityTax,
-            grossIncome = Money(81_400),
+            grossAnnualIncome = Money(81_400),
             grossDailyIncomes = emptyList(),
             annualExpensesAmount = Money.ZERO,
             branches = 1,
