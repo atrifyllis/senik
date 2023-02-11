@@ -11,7 +11,7 @@ private const val EUR = "EUR"
 @Embeddable
 @ValueObject
 
-class Money @Default constructor(
+data class Money @Default constructor(
     var amount: BigDecimal,
     var currencyCode: String,
 ) {
@@ -54,27 +54,9 @@ class Money @Default constructor(
         return Money(amount / money.amount)
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Money
-
-        if (amount != other.amount) return false
-        if (currencyCode != other.currencyCode) return false
-
-        return true
-    }
-
 
     operator fun compareTo(amount: Money): Int {
         return this.amount.compareTo(amount.amount)
-    }
-
-    override fun hashCode(): Int {
-        var result = amount.hashCode()
-        result = 31 * result + currencyCode.hashCode()
-        return result
     }
 
     override fun toString(): String {
