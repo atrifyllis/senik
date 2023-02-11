@@ -16,6 +16,7 @@ import gr.senik.netcalculator.domain.model.InsuranceType
 import gr.senik.netcalculator.domain.model.LegalEntityId
 import org.ff4j.FF4j
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CalculatorDataService(
@@ -44,6 +45,7 @@ class CalculatorDataService(
         )
     }
 
+    @Transactional
     override fun calculate(command: CalculationCommand): CalculationResultDto {
 
         val efkaClass = loadReferenceDataPort.loadEfkaClasses()

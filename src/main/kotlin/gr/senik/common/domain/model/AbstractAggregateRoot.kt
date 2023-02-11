@@ -46,7 +46,7 @@ abstract class AbstractAggregateRoot<T : AggregateRoot<T, ID>, ID : Identifier> 
      * framework only.
      */
     @DomainEvents
-    fun domainEvents(): Collection<Any> {
-        return Collections.unmodifiableList<Any>(domainEvents)
+    fun domainEvents(): Collection<DomainEvent> {
+        return Collections.unmodifiableList(domainEvents)
     }
 }
