@@ -1,4 +1,4 @@
-package gr.senik.common.secondary_adapters.persistence
+package gr.senik.common.adapters.secondary.persistence
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.vladmihalcea.hibernate.type.util.ObjectMapperSupplier

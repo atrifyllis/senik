@@ -1,4 +1,4 @@
-package gr.senik.common.secondary_adapters.persistence
+package gr.senik.common.adapters.secondary.persistence
 
 import gr.senik.common.domain.model.AbstractAggregateRoot
 import org.jmolecules.ddd.types.Identifier
