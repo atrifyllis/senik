@@ -19,7 +19,6 @@ internal class ReferenceDataMapperTest {
         val selfEmployedContributions = TaxDataHelper.selfEmployedContributions()
         val referenceData =
             ReferenceDataMapperImpl(InsuranceTypeMapperImpl()).toReferenceDataDto(
-                Dummy(),
                 efkaClasses,
                 eteaepClasses,
                 incomeTaxLevels,
