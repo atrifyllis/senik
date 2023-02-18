@@ -1,7 +1,6 @@
 package gr.senik.netcalculator.application.service
 
 import gr.senik.netcalculator.application.ports.`in`.mapper.CalculationResultMapper
-import gr.senik.netcalculator.application.ports.`in`.mapper.Dummy
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.ReferenceDataMapper
 import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
@@ -35,7 +34,6 @@ class CalculatorDataService(
         val selfEmployedContributions = loadReferenceDataPort.loadSelfEmployedContributions()
         val enabledInsuranceTypes = retrieveEnabledInsuranceTypes()
         return referenceDataMapper.toReferenceDataDto(
-            Dummy(),
             efkaClasses,
             eteaepClasses,
             incomeTaxLevels,

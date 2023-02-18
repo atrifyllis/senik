@@ -14,7 +14,6 @@ import org.mapstruct.ReportingPolicy
 abstract class ReferenceDataMapper {
 
     abstract fun toReferenceDataDto(
-        dummy: Dummy,
         efkaClasses: List<EfkaClass>,
         eteaepClasses: List<EteaepClass>,
         incomeTaxLevels: List<TaxLevel>,
