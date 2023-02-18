@@ -18,6 +18,7 @@ ff4j = "1.9"
 archUnit = "1.0.1"
 jMoleculesArchUnit = "1.0.0"
 native = "0.9.19"
+kover = "0.6.1"
 
 
 [libraries]
@@ -63,6 +64,7 @@ gradlePrettyLogger = { id = "com.adarshr.test-logger", version.ref = "gradleLogg
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 versionChecker = { id = "com.github.ben-manes.versions", version.ref = "versionChecker" }
 native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
 
 
 

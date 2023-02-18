@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.kotlinKapt)
     alias(libs.plugins.openapi)
     alias(libs.plugins.versionChecker)
+    alias(libs.plugins.kover)
 //    alias(libs.plugins.native)
 
     jacoco
