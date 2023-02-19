@@ -51,7 +51,7 @@ dependencies {
 
     implementation("org.flywaydb:flyway-core")
     implementation("org.postgresql:postgresql")
-    implementation("io.github.classgraph:classgraph")
+//    implementation("io.github.classgraph:classgraph")
 
 
     implementation(libs.oktaSpring)
