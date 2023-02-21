@@ -3,6 +3,7 @@ package gr.senik.netcalculator.adapters.secondary.persistence
 import gr.senik.netcalculator.adapters.secondary.persistence.mapper.*
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
 import gr.senik.netcalculator.domain.model.*
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
 @Service
@@ -19,12 +20,15 @@ class ReferenceDataPersistenceAdapter(
     private val selfEmployedContributionRepository: SelfEmployedContributionRepository,
 ) : LoadReferenceDataPort {
 
+    @Cacheable("efkaClasses")
     override fun loadEfkaClasses(): List<EfkaClass> =
         efkaClassEntityMapper.toEfkaClassModel(efkaClassRepository.findAll())
 
+    @Cacheable("eteaepClasses")
     override fun loadEteaepClasses(): List<EteaepClass> =
         eteaepClassEntityMapper.toEteaepClassModel(eteaepClassRepository.findAll())
 
+    @Cacheable("incomeTaxLevels")
     override fun loadIncomeTaxLevels(): List<TaxLevel> =
         incomeTaxLevelEntityMapper.toIncomeTaxLevelModel(incomeTaxLevelRepository.findAll())
 
@@ -36,6 +40,7 @@ class ReferenceDataPersistenceAdapter(
         )
     }
 
+    @Cacheable("solidarityContributionTaxLevels")
     override fun loadSolidarityContributionTaxLevels(): List<TaxLevel> =
         solidarityContributionLevelEntityMapper.toModel(solidarityContributionTaxLevelRepository.findAll())
 
@@ -47,6 +52,7 @@ class ReferenceDataPersistenceAdapter(
         )
     }
 
+    @Cacheable("selfEmployedContributions")
     override fun loadSelfEmployedContributions(): List<SelfEmployedContribution> =
         selfEmployedContributionEntityMapper.toModel(selfEmployedContributionRepository.findAll())
 }
