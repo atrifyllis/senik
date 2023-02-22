@@ -1,0 +1,97 @@
+== Notes about hexagonal
+
+I will try to create an extensive list of "rules" for hexagonal architecture, about how to organise a project, what goes were, who calls what etc.
+
+== Code Structure
+
+This is how the code is organized at the moment in my reference project.
+The project is a Spring Boot application in Kotlin, using PostgreSQL as a database:
+image:../docs/hexagonal.jpg[Hexagon]
+
+** Shown above is the code structure of one bounded context (per DDD), structured using the Hexagonal Architecture (aka ports & adapters)
+
+NOTE: The dashed rectangles represent packages.
+Also, the whole bounded context is a parent package but it could as well be a module (Maven/Gradle)
+
+== Hexagonal in a nutshell
+
+*** The main philosophy of Hexagonal Architecture, is that the *domain* is at the heart of the system, and as the most important part of the system it should, as much as possible, not be coupled with any specific technology or framework.
+It is responsible for implementing all the business logic, which is (or should be) the actual added value of the system.
+This in a way complements the main philosophy of Domain Driven Design (DDD).
+*** To achieve this, the Hexagonal Architecture proposes that all *dependencies are pointed inwards*, meaning that the domain layer does not depend on any outer layer.
+Additionally, the application layer should also not depend on the adapters layer.
+You can see that from the diagram kind of clearly, with arrows pointing inwards between layers.
+This decoupling between layers is achieved through the use of dependency inversion.
+*** *Dependency inversion* means higher level layers (such as the domain and application layers) should not depend on lower level layers (such as the adapters layer).
+Instead, they should depend on abstractions (such as interfaces) that define the functionality that they require.
+The actual implementations of these abstractions are then provided by the lower level layers.
+In case of input into the system, we can regard primary adapters as highlevel components and application service as lowlevel component.
+Which is a bit strange, since in the output side the application layer is considered the high level component and the secondary adapters the low level components.
+*** The *primary adapters* (also known as inbound adapters) use *input ports* to communicate with the application layer, rather than directly calling application services.
+These input ports are implemented by the application services.
+Similarly, the application services use *output ports* that are implemented by the *secondary adapters* (also known as outbound adapters).
+By depending on interfaces instead of concrete implementations, the layers of the system are decoupled from each other, making it easier to modify and test each layer independently.
+*** A concrete example.
+In a layered architecture, a service, which is responsible for implementing business logic (especially when the domain is anaemic) usually depends directly on a JPA repository to persist the domain model to the database.
+So in that case, with dependency inversion the service will depend on an abstraction, an interface.
+The interface will be implemented by some other actor, the actual JPA repository, which will be injected transparently into the service.
+
+== Code organisation
+
+=== Primary Adapters (adapters.primary package)
+
+**** Primary adapters are components that provide input to the system (thus called inbound adapters too).
+For example a Web (*REST*) controller is an example of an adapter.
+The adapter interacts with the system by utilizing the *input port* abstraction.
+The adapter uses Data Transfer Objects (*DTOs*) to communicate with the system.
+
+=== Input Ports (ports.in package)
+
+**** Usually, an input port corresponds to a *Use Case*.
+It is an interface that dictates the contract between the external world and our system.
+DTOs can be queries or commands, but they are definitely not aware of the domain model.
+They are transformed from and to the domain model using mappers.
+Both *DTOs* and *mappers* can reside inside the input ports package, or in the application package
+
+=== Application layer (application package)
+
+**** The *application services* implement the input ports.
+They use the mappers to transform from and to the DTOs to communicate with the adapters.
+They use the domain to exercise the business rules that need to be applied for each use case.
+They call the output ports to communicate with secondary adapters.
+
+=== Domain Layer (domain.model, domain.service and domain.event package)
+
+**** The domain layer is the heart of the system and is responsible for implementing all the business logic, which is the actual added value of the system.
+It is based on the principles of DomainDriven Design (DDD) and consists of Aggregates, Entities, Value Objects, and Domain Services.
+All of these objects are *rich objects*, meaning they encapsulate both data and behavior.
+**** *Aggregates* are clusters of related objects that are treated as a unit.
+They are responsible for enforcing invariants and consist of one or more Entities and Value Objects. *Entities* are objects that have an identity and represent concepts with a lifecycle, while *Value Objects* are objects that have no identity and are immutable.
+**** *Domain Events* are events fired by aggregates after a state change.
+They are essentially messages that communicate a change in the domain model's state or behaviour, allowing other parts of the system to respond accordingly.
+**** *Domain Services* are used to implement business logic that spans multiple Aggregates.
+They are responsible for coordinating the activities of various objects and may modify the state of one or more Aggregates.
+They are typically used when a piece of business logic cannot be implemented by a single Aggregate.
+
+=== Output Ports (ports.out package)
+
+**** In our system, output ports are *interfaces* used by the application to communicate with external systems.
+These operations might include reading or writing data to a database, sending messages to a message queue, or calling a thirdparty API.
+The operations are technology agnostic.
+
+=== Secondary Adapters (adapters.secondary package)
+
+**** Secondary adapters are components used by the system to communicate with external systems.
+For example a DB adapter could be a class that *uses a JPA repository* for CRUD operations.
+They implement the output ports and use *mappers* to map domain models to and from DB entities before using the repositories to perform the DB operations.
+Mappers and DB entities are part of the secondary adapters layer.
+
+NOTE: I am not very satisfied with the asymmetry between adapters and ports.
+Specifically, the primary adapters seem to have much less functionality compared to secondary adapters.
+Additionally, there is a discrepancy in the placement of mappers: on one side, they are part of the input ports (together with the DTOs by the way), while on the other side, they are inside secondary adapters.
+This design decision may warrant further review.
+However, it should be noted that primary adapters cannot handle mapping to/from the domain model since this might require interaction with the database.
+Thus, only the application service can perform this function.
+On the other hand, while it is possible to have the application service also handle mapping from the domain to the database entity (to unload the secondary adapters from that), this would result in the service having to perform too many tasks.
+  
+

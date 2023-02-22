@@ -39,9 +39,8 @@ open12345
 == Architecture
 
 This is an attempt to use DDD together with the Hexagonal Architecture (ports and adapters).
-You can see bellow the generic structure of the application:
 
-image::hexagonal.png[hexagonal]
+include::Senik Notes.adoc[]
 
 == Usage
 
