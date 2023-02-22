@@ -1,0 +1,104 @@
+= SENIK - Self Employed Net Income Kalkulator
+:base-url: https://localhost:8080
+:imagesdir: docs
+
+
+== Intro
+
+This is a simple net income calculator for self employed people in Greece.
+For starters, it focuses only in insurance of type TSMEDE.
+
+== Tech stack
+
+This is a Spring boot application written in Kotlin and built with Gradle.
+
+=== Database
+
+It uses PostgreSQL as a database.
+Flyway is used for database migrations.
+
+=== API
+
+The API is exposed as openapi 3.0 standard: link:{base-url}/swagger-ui/index.html[]]
+
+=== Security
+
+Okta is used together with Spring security for authentication and authorization with Oauth OpenID Connect protocol.
+
+The link:https://github.com/okta/okta-spring-boot[Okta Spring Boot Starter] is used which autoconfigures Spring Security.
+
+An account has been created in Okta website.
+
+To be able to log in use you can use these credentials:
+
+====
+test_user@test.com +
+open12345
+====
+
+== Architecture
+
+This is an attempt to use DDD together with the Hexagonal Architecture (ports and adapters).
+
+include::Senik Notes.adoc[]
+
+== Usage
+
+=== 1. Import the postman scripts in Postman:
+
+- link:senik.postman_collection.json[Senik Postman Collection]
+- link:senik-local.postman_environment.json[Senik Local Postman Environment]
+
+=== 2. Start database
+
+Use link:docker-compose.yaml[docker-compose].
+
+=== 3 Start application (main class.)
+
+=== 4 Start Postman
+
+Retrieve an access token:
+
+image::postman-token.png[]
+
+Use the Okta credentials to login as a simple user.
+
+After you have acquired the token you can call the different endpoints.
+
+=== OpenAPI generator
+
+TO generate locally the OpenApi json file (to be used for example in frontend) first start the application and then use the following command:
+
+    gradle generateOpenApiDocs
+
+The generated file is located in the build folder (openapi.json).
+
+=== Some notes for local k8 dev:
+
+from base folder (important!):
+
+ docker build  -t otinanism/senik-ui -f apps/senik-ui/docker/Dockerfile .
+
+  kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
+
+  kubectl create deployment senik --image=otinanism/senik --dry-run -o=yaml > deployment.yaml
+
+  kubectl create service clusterip senik --tcp=8080:8080 --dry-run -o=yaml >> service.yaml
+
+  k3d cluster create mycluster -p "8081:80@loadbalancer"
+
+or to expose NodePorts in host:
+
+  k3d cluster create mycluster2 --api-port 6550 -p "8081:80@loadbalancer" -p "30000-32767:30000-32767@server:0"
+
+--> this hangs, use maybe less ports?
+
+  k3d cluster create mycluster --api-port 6550 -p "8081:80@loadbalancer" -p "30000-30020:30000-30020@server:0" -v C:\Users\alx\k3d\volumes:/var/lib/rancher/k3s/storage@all
+
+--> ATTENTION! for volume mount to work it needs to be run from powershell!!!
+
+  ./gradlew bootBuildImage --imageName=otinanism/senik
+
+For the moment, this entry needs to be in hosts file:
+
+  127.0.0.1 kubernetes.docker.internal
