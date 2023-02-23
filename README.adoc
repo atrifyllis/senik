@@ -32,8 +32,7 @@ An account has been created in Okta website.
 To be able to log in use you can use these credentials:
 
 ====
-test_user@test.com +
-open12345
+(ask for creds!)
 ====
 
 == Architecture
