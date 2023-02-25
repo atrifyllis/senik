@@ -2,17 +2,17 @@
 hibernateTypes = "2.21.1"
 jmolecules = "1.6.0"
 jmoleculesIntegrations = "1.6.0"
-oktaSpring = "3.0.0"
-kotlin = "1.8.0"
+oktaSpring = "3.0.2"
+kotlin = "1.8.20-Beta"
 kotlinLogging = "3.0.4"
 mapStruct = "1.5.3.Final"
 openapi = "1.6.14"
 openapi2 = "2.0.2"
 openapiGradlePlugin = "1.6.0"
 gradleLogger = "3.2.0"
-springBoot = "3.0.2"
+springBoot = "3.0.3"
 springDepManagement = "1.1.0"
-sonarqube = "3.5.0.2730"
+sonarqube = "4.0.0.2929"
 versionChecker = "0.44.0"
 ff4j = "1.9"
 archUnit = "1.0.1"
@@ -64,7 +64,7 @@ gradlePrettyLogger = { id = "com.adarshr.test-logger", version.ref = "gradleLogg
 sonarqube = { id = "org.sonarqube", version.ref = "sonarqube" }
 versionChecker = { id = "com.github.ben-manes.versions", version.ref = "versionChecker" }
 native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover"}
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 
 
 
