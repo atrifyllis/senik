@@ -33,6 +33,7 @@ configurations {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 extra["testcontainersVersion"] = "1.17.6"
