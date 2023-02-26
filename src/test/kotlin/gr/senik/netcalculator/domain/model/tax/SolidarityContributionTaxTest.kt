@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.domain.model.tax
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.LegalEntityType
 import gr.senik.netcalculator.domain.model.SolidarityTax
 import gr.senik.netcalculator.domain.model.TaxDataHelper

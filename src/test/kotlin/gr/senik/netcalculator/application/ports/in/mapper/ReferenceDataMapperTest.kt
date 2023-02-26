@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.EfkaClassType
 import gr.senik.netcalculator.domain.model.InsuranceType
 import gr.senik.netcalculator.domain.model.TaxDataHelper

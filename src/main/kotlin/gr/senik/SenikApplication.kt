@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 }
 
 @ImportRuntimeHints(MyRuntimeHints::class)
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["gr.alx", "gr.senik"])
 @EnableCaching
 // only way I found to override FF4j FF4JOpenApiConfiguration
 // excluding the auto-configuration class did not work

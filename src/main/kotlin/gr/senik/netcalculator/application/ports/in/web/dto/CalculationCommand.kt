@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.application.ports.`in`.web.dto
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.DailyIncome
 import gr.senik.netcalculator.domain.model.InsuranceType
 import gr.senik.netcalculator.domain.model.LegalEntityType

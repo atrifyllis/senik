@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.domain.model
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.insurance.InsuranceTestHelper.Companion.efkaClasses
 import gr.senik.netcalculator.domain.model.insurance.InsuranceTestHelper.Companion.eteaepClasses
 import org.assertj.core.api.Assertions.assertThat

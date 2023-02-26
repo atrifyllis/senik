@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.domain.model
 
-import gr.senik.common.domain.model.DomainEvent
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.DomainEvent
+import gr.alx.common.domain.model.Money
 
 data class IncomeCalculated(
     val incomeId: IncomeId,

@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.domain.model.tax.selfemployedcontribution
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.SECType
 import gr.senik.netcalculator.domain.model.SelfEmployedContribution
 import gr.senik.netcalculator.domain.model.SelfEmployedContributionId
