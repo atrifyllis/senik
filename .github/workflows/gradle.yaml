@@ -15,6 +15,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
@@ -25,6 +26,12 @@ jobs:
         with:
           repository: atrifyllis/common
           path: common
+
+      - name: checkout versions
+        uses: actions/checkout@v3
+        with:
+          repository: atrifyllis/versions
+          path: versions
 
       - name: checkout senik
         uses: actions/checkout@v3
@@ -39,8 +46,16 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./senik/gradlew
+      - name: Make gradlew executable
+        run: chmod +x ./versions/gradlew
 
-      - name: Build with Gradle
+      - name: Build versions with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publishMavenPublicationToMavenLocal
+          build-root-directory: versions
+
+      - name: Build senik with Gradle
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
