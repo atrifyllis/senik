@@ -51,8 +51,6 @@ dependencies {
 
     implementation("org.flywaydb:flyway-core")
     implementation("org.postgresql:postgresql")
-//    implementation("io.github.classgraph:classgraph")
-
 
     implementation(libs.oktaSpring)
     implementation(libs.hibernateTypes)
@@ -62,6 +60,10 @@ dependencies {
     implementation(libs.bundles.jmolecules)
     implementation(libs.bundles.openApi)
     implementation(libs.bundles.ff4j)
+
+    // check settings.gradle.kts to see how we import this module. it is a composite build, so we use it here like a normal library dependency!
+    implementation("gr.alx:common")
+
 
     runtimeOnly("org.postgresql:postgresql")
     compileOnly("org.projectlombok:lombok")

@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.application.service
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.IntegrationTestBase
 import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
 import gr.senik.netcalculator.application.ports.`in`.web.dto.IndividualDto

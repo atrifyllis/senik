@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.domain.model.insurance
 
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.*
 import java.util.*
 

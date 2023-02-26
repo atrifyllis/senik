@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.domain.model
 
-import gr.senik.common.domain.model.DomainEntityId
-import gr.senik.common.domain.model.Money
+import gr.alx.common.domain.model.DomainEntityId
+import gr.alx.common.domain.model.Money
 import java.util.*
 
 class Individual(

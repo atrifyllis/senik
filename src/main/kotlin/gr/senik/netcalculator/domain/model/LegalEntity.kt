@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.domain.model
 
-import gr.senik.common.domain.model.AbstractAggregateRoot
-import gr.senik.common.domain.model.DomainEntityId
+import gr.alx.common.domain.model.AbstractAggregateRoot
+import gr.alx.common.domain.model.DomainEntityId
 import java.util.*
 
 class LegalEntityId(id: UUID) : DomainEntityId(id) {
