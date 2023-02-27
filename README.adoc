@@ -5,7 +5,7 @@
 
 == Intro
 
-This is a simple net income calculator for self employed people in Greece.
+This is a simple net income calculator for self-employed people in Greece.
 For starters, it focuses only in insurance of type TSMEDE.
 
 == Tech stack
@@ -32,7 +32,7 @@ An account has been created in Okta website.
 To be able to log in use you can use these credentials:
 
 ====
-(ask for creds!)
+(ask for credentials!)
 ====
 
 == Architecture
@@ -52,7 +52,7 @@ image:../docs/hexagonal.jpg[Hexagon]
 ** Shown above is the code structure of one bounded context (per DDD), structured using the Hexagonal Architecture (aka ports & adapters)
 
 NOTE: The dashed rectangles represent packages.
-Also, the whole bounded context is a parent package but it could as well be a module (Maven/Gradle)
+Also, the whole bounded context is a parent package, but it could as well be a module (Maven/Gradle)
 
 == Hexagonal in a nutshell
 
@@ -66,7 +66,7 @@ This decoupling between layers is achieved through the use of dependency inversi
 *** *Dependency inversion* means higher level layers (such as the domain and application layers) should not depend on lower level layers (such as the adapters layer).
 Instead, they should depend on abstractions (such as interfaces) that define the functionality that they require.
 The actual implementations of these abstractions are then provided by the lower level layers.
-In case of input into the system, we can regard primary adapters as highlevel components and application service as lowlevel component.
+In case of input into the system, we can regard primary adapters as high-level components and application service as low-level component.
 Which is a bit strange, since in the output side the application layer is considered the high level component and the secondary adapters the low level components.
 *** The *primary adapters* (also known as inbound adapters) use *input ports* to communicate with the application layer, rather than directly calling application services.
 These input ports are implemented by the application services.
@@ -117,8 +117,8 @@ They are typically used when a piece of business logic cannot be implemented by 
 === Output Ports (ports.out package)
 
 **** In our system, output ports are *interfaces* used by the application to communicate with external systems.
-These operations might include reading or writing data to a database, sending messages to a message queue, or calling a thirdparty API.
-The operations are technology agnostic.
+These operations might include reading or writing data to a database, sending messages to a message queue, or calling a third party API.
+The operations are technology-agnostic.
 
 === Secondary Adapters (adapters.secondary package)
 
@@ -145,7 +145,9 @@ The project depents on two projects:
 https://github.com/atrifyllis/versions
 https://github.com/atrifyllis/common
 
-The first one publishes in maven local a versions catalog.
+The first one publishes in maven local a versions catalog. To publish it run:
+`gradlew publishMavenPublicationToMavenLocal`
+
 The second one has some classes that were in a common package inside senik project but are now extracted to potentially be reused in other projects.
 
 The common project must be in same directory with senik project to work.
@@ -182,30 +184,33 @@ The generated file is located in the build folder (openapi.json).
 
 === Some notes for local k8 dev:
 
-from base folder (important!):
+The way I deploy in kubernetes local is using k3d.
+To create a basic k3d cluster use this command:
 
- docker build  -t otinanism/senik-ui -f apps/senik-ui/docker/Dockerfile .
+ k3d cluster create mycluster --api-port 6550 -p "8081:80@loadbalancer" -p "30000-30020:30000-30020@server:0" -v C:\Users\alx\k3d\volumes:/var/lib/rancher/k3s/storage@all
+
+This 1) exposes a loadbalancer in host's 8081 port,
+2) exposes ports 30000-30020 to be used if needed as NodePorts,
+3) creates persistent volume in host.
+
+CAUTION: For volume mount to work on windows, this needs to be executed from powershell
+
+To build the docker image:
+
+ ./gradlew bootBuildImage --imageName=otinanism/senik
+
+Then you can use Helm to deploy the actual application.
+
+ helm install senik senik/ --values=senik/values-local.yaml
+
+This should not be needed in the future, but for the moment this entry needs to be in hosts file:
+
+  127.0.0.1 kubernetes.docker.internal
+
+Other draft notes (older):
 
   kubectl create deployment senik-ui --image=otinanism/senik-ui --dry-run=client --output=yaml
 
   kubectl create deployment senik --image=otinanism/senik --dry-run -o=yaml > deployment.yaml
 
   kubectl create service clusterip senik --tcp=8080:8080 --dry-run -o=yaml >> service.yaml
-
-  k3d cluster create mycluster -p "8081:80@loadbalancer"
-
-or to expose NodePorts in host:
-
-  k3d cluster create mycluster2 --api-port 6550 -p "8081:80@loadbalancer" -p "30000-32767:30000-32767@server:0"
-
---> this hangs, use maybe less ports?
-
-  k3d cluster create mycluster --api-port 6550 -p "8081:80@loadbalancer" -p "30000-30020:30000-30020@server:0" -v C:\Users\alx\k3d\volumes:/var/lib/rancher/k3s/storage@all
-
---> ATTENTION! for volume mount to work it needs to be run from powershell!!!
-
-  ./gradlew bootBuildImage --imageName=otinanism/senik
-
-For the moment, this entry needs to be in hosts file:
-
-  127.0.0.1 kubernetes.docker.internal
