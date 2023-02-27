@@ -139,6 +139,18 @@ On the other hand, while it is possible to have the application service also han
 
 == Usage
 
+=== 0. Checkout dependent projects
+
+The project depents on two projects:
+https://github.com/atrifyllis/versions
+https://github.com/atrifyllis/common
+
+The first one publishes in maven local a versions catalog.
+The second one has some classes that were in a common package inside senik project but are now extracted to potentially be reused in other projects.
+
+The common project must be in same directory with senik project to work.
+
+
 === 1. Import the postman scripts in Postman:
 
 - link:senik.postman_collection.json[Senik Postman Collection]
