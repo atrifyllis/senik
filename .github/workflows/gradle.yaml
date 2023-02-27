@@ -46,6 +46,7 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./senik/gradlew
+
       - name: Make gradlew executable
         run: chmod +x ./versions/gradlew
 
