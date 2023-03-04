@@ -5,9 +5,11 @@ import gr.senik.netcalculator.domain.model.DailyIncome
 import gr.senik.netcalculator.domain.model.InsuranceType
 import gr.senik.netcalculator.domain.model.LegalEntityType
 import gr.senik.netcalculator.domain.model.SECType
+import jakarta.validation.Valid
+import jakarta.validation.constraints.Max
 import java.util.*
 
-data class CalculationCommand(val individual: IndividualDto)
+data class CalculationCommand(@field:Valid val individual: IndividualDto)
 
 data class IndividualDto(
     val legalEntityType: LegalEntityType = LegalEntityType.INDIVIDUAL,
@@ -19,6 +21,7 @@ data class IndividualDto(
     val annualExpensesAmount: Money,
     val isLessThanFiveYears: Boolean = false,
     val secType: SECType = SECType.SINGLE_EMPLOYER_LARGE_AREA,
+    @field:Max(value = 1000)
     val branches: Int = 1,
 )
 

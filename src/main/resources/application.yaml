@@ -18,6 +18,14 @@ spring:
     password: senik
   flyway:
     enabled: true
+  #    json serde by default:
+  kafka:
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 logging:
   level:
@@ -49,3 +57,4 @@ cors:
   allowedOrigins:
     - "http://localhost:4200" # local dev mode
     - "http://localhost:8081" # local k3d cluster
+
