@@ -2,6 +2,7 @@ package gr.senik.netcalculator.adapters.primary.messaging
 
 import gr.alx.common.domain.model.Money
 import gr.senik.CALCULATION_COMMANDS
+import gr.senik.CALCULATION_COMMANDS_DLT
 import gr.senik.netcalculator.KafkaTestBase
 import gr.senik.netcalculator.adapters.secondary.persistence.CalculatedIncomeRepository
 import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
@@ -30,7 +31,8 @@ class IncomeCalculationListenerTest(
     private val consumerFactory: ConsumerFactory<String, CalculationCommand>,
 ) : KafkaTestBase(consumerFactory) {
 
-    private val consumer = testConsumer("test-calculation-command-group", CALCULATION_COMMANDS)
+    private val calculationCommandConsumer = testConsumer("test-calculation-command-group", CALCULATION_COMMANDS)
+    private val calculationCommandDltConsumer = testConsumer("test-calculation-command-dlt-group", CALCULATION_COMMANDS_DLT)
 
     @Test
     fun `should listen to calculation message and store calculation in database`() {
@@ -39,7 +41,7 @@ class IncomeCalculationListenerTest(
         // when:
         kafkaTemplate.send(CALCULATION_COMMANDS, KEY_1, calculationCommand)
         // then:
-        val records = KafkaTestUtils.getRecords(consumer).records(CALCULATION_COMMANDS);
+        val records = KafkaTestUtils.getRecords(calculationCommandConsumer).records(CALCULATION_COMMANDS)
         assertThat(records.any { r -> r.key() == KEY_1 }).isTrue
 
         // Wait for the message to be processed by the Kafka listener
@@ -52,14 +54,19 @@ class IncomeCalculationListenerTest(
     }
 
     @Test
-    fun `should listen to invalid calculation message and not process it `() {
+    fun `should listen to invalid calculation message and not process it`() {
         // given:
         val calculationCommand = calculationCommand(10000)
         // when:
         kafkaTemplate.send(CALCULATION_COMMANDS, KEY_2, calculationCommand)
         // then:
-        val records = KafkaTestUtils.getRecords(consumer).records(CALCULATION_COMMANDS);
+        val records = KafkaTestUtils.getRecords(calculationCommandConsumer).records(CALCULATION_COMMANDS)
         assertThat(records.any { r -> r.key() == KEY_2 }).isTrue
+
+        // check that invalid message was sent to DLT
+        val dltRecords = KafkaTestUtils.getRecords(calculationCommandDltConsumer).records(CALCULATION_COMMANDS_DLT)
+        assertThat(dltRecords).hasSize(1)
+        assertThat(dltRecords.first().key()).isEqualTo(KEY_2)
 
         // Wait for the message to be processed by the Kafka listener
         await().atMost(Duration.ofSeconds(5)).untilAsserted {

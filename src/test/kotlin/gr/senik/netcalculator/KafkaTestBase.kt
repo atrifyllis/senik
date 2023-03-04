@@ -28,7 +28,7 @@ class KafkaTestBase(
         }
     }
 
-    fun testConsumer(groupIdPrefix: String, topic: String): Consumer<String, CalculationCommand> {
+    final fun testConsumer(groupIdPrefix: String, topic: String): Consumer<String, CalculationCommand> {
         val createConsumer = consumerFactory.createConsumer("$groupIdPrefix-${UUID.randomUUID()}", "clId", "", consumerProperties())
         createConsumer.subscribe(mutableListOf(topic))
         return createConsumer

@@ -17,7 +17,7 @@ class IncomeCalculationListener(
     private val calculateIncomeUseCase: CalculateIncomeUseCase,
 ) {
 
-    @KafkaListener(topics = ["calculation.commands"], groupId = "income-calculation-consumer-group", errorHandler = "validationErrorHandler")
+    @KafkaListener(topics = ["calculation.commands"], groupId = "income-calculation-consumer-group")
     fun calculateIncome(@Payload @Valid command: CalculationCommand) {
         calculateIncomeUseCase.calculate(command)
     }
