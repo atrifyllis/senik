@@ -2,13 +2,12 @@ package gr.senik.netcalculator.adapters.primary.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import gr.senik.netcalculator.IntegrationTestBase
-import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
+import gr.senik.netcalculator.application.ports.`in`.dto.ReferenceDataDto
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.CoreMatchers.containsString
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
-import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc

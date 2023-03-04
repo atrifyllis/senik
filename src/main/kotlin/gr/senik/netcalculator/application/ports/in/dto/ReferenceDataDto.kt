@@ -1,4 +1,4 @@
-package gr.senik.netcalculator.application.ports.`in`.web.dto
+package gr.senik.netcalculator.application.ports.`in`.dto
 
 import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.*

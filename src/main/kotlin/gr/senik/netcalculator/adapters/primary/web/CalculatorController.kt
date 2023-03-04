@@ -1,10 +1,10 @@
 package gr.senik.netcalculator.adapters.primary.web
 
-import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
-import gr.senik.netcalculator.application.ports.`in`.web.LoadCalculatorDataUseCase
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
-import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
+import gr.senik.netcalculator.application.ports.`in`.CalculateIncomeUseCase
+import gr.senik.netcalculator.application.ports.`in`.LoadCalculatorDataUseCase
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationResultDto
+import gr.senik.netcalculator.application.ports.`in`.dto.ReferenceDataDto
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping
 class CalculatorController(
     private val loadCalculatorDataUseCase: LoadCalculatorDataUseCase,
-    private val calculateIncomeUseCase: CalculateIncomeUseCase
+    private val calculateIncomeUseCase: CalculateIncomeUseCase,
 ) {
     @GetMapping("/reference-data")
     fun getReferenceData(): ReferenceDataDto = loadCalculatorDataUseCase.getReferenceData()

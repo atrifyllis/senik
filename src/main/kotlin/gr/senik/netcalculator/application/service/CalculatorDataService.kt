@@ -1,13 +1,13 @@
 package gr.senik.netcalculator.application.service
 
+import gr.senik.netcalculator.application.ports.`in`.CalculateIncomeUseCase
+import gr.senik.netcalculator.application.ports.`in`.LoadCalculatorDataUseCase
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationResultDto
+import gr.senik.netcalculator.application.ports.`in`.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.`in`.mapper.CalculationResultMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.IndividualMapper
 import gr.senik.netcalculator.application.ports.`in`.mapper.ReferenceDataMapper
-import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
-import gr.senik.netcalculator.application.ports.`in`.web.LoadCalculatorDataUseCase
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
-import gr.senik.netcalculator.application.ports.`in`.web.dto.ReferenceDataDto
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.application.ports.out.LoadReferenceDataPort
 import gr.senik.netcalculator.domain.model.Income
