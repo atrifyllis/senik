@@ -23,6 +23,7 @@ private const val SECONDARY_ADAPTERS_LAYER = "adapters.secondary"
 
 
 private const val WEB = "web"
+private const val MESSAGING = "messaging"
 
 private const val PERSISTENCE = "persistence"
 private const val LOGGING = "logging"
@@ -52,6 +53,7 @@ class ArchUnitTests {
                 "..$APPLICATION_PORTS_OUT_LAYER.."
             )
             .adapter(WEB, "..$PRIMARY_ADAPTERS_LAYER.$WEB..")
+            .adapter(MESSAGING, "..$PRIMARY_ADAPTERS_LAYER.$MESSAGING..")
             .adapter(
                 PERSISTENCE,
                 "..$SECONDARY_ADAPTERS_LAYER.$PERSISTENCE..",
