@@ -2,8 +2,8 @@ package gr.senik.netcalculator.application.service
 
 import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.IntegrationTestBase
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
-import gr.senik.netcalculator.application.ports.`in`.web.dto.IndividualDto
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.dto.IndividualDto
 import gr.senik.netcalculator.domain.model.DailyIncome
 import gr.senik.netcalculator.domain.model.EfkaClassType
 import gr.senik.netcalculator.domain.model.EteaepClassType

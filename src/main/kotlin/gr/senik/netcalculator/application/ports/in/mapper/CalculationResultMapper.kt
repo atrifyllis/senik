@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.application.ports.`in`.mapper
 
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationResultDto
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationResultDto
 import gr.senik.netcalculator.domain.model.Income
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy

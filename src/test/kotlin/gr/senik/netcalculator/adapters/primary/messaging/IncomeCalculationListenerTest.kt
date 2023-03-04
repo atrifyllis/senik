@@ -4,8 +4,8 @@ import gr.alx.common.domain.model.Money
 import gr.senik.CALCULATION_COMMANDS
 import gr.senik.netcalculator.KafkaTestBase
 import gr.senik.netcalculator.adapters.secondary.persistence.CalculatedIncomeRepository
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
-import gr.senik.netcalculator.application.ports.`in`.web.dto.IndividualDto
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.dto.IndividualDto
 import gr.senik.netcalculator.domain.model.DailyIncome
 import gr.senik.netcalculator.domain.model.InsuranceType
 import org.assertj.core.api.Assertions.assertThat
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.kafka.test.assertj.KafkaConditions.key
 import org.springframework.kafka.test.utils.KafkaTestUtils
 import org.testcontainers.shaded.org.awaitility.Awaitility.await
 import java.time.Duration

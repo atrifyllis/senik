@@ -1,6 +1,6 @@
 package gr.senik.netcalculator
 
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
 import org.apache.kafka.clients.consumer.Consumer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.core.ConsumerFactory

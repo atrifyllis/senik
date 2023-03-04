@@ -1,7 +1,7 @@
 package gr.senik.netcalculator.adapters.primary.messaging
 
-import gr.senik.netcalculator.application.ports.`in`.web.CalculateIncomeUseCase
-import gr.senik.netcalculator.application.ports.`in`.web.dto.CalculationCommand
+import gr.senik.netcalculator.application.ports.`in`.CalculateIncomeUseCase
+import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
 import jakarta.validation.Valid
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.handler.annotation.Payload
