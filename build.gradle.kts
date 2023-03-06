@@ -45,6 +45,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.kafka:spring-kafka")
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -122,3 +124,8 @@ allOpen {
     annotation("jakarta.persistence.Embeddable")
 }
 
+configurations {
+    all {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+    }
+}

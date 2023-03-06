@@ -26,7 +26,9 @@ spring:
         spring.json.trusted.packages: "*"
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+  output:
+    ansi:
+      enabled: always # needed because when running tests in intellij ansi is not rendered otehrwise
 logging:
   level:
     org.hibernate.SQL: DEBUG
