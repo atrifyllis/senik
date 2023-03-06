@@ -22,6 +22,7 @@ spring:
   kafka:
     consumer:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      isolation-level: read_committed # used in autoconfigured ConcurrentKafkaListenerContainerFactory
       properties:
         spring.json.trusted.packages: "*"
     producer:
