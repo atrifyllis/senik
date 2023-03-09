@@ -20,6 +20,8 @@ spring:
     enabled: true
   #    json serde by default:
   kafka:
+    bootstrap-servers:
+      - localhost:9093
     consumer:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       isolation-level: read_committed # used in autoconfigured ConcurrentKafkaListenerContainerFactory
