@@ -1,11 +1,12 @@
 package gr.senik.netcalculator.adapters.primary.messaging
 
+import gr.alx.common.adapters.secondary.persistence.EVENT_ID_HEADER
 import gr.alx.common.domain.model.Money
 import gr.senik.CALCULATION_COMMANDS
 import gr.senik.CALCULATION_COMMANDS_DLT
 import gr.senik.netcalculator.KafkaTestBase
 import gr.senik.netcalculator.adapters.secondary.persistence.CalculatedIncomeRepository
-import gr.senik.netcalculator.adapters.secondary.persistence.EVENT_ID_HEADER
+
 import gr.senik.netcalculator.adapters.secondary.persistence.IndividualEntity
 import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
 import gr.senik.netcalculator.application.ports.`in`.dto.IndividualDto
