@@ -1,5 +1,5 @@
-//package gr.senik.netcalculator.domain.model.tax
-//
+//  package gr.senik.netcalculator.domain.model.tax
+// TODO delete or uncomment
 //import gr.alx.common.domain.model.Money
 //import gr.senik.netcalculator.domain.model.v2.IncomeTax
 //import gr.senik.netcalculator.domain.model.v2.IncomeTaxId
