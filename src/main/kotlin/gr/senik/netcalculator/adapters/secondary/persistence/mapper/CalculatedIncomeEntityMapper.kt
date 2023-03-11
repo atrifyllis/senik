@@ -28,7 +28,7 @@ abstract class CalculatedIncomeEntityMapper {
         return id.id.id
     }
 
-    fun map(id: IncomeId): UUID? {
+    fun map(id: IncomeId): UUID {
         return id.id
     }
 }

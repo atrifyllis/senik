@@ -19,7 +19,7 @@ abstract class IndividualEntityMapper {
     abstract fun toEntity(individual: Individual): IndividualEntity
 
 
-    fun map(id: LegalEntityId): UUID? {
+    fun map(id: LegalEntityId): UUID {
         return id.id
     }
 
