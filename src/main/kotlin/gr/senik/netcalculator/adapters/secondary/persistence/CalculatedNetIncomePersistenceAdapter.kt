@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
-import gr.alx.common.adapters.secondary.persistence.DomainEventPublisher
+import gr.alx.common.adapters.secondary.messaging.DomainEventPublisher
 import gr.senik.netcalculator.adapters.secondary.persistence.mapper.CalculatedIncomeEntityMapper
 import gr.senik.netcalculator.application.ports.out.CalculateNetIncomePort
 import gr.senik.netcalculator.domain.model.Income

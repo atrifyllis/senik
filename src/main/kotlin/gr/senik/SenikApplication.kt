@@ -8,14 +8,16 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
 import org.springframework.cache.annotation.EnableCaching
 import org.springframework.context.annotation.ImportRuntimeHints
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 fun main(args: Array<String>) {
     runApplication<SenikApplication>(*args)
 }
 
 @ImportRuntimeHints(MyRuntimeHints::class)
-@SpringBootApplication(scanBasePackages = ["gr.alx", "gr.senik"]) // scan spring compontents from other jars
+@SpringBootApplication(scanBasePackages = ["gr.alx", "gr.senik"]) // scan spring components from other jars
 @EntityScan(value = ["gr.alx", "gr.senik"]) // scan entities from other jars
+@EnableJpaRepositories(basePackages = ["gr.alx", "gr.senik"]) // scan repositories from other jars
 @EnableCaching
 // only way I found to override FF4j FF4JOpenApiConfiguration
 // excluding the autoconfiguration class did not work
