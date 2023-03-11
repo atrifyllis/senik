@@ -15,7 +15,8 @@ CREATE TABLE individual
     created_by               VARCHAR(255),
     created                  TIMESTAMP WITHOUT TIME ZONE,
     last_modified_by         VARCHAR(255),
-    last_modified            TIMESTAMP WITHOUT TIME ZONE
+    last_modified            TIMESTAMP WITHOUT TIME ZONE,
+    enabled                  BOOLEAN
 );
 
 CREATE TABLE calculated_net_income
