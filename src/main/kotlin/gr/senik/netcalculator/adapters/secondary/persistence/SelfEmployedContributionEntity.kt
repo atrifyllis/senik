@@ -1,6 +1,6 @@
 package gr.senik.netcalculator.adapters.secondary.persistence
 
-import gr.alx.common.domain.model.BaseEntity
+import gr.alx.common.adapters.secondary.persistence.BaseEntity
 import gr.alx.common.domain.model.Money
 import gr.senik.netcalculator.domain.model.SECType
 import jakarta.persistence.*
