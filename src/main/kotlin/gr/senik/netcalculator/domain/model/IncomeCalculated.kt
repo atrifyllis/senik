@@ -7,4 +7,4 @@ data class IncomeCalculated(
     val incomeId: IncomeId,
     val individualId: LegalEntityId,
     val income: Money,
-) : DomainEvent(aggregateId = incomeId, aggregateType = "income")
+) : DomainEvent(aggregateId = incomeId, aggregateType = "income", type = "IncomeCalculated")
