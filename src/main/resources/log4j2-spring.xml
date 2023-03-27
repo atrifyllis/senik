@@ -24,6 +24,7 @@
         <Logger name="org.testcontainers" level="info"/>
         <Logger name="com.github.dockerjava" level="warn"/>
         <Logger name="com.github.dockerjava.zerodep.debug.org.apache.hc.client5.http.wire" level="OFF"/>
+        <Logger name="org.jooq" level="DEBUG"/>
 
         <Root level="info">
             <AppenderRef ref="Console" />
