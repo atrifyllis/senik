@@ -19,6 +19,7 @@ spring:
   flyway:
     enabled: true
   #    json serde by default:
+
   kafka:
     bootstrap-servers:
       - localhost:9093

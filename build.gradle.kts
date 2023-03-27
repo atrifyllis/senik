@@ -1,4 +1,6 @@
+import dev.monosoul.jooq.RecommendedVersions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 @Suppress(
     "DSL_SCOPE_VIOLATION"
@@ -15,7 +17,8 @@ plugins {
     alias(libs.plugins.openapi)
     alias(libs.plugins.versionChecker)
     alias(libs.plugins.kover)
-//    alias(libs.plugins.native)
+    //    alias(libs.plugins.native)
+    alias(libs.plugins.jooqDocker)
 
     jacoco
 }
@@ -46,6 +49,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.kafka:spring-kafka")
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    implementation("org.springframework.boot:spring-boot-starter-jooq")
+    implementation("org.jooq:jooq:${RecommendedVersions.JOOQ_VERSION}") // TODO this is ugly
 
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -64,6 +69,9 @@ dependencies {
     implementation(libs.bundles.jmolecules)
     implementation(libs.bundles.openApi)
     implementation(libs.bundles.ff4j)
+
+    jooqCodegen("org.postgresql:postgresql")
+
 
     // check settings.gradle.kts to see how we import this module. it is a composite build, so we use it here like a normal library dependency!
     implementation("gr.alx:common")
@@ -128,4 +136,14 @@ configurations {
     all {
         exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
     }
+}
+
+tasks.generateJooqClasses {
+
+    basePackageName.set("gr.senik.common.adapters.secondary.persistence")
+    outputDirectory.set(project.layout.buildDirectory.dir("generated-sources"))
+    usingJavaConfig {
+        name = "org.jooq.codegen.KotlinGenerator"
+    }
+
 }
