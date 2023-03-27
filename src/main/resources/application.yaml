@@ -13,12 +13,13 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
   datasource:
-    url: jdbc:postgresql://localhost:65432/senik
-    username: senik
-    password: senik
+    url: ${url}
+    username: ${username}
+    password: ${password}
   flyway:
     enabled: true
   #    json serde by default:
+
   kafka:
     bootstrap-servers:
       - localhost:9093
