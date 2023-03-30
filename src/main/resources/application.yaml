@@ -63,6 +63,7 @@ cors:
   allowedOrigins:
     - "http://localhost:4200" # local dev mode
     - "http://localhost:8081" # local k3d cluster
+
 management:
   endpoints:
     web:
@@ -74,3 +75,10 @@ management:
   endpoint:
     health:
       show-components: "always" # show all health components
+  info:
+    env:
+      enabled: true # for future use (?)
+    java:
+      enabled: true
+    os:
+      enabled: true
