@@ -19,6 +19,8 @@ plugins {
     //    alias(libs.plugins.native)
     alias(libs.plugins.jooqDocker)
 
+    alias(libs.plugins.gitProperties) // expose git info under /actuator/info
+
     jacoco
 }
 
@@ -148,3 +150,9 @@ tasks.generateJooqClasses {
     }
 
 }
+
+// expose build info under /actuator/info
+springBoot {
+    buildInfo()
+}
+
