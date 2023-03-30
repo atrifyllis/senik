@@ -63,4 +63,14 @@ cors:
   allowedOrigins:
     - "http://localhost:4200" # local dev mode
     - "http://localhost:8081" # local k3d cluster
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # expose all endpoints
+    beans:
+      cache:
+        time-to-live: "3s" # reduce caching
+  endpoint:
+    health:
+      show-components: "always" # show all health components
