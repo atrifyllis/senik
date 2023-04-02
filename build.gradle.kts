@@ -73,7 +73,10 @@ dependencies {
 
     implementation(libs.bundles.ff4j)
 
-    implementation(libs.bundles.micrometer)
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("io.micrometer:micrometer-tracing-bridge-brave")
+    // For Latency Visualization
+    implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 
     jooqCodegen("org.postgresql:postgresql")
 
