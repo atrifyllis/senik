@@ -82,3 +82,7 @@ management:
       enabled: true
     os:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0 # All traces should be sent to latency analysis tool
+
