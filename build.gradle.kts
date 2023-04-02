@@ -73,6 +73,8 @@ dependencies {
 
     implementation(libs.bundles.ff4j)
 
+    implementation(libs.bundles.micrometer)
+
     jooqCodegen("org.postgresql:postgresql")
 
 
