@@ -74,6 +74,7 @@ dependencies {
 
     implementation("io.micrometer:micrometer-registry-prometheus")
     implementation("io.micrometer:micrometer-tracing-bridge-brave")
+    implementation(libs.micrometerDatasource)
     // For Latency Visualization
     implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 
