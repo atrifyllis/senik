@@ -77,6 +77,8 @@ dependencies {
     // For Latency Visualization
     implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 
+    implementation(libs.lokiLogbackAppender)
+
     jooqCodegen("org.postgresql:postgresql")
 
 
