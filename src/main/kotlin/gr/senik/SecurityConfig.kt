@@ -21,6 +21,7 @@ class SecurityConfig {
         http {
             authorizeRequests {
                 authorize("/v3/api-docs/**", permitAll)
+                authorize("/actuator/prometheus", permitAll)
                 authorize(anyRequest, authenticated)
             }
             oauth2Client { }
