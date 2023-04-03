@@ -33,10 +33,14 @@ spring:
   output:
     ansi:
       enabled: always # needed because when running tests in intellij ansi is not rendered otehrwise
+  application:
+    name: senik
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    level: "user=[%X{userId}] %5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
 okta:
   oauth2:
