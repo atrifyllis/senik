@@ -27,7 +27,7 @@ class ObsConfig {
     // Logs all request
     @Bean
     fun logFilter(): CommonsRequestLoggingFilter {
-        val filter = CommonsRequestLoggingFilter()
+        val filter = CustomRequestLoggingFilter()
         filter.setIncludeQueryString(true)
         filter.setIncludePayload(true)
         filter.setMaxPayloadLength(10000)
@@ -60,5 +60,12 @@ class MDCLoggingFilter : OncePerRequestFilter() {
         } finally {
             MDC.remove(USER_ID_MDC_KEY)
         }
+    }
+}
+
+class CustomRequestLoggingFilter : CommonsRequestLoggingFilter() {
+    override fun shouldLog(request: HttpServletRequest): Boolean {
+        if (request.requestURI.contains("/actuator")) return false
+        return super.shouldLog(request)
     }
 }
