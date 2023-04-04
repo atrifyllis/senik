@@ -9,17 +9,20 @@ spring:
         format_sql: true
         ddl-auto: validate
         use-new-id-generator-mappings: false
+
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
+
   datasource:
     url: jdbc:postgresql://localhost:65432/senik
     username: senik
     password: senik
+
   flyway:
     enabled: true
-  #    json serde by default:
 
+  #    json serde by default:
   kafka:
     bootstrap-servers:
       - localhost:9093
@@ -30,11 +33,13 @@ spring:
         spring.json.trusted.packages: "*"
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
   output:
     ansi:
       enabled: always # needed because when running tests in intellij ansi is not rendered otehrwise
   application:
     name: senik
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
