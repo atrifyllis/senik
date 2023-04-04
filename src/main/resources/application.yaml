@@ -90,3 +90,9 @@ management:
     sampling:
       probability: 1.0 # All traces should be sent to latency analysis tool
 
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
