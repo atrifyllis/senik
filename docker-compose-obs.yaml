@@ -41,9 +41,10 @@ services:
     volumes:
       - ./obs/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/grafana-datasources.yaml:ro
       - ./obs/dashboards:/etc/grafana/provisioning/dashboards:ro
-    #    environment:
-    #      - GF_AUTH_ANONYMOUS_ENABLED=true
-    #      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-    #      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    environment:
+      - GF_FEATURE_TOGGLES_ENABLE=traceToMetrics
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
