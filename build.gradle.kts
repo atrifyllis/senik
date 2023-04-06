@@ -1,9 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
-@Suppress(
-    "DSL_SCOPE_VIOLATION"
-)
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.springBoot)
     alias(libs.plugins.springDepManagement)
@@ -73,8 +71,8 @@ dependencies {
     implementation(libs.bundles.ff4j)
 
     implementation("io.micrometer:micrometer-registry-prometheus")
-    implementation("io.micrometer:micrometer-tracing-bridge-brave")
     implementation(libs.micrometerDatasource)
+    implementation(libs.bundles.micrometerTracing)
     // For Latency Visualization
     implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 
