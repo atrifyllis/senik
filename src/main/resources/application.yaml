@@ -9,6 +9,8 @@ spring:
         format_sql: true
         ddl-auto: validate
         use-new-id-generator-mappings: false
+        types.jackson.object.mapper: gr.alx.common.adapters.secondary.persistence.HibernateTypesObjectMapperSupplier # without this, hibernate types ignore the usage of custom ObjectMapper
+
 
   jackson:
     serialization:
@@ -101,3 +103,4 @@ management:
         http:
           server:
             requests: true
+
