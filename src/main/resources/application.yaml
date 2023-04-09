@@ -103,3 +103,6 @@ management:
           server:
             requests: true
 
+jdbc:
+  datasource-proxy:
+    include-parameter-values: true
