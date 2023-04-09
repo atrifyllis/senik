@@ -7,4 +7,11 @@
 * [ ] CRUD for reference data - if needed should be in different bounded context probably?
 * [ ] other insurance types
 * [ ] Native image
+* [ ] Observability
+** [ ] Traces to logs
+** [ ] Logs to metrics
+** [ ] kafka obs
+** [ ] db obs
+** [ ] service map
+** [ ] colors in traces always the same
 

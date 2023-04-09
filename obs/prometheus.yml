@@ -10,3 +10,14 @@ scrape_configs:
           metrics_path: '/actuator/prometheus'
           static_configs:
                   - targets: ['host.docker.internal:8080'] # TODO no security here
+        - job_name: "kafka-broker"
+          static_configs:
+            - targets:
+                - "kafka:1234"
+              labels:
+                env: "dev"
+          relabel_configs:
+            - source_labels: [__address__]
+              target_label: instance
+              regex: '([^:]+)(:[0-9]+)?'
+              replacement: '${1}'
