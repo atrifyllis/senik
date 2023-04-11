@@ -10,3 +10,6 @@ storage:
     backend: local
     local:
       path: /tmp/tempo/blocks
+
+overrides:
+  metrics_generator_processors: [service-graphs, span-metrics] # enables metrics generator
