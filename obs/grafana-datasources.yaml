@@ -27,6 +27,17 @@ datasources:
       httpMethod: GET
       tracesToLogs:
         datasourceUid: 'loki'
+        mappedTags: [ { key: 'service.name',value: 'app' } ]  # TODO this is still not working
+        filterByTraceID: true
+        filterBySpanID: true
+      lokiSearch:
+        datasourceUid: 'loki'
+      tracesToMetrics:
+        datasourceUid: 'prom' # TODO this is still not working
+      serviceMap:
+        datasourceUid: 'prom' # TODO this is still not working
+      nodeGraph:
+        enabled: true
   - name: Loki
     type: loki
     uid: loki
