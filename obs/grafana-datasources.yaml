@@ -34,7 +34,13 @@ datasources:
       lokiSearch:
         datasourceUid: 'loki'
       tracesToMetrics:
-        datasourceUid: 'prom' # TODO this is still not working
+        datasourceUid: prom # TODO this works but the queries do not make sense
+        tags: [{ key: "service.name", value: "app" }]
+        queries:
+          - name: 'Throughput'
+            query: 'sum(rate(http_server_requests_seconds_count{$$__tags}[$$__interval]))'
+          - name: 'Latency'
+            query: 'http_server_requests_seconds_max{$$__tags}'
       serviceMap:
         datasourceUid: 'prom' # TODO this is still not working
       nodeGraph:
