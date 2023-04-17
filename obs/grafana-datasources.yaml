@@ -31,6 +31,8 @@ datasources:
         mapTagNamesEnabled: true # that was required!
         filterByTraceID: true
         filterBySpanID: true
+        spanStartTimeShift: '-1h'
+        spanEndTimeShift: '1h'
       lokiSearch:
         datasourceUid: 'loki'
       tracesToMetrics:
