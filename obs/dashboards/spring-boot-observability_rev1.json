@@ -958,7 +958,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by(type) (rate({compose_service=~\"app-.*\"} | pattern `<date> <time> <_>=<trace_id> <_>=<span_id> <_>=<trace_flags> <type> <_> --- <msg>` | type != \"\" |= \"$log_keyword\" [1m]))",
+          "expr": "{app=~`.+`}",
           "legendFormat": "{{type}}",
           "queryType": "range",
           "refId": "A"
