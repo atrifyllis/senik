@@ -61,6 +61,6 @@ datasources:
     jsonData:
       derivedFields:
         - datasourceUid: tempo
-          matcherRegex: \[.+,(.+?),.+] # to match trace id in pattern:  "user: %X{userId} %5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+          matcherRegex: \[{.+,(.+?),.+}] # to match trace id in pattern:  "user: %X{userId} %5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
           name: TraceID
           url: $${__value.raw}
