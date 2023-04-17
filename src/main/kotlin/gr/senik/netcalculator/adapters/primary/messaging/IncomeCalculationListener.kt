@@ -4,9 +4,12 @@ import gr.senik.netcalculator.application.ports.`in`.CalculateIncomeUseCase
 import gr.senik.netcalculator.application.ports.`in`.dto.CalculationCommand
 import gr.senik.netcalculator.domain.model.IncomeCalculated
 import jakarta.validation.Valid
+import mu.KotlinLogging
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
+
+private val log = KotlinLogging.logger {}
 
 /**
  * Primary adapter that listens to kafka topic for [CalculationCommand]s.
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Component
  */
 @Component
 class IncomeCalculationListener(
-        private val calculateIncomeUseCase: CalculateIncomeUseCase,
+    private val calculateIncomeUseCase: CalculateIncomeUseCase,
 ) {
 
     @KafkaListener(topics = ["calculation.commands"], groupId = "income-calculation-consumer-group")
@@ -25,6 +28,6 @@ class IncomeCalculationListener(
 
     @KafkaListener(topics = ["senik.events"], groupId = "income-calculated-consumer-group-3")
     fun calculateIncome(@Payload event: IncomeCalculated) {
-        println(event)
+        log.info { event }
     }
 }
