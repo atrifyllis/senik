@@ -46,7 +46,7 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
   pattern:
-    level: "user: %X{userId} %5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    level: "user: %X{userId:-UNKNOWN} %clr(%5p) [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 
 okta:
   oauth2:
