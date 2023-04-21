@@ -11,7 +11,6 @@ spring:
         use-new-id-generator-mappings: false
         types.jackson.object.mapper: gr.alx.common.adapters.secondary.persistence.HibernateTypesObjectMapperSupplier # without this, hibernate types ignore the usage of custom ObjectMapper
 
-
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
@@ -42,9 +41,6 @@ spring:
     name: senik
 
 logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
   pattern:
     level: "user: %X{userId:-UNKNOWN} %clr(%5p) [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
 

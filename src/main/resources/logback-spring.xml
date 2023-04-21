@@ -29,10 +29,13 @@
         <appender-ref ref="LOKI"/>
     </root>
 
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG"/>
     <logger name="org.testcontainers" level="INFO"/>
     <logger name="com.github.dockerjava" level="WARN"/>
     <logger name="com.github.dockerjava.zerodep.debug.org.apache.hc.client5.http.wire" level="OFF"/>
-    <logger name="org.jooq" level="DEBUG"/> <!--TODO we need a custom logging listener to remove double quotes from printed queries so that it works in loki-->
+    <logger name="org.jooq" level="DEBUG"/>
 
-    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG" />
+    <logger name="gr.senik.CustomRequestLoggingFilter" level="DEBUG" />
+
 </configuration>
