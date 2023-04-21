@@ -9,7 +9,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 @Configuration
 class JacksonConfig {
     /**
-     * Using MixIn only to avoid package cycles between common and product
+     * Using MixIn only to avoid package cycles between common and netcalculator packages.
      */
     @Bean
     fun jsonCustomizer(): Jackson2ObjectMapperBuilderCustomizer? {
