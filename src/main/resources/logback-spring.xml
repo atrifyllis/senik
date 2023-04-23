@@ -36,6 +36,6 @@
     <logger name="com.github.dockerjava.zerodep.debug.org.apache.hc.client5.http.wire" level="OFF"/>
     <logger name="org.jooq" level="DEBUG"/>
 
-    <logger name="gr.senik.CustomRequestLoggingFilter" level="DEBUG" />
+    <logger name="gr.alx.common.CustomRequestLoggingFilter" level="DEBUG" />
 
 </configuration>
