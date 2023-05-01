@@ -17,7 +17,7 @@ class IncomeCalculatedTest(@Autowired val objectMapper: ObjectMapper) {
     fun `should deserialize`() {
         val event: String = """
             {
-            "className": "gr.senik.netcalculator.domain.model.IncomeCalculated",
+            "className": "IncomeCalculated",
               "type": "income-calculated",
               "income": {
                 "amount": 60460.68,
