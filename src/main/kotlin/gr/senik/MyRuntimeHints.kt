@@ -1,6 +1,6 @@
 package gr.senik
 
-import org.hibernate.dialect.PostgreSQLPGObjectJdbcType
+//import org.hibernate.dialect.PostgreSQLPGObjectJdbcType
 import org.springframework.aot.hint.MemberCategory
 import org.springframework.aot.hint.RuntimeHints
 import org.springframework.aot.hint.RuntimeHintsRegistrar
@@ -14,10 +14,12 @@ class MyRuntimeHints : RuntimeHintsRegistrar {
         // Temporary hint, should be included into the official spring boot project
         hints.reflection().registerTypeIfPresent(
                 classLoader, "org.postgresql.util.PGobject"
-        ) { hint ->
-            hint.withMembers(MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INTROSPECT_PUBLIC_METHODS)
-                    .onReachableType(PostgreSQLPGObjectJdbcType::class.java)
-        }
+        )
+        // TODO PostgreSQLPGObjectJdbcType
+//        { hint ->
+//            hint.withMembers(MemberCategory.INVOKE_PUBLIC_CONSTRUCTORS, MemberCategory.INTROSPECT_PUBLIC_METHODS)
+//                    .onReachableType(PostgreSQLPGObjectJdbcType::class.java)
+//        }
 
         hints.reflection().registerType(Module::class.java, MemberCategory.INVOKE_DECLARED_METHODS)
         hints.reflection().registerType(ModuleLayer::class.java, MemberCategory.INVOKE_DECLARED_METHODS)
