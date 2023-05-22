@@ -16,7 +16,7 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: false
 
   datasource:
-    url: jdbc:postgresql://localhost:65432/senik
+    url: jdbc:postgresql://localhost:30020/senik
     username: senik
     password: senik
 
@@ -26,7 +26,7 @@ spring:
   #    json serde by default:
   kafka:
     bootstrap-servers:
-      - localhost:9093
+      - localhost:30019
     consumer:
       isolation-level: read_committed # used in autoconfigured ConcurrentKafkaListenerContainerFactory
       properties:
