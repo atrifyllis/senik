@@ -16,7 +16,7 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: false
 
   datasource:
-    url: jdbc:postgresql://localhost:65432/senik
+    url: jdbc:postgresql://localhost:30020/senik
     username: senik
     password: senik
 
