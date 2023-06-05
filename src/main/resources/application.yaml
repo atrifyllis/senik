@@ -101,6 +101,12 @@ management:
     tags:
       app: senik
 
+  zipkin:
+    tracing:
+      endpoint: http://localhost:30017/api/v2/spans
+
+
 jdbc:
   datasource-proxy:
     include-parameter-values: true
+
