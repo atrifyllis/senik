@@ -35,6 +35,7 @@ class ReferenceDataPersistenceAdapter(
     override fun loadIncomeTaxLevels(): List<TaxLevel> =
         incomeTaxLevelEntityMapper.toIncomeTaxLevelModel(incomeTaxLevelRepository.findAll())
 
+    @Cacheable("loadIncomeTax")
     override fun loadIncomeTax(): IncomeTax {
         val taxLevels = loadIncomeTaxLevels()
         return IncomeTax(
@@ -47,6 +48,7 @@ class ReferenceDataPersistenceAdapter(
     override fun loadSolidarityContributionTaxLevels(): List<TaxLevel> =
         solidarityContributionLevelEntityMapper.toModel(solidarityContributionTaxLevelRepository.findAll())
 
+    @Cacheable("loadSolidarityContributionTax")
     override fun loadSolidarityContributionTax(): SolidarityTax {
         val taxLevels = loadSolidarityContributionTaxLevels()
         return SolidarityTax(
